@@ -24,7 +24,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import com.hoshihoku.culinarycompat.CulinaryCompat;
 import com.hoshihoku.culinarycompat.bridges.BridgeRegistry;
-import com.hoshihoku.culinarycompat.registry.ModItems;
+import com.hoshihoku.culinarycompat.registry.ModRegistry;
 
 public final class PamBakewareBridge {
 	public static final ResourceLocation PAM_BAKEWARE_ITEM_ID = new ResourceLocation(PamCuttingBridge.PAM_MODID,
@@ -77,7 +77,7 @@ public final class PamBakewareBridge {
 		EXCLUSIVE_KEYS.clear();
 		BridgeRegistry.clearBySource(BRIDGE_SOURCE);
 
-		Item ourBakeware = ModItems.BAKEWARE.get();
+		Item ourBakeware = ModRegistry.Items.BAKEWARE.get();
 		if (ourBakeware == null)
 			return;
 		ItemStack workstationStack = new ItemStack(ourBakeware);

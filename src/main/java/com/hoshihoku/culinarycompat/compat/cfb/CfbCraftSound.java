@@ -43,7 +43,7 @@ public final class CfbCraftSound {
 		if (level.isClientSide)
 			return;
 
-		if (FdPotBridge.getBridgedOutputs().contains(outputId)) {
+		if (FdBridges.Pot.getBridgedOutputs().contains(outputId)) {
 			float xp = BridgeRegistry.findExperienceFor("fd_cooking", outputId);
 			if (xp > 0f) {
 				player.giveExperiencePoints(Math.round(xp));
@@ -61,14 +61,15 @@ public final class CfbCraftSound {
 	}
 
 	private static ResourceLocation resolveSound(ResourceLocation outputId) {
-		if (PamPotBridge.getBridgedOutputs().contains(outputId) || FdPotBridge.getBridgedOutputs().contains(outputId)) {
+		if (PamPotBridge.getBridgedOutputs().contains(outputId)
+				|| FdBridges.Pot.getBridgedOutputs().contains(outputId)) {
 			return POT_SOUND_ID;
 		}
 		if (PamSkilletBridge.getBridgedOutputs().contains(outputId)
-				|| CfbCampfireBridge.getBridgedOutputs().contains(outputId)) {
+				|| FdBridges.Campfire.getBridgedOutputs().contains(outputId)) {
 			return SKILLET_SOUND_ID;
 		}
-		if (CfbCuttingBridge.getBridgedOutputs().contains(outputId)
+		if (FdBridges.Cutting.getBridgedOutputs().contains(outputId)
 				|| PamCuttingBridge.getBridgedOutputs().contains(outputId)) {
 			return KNIFE_SOUND_ID;
 		}

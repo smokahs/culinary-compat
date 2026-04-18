@@ -23,8 +23,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import com.hoshihoku.culinarycompat.CulinaryCompat;
 import com.hoshihoku.culinarycompat.bridges.BridgeKind;
 import com.hoshihoku.culinarycompat.bridges.BridgeRegistry;
-import com.hoshihoku.culinarycompat.compat.cfb.CfbCampfireBridge;
-import com.hoshihoku.culinarycompat.registry.ModItems;
+import com.hoshihoku.culinarycompat.compat.cfb.FdBridges;
+import com.hoshihoku.culinarycompat.registry.ModRegistry;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -66,7 +66,7 @@ public final class CulinaryCompatJeiPlugin implements IModPlugin {
 		ItemStack skillet = itemStack("farmersdelight", "skillet");
 		ItemStack oven = itemStack("cookingforblockheads", "oven");
 		ItemStack pot = itemStack("farmersdelight", "cooking_pot");
-		ItemStack bakeware = new ItemStack(ModItems.BAKEWARE.get());
+		ItemStack bakeware = new ItemStack(ModRegistry.Items.BAKEWARE.get());
 		registerCategory(registration, BridgeKind.CUTTINGBOARD, cuttingBoard);
 		registerCategory(registration, BridgeKind.SKILLET, skillet);
 		registerCategory(registration, BridgeKind.OVEN, oven);
@@ -112,7 +112,7 @@ public final class CulinaryCompatJeiPlugin implements IModPlugin {
 		ItemStack skillet = itemStack("farmersdelight", "skillet");
 		ItemStack oven = itemStack("cookingforblockheads", "oven");
 		ItemStack pot = itemStack("farmersdelight", "cooking_pot");
-		ItemStack bakeware = new ItemStack(ModItems.BAKEWARE.get());
+		ItemStack bakeware = new ItemStack(ModRegistry.Items.BAKEWARE.get());
 
 		for (Map.Entry<BridgeKind, BridgeJeiCategory> ce : CATEGORIES.entrySet()) {
 			BridgeJeiCategory cat = ce.getValue();
@@ -177,7 +177,7 @@ public final class CulinaryCompatJeiPlugin implements IModPlugin {
 				CulinaryCompat.LOGGER.error("JEI fd:cooking hide failed", e);
 			}
 		}
-		Set<ResourceLocation> campfireIds = CfbCampfireBridge.getHiddenCampfireRecipeIds();
+		Set<ResourceLocation> campfireIds = FdBridges.Campfire.getHiddenCampfireRecipeIds();
 		if (!campfireIds.isEmpty() && level != null) {
 			try {
 				List<CampfireCookingRecipe> toHide = new ArrayList<>();

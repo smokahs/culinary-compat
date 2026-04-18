@@ -7,8 +7,7 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import com.hoshihoku.culinarycompat.CulinaryCompat;
-import com.hoshihoku.culinarycompat.compat.cfb.bake.BakeStateManager;
-import com.hoshihoku.culinarycompat.compat.cfb.bake.BakeTooltipHandler;
+import com.hoshihoku.culinarycompat.compat.cfb.bake.BakeState;
 
 public final class CfbIntegration {
 	public static final String CFB_MODID = "cookingforblockheads";
@@ -33,11 +32,11 @@ public final class CfbIntegration {
 		MinecraftForge.EVENT_BUS.register(CfbKitchenConnector.class);
 		MinecraftForge.EVENT_BUS.register(CfbTooltip.class);
 		MinecraftForge.EVENT_BUS.register(CfbMissingToolsTooltip.class);
-		MinecraftForge.EVENT_BUS.register(CfbCuttingBridge.class);
+		MinecraftForge.EVENT_BUS.register(FdBridges.Cutting.class);
 		MinecraftForge.EVENT_BUS.register(CfbCraftSound.class);
-		MinecraftForge.EVENT_BUS.register(BakeStateManager.class);
+		MinecraftForge.EVENT_BUS.register(BakeState.Manager.class);
 		if (FMLEnvironment.dist == Dist.CLIENT) {
-			MinecraftForge.EVENT_BUS.register(BakeTooltipHandler.class);
+			MinecraftForge.EVENT_BUS.register(BakeState.Tooltip.class);
 		}
 
 		if (ModList.get().isLoaded(PamCuttingBridge.PAM_MODID)) {

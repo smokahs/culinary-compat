@@ -5,9 +5,7 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraftforge.fml.ModList;
 
-import com.hoshihoku.culinarycompat.compat.cfb.CfbCampfireBridge;
-import com.hoshihoku.culinarycompat.compat.cfb.CfbCuttingBridge;
-import com.hoshihoku.culinarycompat.compat.cfb.FdPotBridge;
+import com.hoshihoku.culinarycompat.compat.cfb.FdBridges;
 import com.hoshihoku.culinarycompat.compat.cfb.PamBakewareBridge;
 import com.hoshihoku.culinarycompat.compat.cfb.PamCuttingBridge;
 import com.hoshihoku.culinarycompat.compat.cfb.PamPotBridge;
@@ -23,10 +21,10 @@ public abstract class CookingRegistryMixin {
 	@Inject(method = "initFoodRegistry(Lnet/minecraft/world/item/crafting/RecipeManager;Lnet/minecraft/core/RegistryAccess;)V", at = @At("RETURN"), remap = false, require = 0)
 	private static void culinarycompat$afterInit(RecipeManager recipeManager, RegistryAccess registryAccess,
 			CallbackInfo ci) {
-		CfbCuttingBridge.registerBridges(recipeManager, registryAccess);
-		CfbCampfireBridge.registerBridges(recipeManager, registryAccess);
+		FdBridges.Cutting.registerBridges(recipeManager, registryAccess);
+		FdBridges.Campfire.registerBridges(recipeManager, registryAccess);
 		if (ModList.get().isLoaded("farmersdelight")) {
-			FdPotBridge.registerBridges(recipeManager, registryAccess);
+			FdBridges.Pot.registerBridges(recipeManager, registryAccess);
 		}
 		if (ModList.get().isLoaded(PamCuttingBridge.PAM_MODID)) {
 			PamCuttingBridge.registerBridges(recipeManager, registryAccess);

@@ -16,8 +16,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import com.hoshihoku.culinarycompat.CulinaryCompat;
 import com.hoshihoku.culinarycompat.bridges.BridgeKind;
 import com.hoshihoku.culinarycompat.bridges.BridgeRegistry;
-import com.hoshihoku.culinarycompat.compat.cfb.CfbCampfireBridge;
-import com.hoshihoku.culinarycompat.registry.ModItems;
+import com.hoshihoku.culinarycompat.compat.cfb.FdBridges;
+import com.hoshihoku.culinarycompat.registry.ModRegistry;
 
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
@@ -83,7 +83,7 @@ public final class CulinaryCompatEmiPlugin implements EmiPlugin {
 		ItemStack skillet = itemStack("farmersdelight", "skillet");
 		ItemStack oven = itemStack("cookingforblockheads", "oven");
 		ItemStack pot = itemStack("farmersdelight", "cooking_pot");
-		ItemStack bakeware = new ItemStack(ModItems.BAKEWARE.get());
+		ItemStack bakeware = new ItemStack(ModRegistry.Items.BAKEWARE.get());
 
 		registerCategory(registry, BridgeKind.CUTTINGBOARD, cuttingBoard);
 		registerCategory(registry, BridgeKind.SKILLET, skillet);
@@ -134,7 +134,7 @@ public final class CulinaryCompatEmiPlugin implements EmiPlugin {
 	}
 
 	private static void hideBridgedCampfireRecipes(EmiRegistry registry) {
-		Set<ResourceLocation> ids = new HashSet<>(CfbCampfireBridge.getHiddenCampfireRecipeIds());
+		Set<ResourceLocation> ids = new HashSet<>(FdBridges.Campfire.getHiddenCampfireRecipeIds());
 		if (ids.isEmpty())
 			return;
 		try {

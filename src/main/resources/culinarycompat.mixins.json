@@ -14,10 +14,7 @@
     "cfb.RecipeManagerMixin"
   ],
   "client": [
-    "client.BakewareModelOffsetMixin",
-    "client.CuttingBoardModelOffsetMixin",
     "client.CuttingBoardRendererOffsetMixin",
-    "client.FdCookwareModelOffsetMixin",
     "client.RecipeBookScreenMixin",
     "client.SkilletRendererOffsetMixin"
   ],

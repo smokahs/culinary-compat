@@ -46,7 +46,7 @@ public final class CfbMissingToolsTooltip {
 		List<String> tools = new ArrayList<>();
 		Set<ResourceLocation> skillet = PamSkilletBridge.getExclusiveBridgeKeys();
 		Set<ResourceLocation> pamPot = PamPotBridge.getExclusiveBridgeKeys();
-		Set<ResourceLocation> fdPot = FdPotBridge.getExclusiveBridgeKeys();
+		Set<ResourceLocation> fdPot = FdBridges.Pot.getExclusiveBridgeKeys();
 		Set<ResourceLocation> bakeware = PamBakewareBridge.getExclusiveBridgeKeys();
 		if (skillet.contains(id))
 			tools.add("Skillet");

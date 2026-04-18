@@ -10,13 +10,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import com.hoshihoku.culinarycompat.compat.DepCheck;
 import com.hoshihoku.culinarycompat.compat.cfb.CfbIntegration;
-import com.hoshihoku.culinarycompat.config.ClientConfig;
-import com.hoshihoku.culinarycompat.config.CommonConfig;
+import com.hoshihoku.culinarycompat.config.ModConfigs;
 import com.hoshihoku.culinarycompat.foodnerf.FoodNerfHandler;
 import com.hoshihoku.culinarycompat.network.NetworkHandler;
-import com.hoshihoku.culinarycompat.registry.ModBlocks;
-import com.hoshihoku.culinarycompat.registry.ModItems;
-import com.hoshihoku.culinarycompat.registry.ModSounds;
+import com.hoshihoku.culinarycompat.registry.ModRegistry;
 import com.mojang.logging.LogUtils;
 
 import org.slf4j.Logger;
@@ -29,16 +26,16 @@ public class CulinaryCompat {
 	public CulinaryCompat(FMLJavaModLoadingContext context) {
 		IEventBus modEventBus = context.getModEventBus();
 
-		ModItems.ITEMS.register(modEventBus);
-		ModBlocks.BLOCKS.register(modEventBus);
-		ModSounds.SOUNDS.register(modEventBus);
+		ModRegistry.Items.ITEMS.register(modEventBus);
+		ModRegistry.Blocks.BLOCKS.register(modEventBus);
+		ModRegistry.Sounds.SOUNDS.register(modEventBus);
 
 		modEventBus.addListener(DepCheck::onCommonSetup);
 		modEventBus.addListener(FoodNerfHandler::onCommonSetup);
 		modEventBus.addListener(CulinaryCompat::onCommonSetup);
 
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
-		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfigs.Common.SPEC);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ModConfigs.Client.SPEC);
 
 		CfbIntegration.init(modEventBus);
 

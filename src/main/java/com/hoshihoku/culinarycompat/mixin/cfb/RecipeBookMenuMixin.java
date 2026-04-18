@@ -25,16 +25,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import com.google.common.collect.Multimap;
 import com.hoshihoku.culinarycompat.compat.cfb.CcKitchenMemberView;
-import com.hoshihoku.culinarycompat.compat.cfb.CfbCuttingBridge;
-import com.hoshihoku.culinarycompat.compat.cfb.FdPotBridge;
+import com.hoshihoku.culinarycompat.compat.cfb.FdBridges;
 import com.hoshihoku.culinarycompat.compat.cfb.PamBakewareBridge;
 import com.hoshihoku.culinarycompat.compat.cfb.PamCuttingBridge;
 import com.hoshihoku.culinarycompat.compat.cfb.PamPotBridge;
 import com.hoshihoku.culinarycompat.compat.cfb.PamSkilletBridge;
-import com.hoshihoku.culinarycompat.compat.cfb.bake.BakeStateManager;
-import com.hoshihoku.culinarycompat.compat.cfb.bake.PendingBake;
-import com.hoshihoku.culinarycompat.config.CommonConfig;
-import com.hoshihoku.culinarycompat.network.BakePhase;
+import com.hoshihoku.culinarycompat.compat.cfb.bake.BakeState;
+import com.hoshihoku.culinarycompat.config.ModConfigs;
+import com.hoshihoku.culinarycompat.network.NetworkHandler.BakePhase;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -118,11 +116,11 @@ public abstract class RecipeBookMenuMixin {
 			return;
 		if (!PamBakewareBridge.getExclusiveBridgeKeys().contains(id))
 			return;
-		if (!CommonConfig.bakewareEnabled)
+		if (!ModConfigs.Common.bakewareEnabled)
 			return;
 
 		UUID pid = sp.getUUID();
-		PendingBake pending = BakeStateManager.get(pid);
+		BakeState.Pending pending = BakeState.Manager.get(pid);
 		if (pending != null && pending.phase == BakePhase.BAKING) {
 			ci.cancel();
 			return;
@@ -134,14 +132,14 @@ public abstract class RecipeBookMenuMixin {
 			}
 			ItemStack result = craftBook.tryCraft(outputItem, craftMatrix, player, multiBlock);
 			if (result.isEmpty()) {
-				BakeStateManager.clear(pid);
+				BakeState.Manager.clear(pid);
 			} else {
-				BakeStateManager.setBaking(sp, id, result, snapshot);
+				BakeState.Manager.setBaking(sp, id, result, snapshot);
 			}
 			ci.cancel();
 			return;
 		}
-		BakeStateManager.setConfirm(sp, id);
+		BakeState.Manager.setConfirm(sp, id);
 		ci.cancel();
 	}
 
@@ -162,7 +160,7 @@ public abstract class RecipeBookMenuMixin {
 	private Set<ResourceLocation> culinarycompat$hiddenKeysMissing() {
 		Set<ResourceLocation> hidden = new HashSet<>();
 		if (!culinarycompat$memberPresent(CULINARYCOMPAT$FD_CUTTING_BOARD)) {
-			hidden.addAll(CfbCuttingBridge.getExclusiveBridgeKeys());
+			hidden.addAll(FdBridges.Cutting.getExclusiveBridgeKeys());
 			hidden.addAll(PamCuttingBridge.getExclusiveBridgeKeys());
 		}
 		return hidden;
@@ -176,7 +174,7 @@ public abstract class RecipeBookMenuMixin {
 		}
 		if (!culinarycompat$memberPresent(CULINARYCOMPAT$FD_COOKING_POT)) {
 			tools.addAll(PamPotBridge.getExclusiveBridgeKeys());
-			tools.addAll(FdPotBridge.getExclusiveBridgeKeys());
+			tools.addAll(FdBridges.Pot.getExclusiveBridgeKeys());
 		}
 		if (!culinarycompat$memberPresent(CULINARYCOMPAT$BAKEWARE)) {
 			tools.addAll(PamBakewareBridge.getExclusiveBridgeKeys());
