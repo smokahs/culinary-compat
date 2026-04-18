@@ -22,7 +22,7 @@ Pam's HarvestCraft 2 recipes (cutting board, skillet, pot, saucepan, oven) are b
 
 ### Bakeware
 
-New Bakeware block, custom block to Culinary Compat which allows all Pam's bakeware recipes! Instead of unintuitive shapeless crafting, mimics an oven. Click once to confirm, click again to bake, 4-second timer with cooldown overlay, sounds, and a cancel-refund. Fully configurable.
+New Bakeware block, custom block to Culinary Compat which allows all Pam's bakeware recipes! Instead of unintuitive shapeless crafting, the CFB recipes mimic an oven! Click once to confirm, click again to bake, 4-second timer with cooldown overlay, sounds, and a cancel-refund. Fully configurable.
 
 ### Food Rebalancing
 
