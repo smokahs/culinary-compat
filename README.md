@@ -2,7 +2,7 @@
   <img src="src/main/resources/icon.png" width="128" alt="Culinary Compat icon"/>
 </p>
 
-# Culinary Compat
+# Culinary Compat!
 
 A clean, lightweight compatibility layer for **Pam's HarvestCraft 2**, **Farmer's Delight**, and **Cooking for Blockheads**!
 
