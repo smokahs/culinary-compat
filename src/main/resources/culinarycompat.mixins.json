@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "com.hoshihoku.culinarycompat.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "culinarycompat.refmap.json",
+  "mixins": [
+    "cfb.CookingRegistryMixin",
+    "cfb.CuttingBoardBlockMixin",
+    "cfb.CuttingBoardShapeMixin",
+    "cfb.FdCookwareShapeMixin",
+    "cfb.KitchenMultiBlockMixin",
+    "cfb.RecipeBookMenuMixin",
+    "cfb.RecipeManagerMixin"
+  ],
+  "client": [
+    "client.BakewareModelOffsetMixin",
+    "client.CuttingBoardModelOffsetMixin",
+    "client.CuttingBoardRendererOffsetMixin",
+    "client.FdCookwareModelOffsetMixin",
+    "client.RecipeBookScreenMixin",
+    "client.SkilletRendererOffsetMixin"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

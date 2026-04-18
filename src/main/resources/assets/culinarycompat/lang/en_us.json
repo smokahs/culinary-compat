@@ -1,0 +1,19 @@
+{
+  "emi.category.culinarycompat.kitchen_bridge_cuttingboard": "Cutting Board",
+  "emi.category.culinarycompat.kitchen_bridge_skillet": "Skillet",
+  "emi.category.culinarycompat.kitchen_bridge_oven": "Oven",
+  "emi.category.culinarycompat.kitchen_bridge_pot": "Cooking Pot",
+  "emi.category.culinarycompat.kitchen_bridge_bakeware": "Bakeware",
+  "culinarycompat.emi.requires": "Requires a %s!",
+  "culinarycompat.emi.workstation.unknown": "missing workstation",
+  "block.culinarycompat.bakeware": "Bakeware",
+  "item.culinarycompat.bakeware": "Bakeware",
+  "culinarycompat.config.nerfpams": "Nerf Pam's HarvestCraft 2 Food",
+  "culinarycompat.config.inedibleingredients": "Strip Food From Ingredients",
+  "culinarycompat.config.nerfminecraft": "Nerf Vanilla Minecraft Food",
+  "culinarycompat.config.bakewareEnabled": "Enable Bakeware Bake Flow",
+  "culinarycompat.config.bakewareDurationTicks": "Bake Duration (ticks)",
+  "culinarycompat.config.bakewareRefundOnCancel": "Refund Ingredients On Cancel",
+  "culinarycompat.config.bakedingsound": "Bake Ding Sound",
+  "culinarycompat.config.dingvolume": "Ding Volume"
+}

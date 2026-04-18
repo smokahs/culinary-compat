@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {"id": "farmersdelight:onion", "required": false}
+  ],
+  "remove": [
+    {"id": "pamhc2crops:onionseeditem", "required": false}
+  ]
+}

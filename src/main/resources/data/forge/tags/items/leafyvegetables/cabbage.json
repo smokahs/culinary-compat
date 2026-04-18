@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    {"id": "farmersdelight:cabbage", "required": false},
+    {"id": "farmersdelight:cabbage_leaf", "required": false}
+  ],
+  "remove": [
+    {"id": "pamhc2crops:cabbageitem", "required": false}
+  ]
+}

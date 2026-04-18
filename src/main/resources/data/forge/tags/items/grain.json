@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [],
+  "remove": [
+    {"id": "pamhc2crops:beanitem", "required": false},
+    {"id": "pamhc2crops:chickpeaitem", "required": false},
+    {"id": "pamhc2crops:lentilitem", "required": false},
+    {"id": "pamhc2crops:soybeanitem", "required": false}
+  ]
+}

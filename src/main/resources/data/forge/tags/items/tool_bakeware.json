@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"culinarycompat:bakeware"
+	],
+	"remove": [
+		"pamhc2foodcore:bakewareitem"
+	]
+}

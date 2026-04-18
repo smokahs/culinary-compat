@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [],
+  "remove": [
+    {"id": "pamhc2crops:cabbageitem", "required": false}
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "produce",
+      "rolls": 1.0,
+      "entries": [
+        {"type": "minecraft:item", "name": "farmersdelight:cabbage"}
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "pamhc2crops:pamcabbagecrop",
+          "properties": {"age": "7"}
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:apply_bonus",
+          "enchantment": "minecraft:fortune",
+          "formula": "minecraft:uniform_bonus_count",
+          "parameters": {"bonusMultiplier": 1}
+        }
+      ]
+    },
+    {
+      "name": "seed",
+      "rolls": 1.0,
+      "entries": [
+        {"type": "minecraft:item", "name": "farmersdelight:cabbage_seeds"}
+      ]
+    }
+  ],
+  "functions": [
+    {"function": "minecraft:explosion_decay"}
+  ]
+}

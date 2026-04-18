@@ -1,0 +1,87 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/smokahs/Culinary-Compat/issues"
+
+[[mixins]]
+    config="culinarycompat.mixins.json"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="https://curseforge.com/minecraft/mc-mods/culinary-compat"
+logoFile="icon.png"
+authors="${mod_authors}"
+credits="Pam (Pam's HarvestCraft 2), vectorwing (Farmer's Delight), BlayTheNinth (Cooking for Blockheads)"
+description='''${mod_description}'''
+
+[[dependencies.culinarycompat]]
+    modId="forge"
+    mandatory=true
+    versionRange="${forge_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.culinarycompat]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.culinarycompat]]
+    modId="farmersdelight"
+    mandatory=false
+    versionRange="[1.2,2)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.culinarycompat]]
+    modId="pamhc2foodcore"
+    mandatory=false
+    versionRange="[1.0,1.1)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.culinarycompat]]
+    modId="pamhc2crops"
+    mandatory=false
+    versionRange="[1.0,1.1)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.culinarycompat]]
+    modId="pamhc2trees"
+    mandatory=false
+    versionRange="[1.0,1.1)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.culinarycompat]]
+    modId="pamhc2foodextended"
+    mandatory=false
+    versionRange="[1.0,1.1)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.culinarycompat]]
+    modId="jei"
+    mandatory=false
+    versionRange="[15.0.0,16)"
+    ordering="AFTER"
+    side="CLIENT"
+
+[[dependencies.culinarycompat]]
+    modId="emi"
+    mandatory=false
+    versionRange="[1.1.0,)"
+    ordering="AFTER"
+    side="CLIENT"
+
+[[dependencies.culinarycompat]]
+    modId="cookingforblockheads"
+    mandatory=false
+    versionRange="[16.0,17.0)"
+    ordering="AFTER"
+    side="BOTH"

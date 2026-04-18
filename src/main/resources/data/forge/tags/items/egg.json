@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [],
+  "remove": [
+    {"id": "pamhc2trees:bananaitem", "required": false},
+    {"id": "pamhc2trees:avocadoitem", "required": false}
+  ]
+}

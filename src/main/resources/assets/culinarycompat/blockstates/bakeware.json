@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "culinarycompat:block/bakeware" },
+		"facing=east":  { "model": "culinarycompat:block/bakeware", "y": 90 },
+		"facing=south": { "model": "culinarycompat:block/bakeware", "y": 180 },
+		"facing=west":  { "model": "culinarycompat:block/bakeware", "y": 270 }
+	}
+}
