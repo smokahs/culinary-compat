@@ -24,6 +24,9 @@ public abstract class CuttingBoardRendererOffsetMixin {
 	private static final ResourceLocation CULINARYCOMPAT$CFB_COUNTER = new ResourceLocation("cookingforblockheads",
 			"counter");
 	@Unique
+	private static final ResourceLocation CULINARYCOMPAT$CFB_CORNER = new ResourceLocation("cookingforblockheads",
+			"corner");
+	@Unique
 	private static final float CULINARYCOMPAT$OFFSET = -1.0f / 16.0f;
 
 	@Inject(method = "render(Lvectorwing/farmersdelight/common/block/entity/CuttingBoardBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V", at = @At("HEAD"), remap = false, require = 0)
@@ -35,7 +38,7 @@ public abstract class CuttingBoardRendererOffsetMixin {
 		BlockPos pos = be.getBlockPos();
 		BlockState below = level.getBlockState(pos.below());
 		ResourceLocation belowId = ForgeRegistries.BLOCKS.getKey(below.getBlock());
-		if (!CULINARYCOMPAT$CFB_COUNTER.equals(belowId))
+		if (!CULINARYCOMPAT$CFB_COUNTER.equals(belowId) && !CULINARYCOMPAT$CFB_CORNER.equals(belowId))
 			return;
 		poseStack.translate(0.0f, CULINARYCOMPAT$OFFSET, 0.0f);
 	}
