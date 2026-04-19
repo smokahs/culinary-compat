@@ -10,7 +10,11 @@ Minecraft 1.20.1, Forge 47+, MIT.
 
 [![CurseForge](https://img.shields.io/badge/curseforge-culinary%20compat-f16436)](https://www.curseforge.com/minecraft/mc-mods/culinary-compat)
 
----
+## Changelog
+
+See the [CHANGELOG](CHANGELOG.md) for all changes.
+
+--------------------------------------
 
 ## Features
 
@@ -32,7 +36,7 @@ Optional restore of Pam's 1.12.2 food values, optional strip of edibility from i
 
 JEI and EMI plugins with five kitchen-bridge categories and workstation hints.
 
----
+--------------------------------------
 
 ## Installation
 
@@ -40,13 +44,13 @@ Drop `culinarycompat-<version>.jar` into `mods/`. All integrations are soft depe
 
 Works with: [Pam's HC2 Food Core](https://www.curseforge.com/minecraft/mc-mods/pams-harvestcraft-2-food-core), [Food Extended](https://www.curseforge.com/minecraft/mc-mods/pams-harvestcraft-2-food-extended), [Crops](https://www.curseforge.com/minecraft/mc-mods/pams-harvestcraft-2-crops), [Trees](https://www.curseforge.com/minecraft/mc-mods/pams-harvestcraft-2-trees), [Farmer's Delight](https://www.curseforge.com/minecraft/mc-mods/farmers-delight), [Cooking for Blockheads](https://www.curseforge.com/minecraft/mc-mods/cooking-for-blockheads).
 
----
+--------------------------------------
 
 ## Credits
 
 This mod wouldn't exist without: Pam (Pam's HarvestCraft 2), vectorwing (Farmer's Delight), BlayTheNinth (Cooking for Blockheads).
 
----
+--------------------------------------
 
 ## Issues
 
