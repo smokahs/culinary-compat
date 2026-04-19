@@ -1,0 +1,10 @@
+{
+  "conditions": [
+    { "type": "forge:false" }
+  ],
+  "type": "minecraft:smelting",
+  "ingredient": { "tag": "forge:dough/wheat" },
+  "result": "minecraft:bread",
+  "experience": 0.35,
+  "cookingtime": 200
+}
