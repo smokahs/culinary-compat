@@ -43,6 +43,7 @@ public final class CfbIntegration {
 			CulinaryCompat.LOGGER
 					.info("Pam food core detected — enabling Pam cuttingboarditem → FD knife replacement.");
 			modEventBus.register(PamCreativeTabFilter.class);
+			MinecraftForge.EVENT_BUS.register(PamRecipeStripper.class);
 		}
 	}
 }

@@ -10,8 +10,7 @@
     "cfb.CuttingBoardShapeMixin",
     "cfb.FdCookwareShapeMixin",
     "cfb.KitchenMultiBlockMixin",
-    "cfb.RecipeBookMenuMixin",
-    "cfb.RecipeManagerMixin"
+    "cfb.RecipeBookMenuMixin"
   ],
   "client": [
     "client.CuttingBoardRendererOffsetMixin",
