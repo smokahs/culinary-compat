@@ -135,12 +135,12 @@ public class BridgeEmiRecipe implements EmiRecipe {
 		widgets.addTexture(new EmiTexture(CUTTING_BG, 0, 0, 117, 57, 117, 57, 256, 256), 0, 0);
 
 		if (toolInput != null) {
-			widgets.addSlot(toolInput, 16, 8);
+			widgets.addSlot(toolInput, 16, 8).drawBack(false);
 		}
 		if (!foodInputs.isEmpty()) {
-			widgets.addSlot(foodInputs.get(0), 16, 27);
+			widgets.addSlot(foodInputs.get(0), 16, 27).drawBack(false);
 		}
-		widgets.addSlot(outputs.get(0), 86, 20).recipeContext(this);
+		widgets.addSlot(outputs.get(0), 86, 20).drawBack(false).recipeContext(this);
 	}
 
 	private void drawShapeless(WidgetHolder widgets) {

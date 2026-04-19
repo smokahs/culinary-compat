@@ -23,6 +23,9 @@ public abstract class SkilletRendererOffsetMixin {
 	@Unique
 	private static final String CULINARYCOMPAT$CFB_NAMESPACE = "cookingforblockheads";
 	@Unique
+	private static final ResourceLocation CULINARYCOMPAT$COOKING_TABLE = new ResourceLocation(
+			CULINARYCOMPAT$CFB_NAMESPACE, "cooking_table");
+	@Unique
 	private static final float CULINARYCOMPAT$OFFSET = -1.0f / 16.0f;
 
 	@Inject(method = "render(Lvectorwing/farmersdelight/common/block/entity/SkilletBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V", at = @At("HEAD"), remap = false, require = 0)
@@ -35,6 +38,8 @@ public abstract class SkilletRendererOffsetMixin {
 		BlockState below = level.getBlockState(pos.below());
 		ResourceLocation belowId = ForgeRegistries.BLOCKS.getKey(below.getBlock());
 		if (belowId == null || !CULINARYCOMPAT$CFB_NAMESPACE.equals(belowId.getNamespace()))
+			return;
+		if (CULINARYCOMPAT$COOKING_TABLE.equals(belowId))
 			return;
 		poseStack.translate(0.0f, CULINARYCOMPAT$OFFSET, 0.0f);
 	}

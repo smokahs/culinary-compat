@@ -158,17 +158,16 @@ public abstract class RecipeBookMenuMixin {
 
 	@Unique
 	private Set<ResourceLocation> culinarycompat$hiddenKeysMissing() {
-		Set<ResourceLocation> hidden = new HashSet<>();
-		if (!culinarycompat$memberPresent(CULINARYCOMPAT$FD_CUTTING_BOARD)) {
-			hidden.addAll(FdBridges.Cutting.getExclusiveBridgeKeys());
-			hidden.addAll(PamCuttingBridge.getExclusiveBridgeKeys());
-		}
-		return hidden;
+		return Collections.emptySet();
 	}
 
 	@Unique
 	private Set<ResourceLocation> culinarycompat$toolsMissingKeys() {
 		Set<ResourceLocation> tools = new HashSet<>();
+		if (!culinarycompat$memberPresent(CULINARYCOMPAT$FD_CUTTING_BOARD)) {
+			tools.addAll(FdBridges.Cutting.getExclusiveBridgeKeys());
+			tools.addAll(PamCuttingBridge.getExclusiveBridgeKeys());
+		}
 		if (!culinarycompat$memberPresent(CULINARYCOMPAT$FD_SKILLET)) {
 			tools.addAll(PamSkilletBridge.getExclusiveBridgeKeys());
 		}
