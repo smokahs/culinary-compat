@@ -22,3 +22,6 @@
 2. FD cutting board can now be placed on cfb:corner; shape, BER offset, and kitchen-multiblock detection extended to cover corner.
 3. changed some logic to make sure every bridge recipe requires its workstation present.
 4. Disabled FD bread_from_smelting and bread_from_smoking recipes. Disabled vanilla 3x wheat bread recipe (redundant)
+
+# v1.0.3
+1. reworked recipe handler a bit to ensure compat with hoshihoku modpack
