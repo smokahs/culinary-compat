@@ -16,3 +16,9 @@
 2. Added missing Cutting Board Tooltip
 3. Disabled FD model offset on cfb:cooking_table
 4. removed dough tag from phc2:doughitem
+
+## v1.0.2
+1. Disabled model offset on cfb:cooking_table for FD skillet and CC bakeware (fixes z-fighting).
+2. FD cutting board can now be placed on cfb:corner; shape, BER offset, and kitchen-multiblock detection extended to cover corner.
+3. changed some logic to make sure every bridge recipe requires its workstation present.
+4. Disabled FD bread_from_smelting and bread_from_smoking recipes. Disabled vanilla 3x wheat bread recipe (redundant)
