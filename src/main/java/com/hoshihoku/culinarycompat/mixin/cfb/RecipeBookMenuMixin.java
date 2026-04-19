@@ -165,18 +165,18 @@ public abstract class RecipeBookMenuMixin {
 	private Set<ResourceLocation> culinarycompat$toolsMissingKeys() {
 		Set<ResourceLocation> tools = new HashSet<>();
 		if (!culinarycompat$memberPresent(CULINARYCOMPAT$FD_CUTTING_BOARD)) {
-			tools.addAll(FdBridges.Cutting.getExclusiveBridgeKeys());
-			tools.addAll(PamCuttingBridge.getExclusiveBridgeKeys());
+			tools.addAll(FdBridges.Cutting.getBridgedOutputs());
+			tools.addAll(PamCuttingBridge.getBridgedOutputs());
 		}
 		if (!culinarycompat$memberPresent(CULINARYCOMPAT$FD_SKILLET)) {
-			tools.addAll(PamSkilletBridge.getExclusiveBridgeKeys());
+			tools.addAll(PamSkilletBridge.getBridgedOutputs());
 		}
 		if (!culinarycompat$memberPresent(CULINARYCOMPAT$FD_COOKING_POT)) {
-			tools.addAll(PamPotBridge.getExclusiveBridgeKeys());
-			tools.addAll(FdBridges.Pot.getExclusiveBridgeKeys());
+			tools.addAll(PamPotBridge.getBridgedOutputs());
+			tools.addAll(FdBridges.Pot.getBridgedOutputs());
 		}
 		if (!culinarycompat$memberPresent(CULINARYCOMPAT$BAKEWARE)) {
-			tools.addAll(PamBakewareBridge.getExclusiveBridgeKeys());
+			tools.addAll(PamBakewareBridge.getBridgedOutputs());
 		}
 		return tools;
 	}

@@ -23,6 +23,9 @@ public abstract class CuttingBoardShapeMixin {
 	private static final ResourceLocation CULINARYCOMPAT$CFB_COUNTER = new ResourceLocation("cookingforblockheads",
 			"counter");
 	@Unique
+	private static final ResourceLocation CULINARYCOMPAT$CFB_CORNER = new ResourceLocation("cookingforblockheads",
+			"corner");
+	@Unique
 	private static final VoxelShape CULINARYCOMPAT$OFFSET_SHAPE = Block.box(1.0D, -1.0D, 1.0D, 15.0D, 0.0D, 15.0D);
 
 	@Inject(method = "getShape(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;", at = @At("HEAD"), cancellable = true, remap = true, require = 0)
@@ -30,7 +33,7 @@ public abstract class CuttingBoardShapeMixin {
 			CallbackInfoReturnable<VoxelShape> cir) {
 		BlockState below = level.getBlockState(pos.below());
 		ResourceLocation belowId = ForgeRegistries.BLOCKS.getKey(below.getBlock());
-		if (CULINARYCOMPAT$CFB_COUNTER.equals(belowId)) {
+		if (CULINARYCOMPAT$CFB_COUNTER.equals(belowId) || CULINARYCOMPAT$CFB_CORNER.equals(belowId)) {
 			cir.setReturnValue(CULINARYCOMPAT$OFFSET_SHAPE);
 		}
 	}

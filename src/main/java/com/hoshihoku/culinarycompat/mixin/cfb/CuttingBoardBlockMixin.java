@@ -20,7 +20,8 @@ public abstract class CuttingBoardBlockMixin {
 			CallbackInfoReturnable<Boolean> cir) {
 		BlockState below = level.getBlockState(pos.below());
 		ResourceLocation id = ForgeRegistries.BLOCKS.getKey(below.getBlock());
-		if (id != null && "cookingforblockheads".equals(id.getNamespace()) && "counter".equals(id.getPath())) {
+		if (id != null && "cookingforblockheads".equals(id.getNamespace())
+				&& ("counter".equals(id.getPath()) || "corner".equals(id.getPath()))) {
 			cir.setReturnValue(true);
 		}
 	}

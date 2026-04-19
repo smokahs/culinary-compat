@@ -44,12 +44,12 @@ public final class CfbMissingToolsTooltip {
 			return;
 
 		List<String> tools = new ArrayList<>();
-		Set<ResourceLocation> fdCutting = FdBridges.Cutting.getExclusiveBridgeKeys();
-		Set<ResourceLocation> pamCutting = PamCuttingBridge.getExclusiveBridgeKeys();
-		Set<ResourceLocation> skillet = PamSkilletBridge.getExclusiveBridgeKeys();
-		Set<ResourceLocation> pamPot = PamPotBridge.getExclusiveBridgeKeys();
-		Set<ResourceLocation> fdPot = FdBridges.Pot.getExclusiveBridgeKeys();
-		Set<ResourceLocation> bakeware = PamBakewareBridge.getExclusiveBridgeKeys();
+		Set<ResourceLocation> fdCutting = FdBridges.Cutting.getBridgedOutputs();
+		Set<ResourceLocation> pamCutting = PamCuttingBridge.getBridgedOutputs();
+		Set<ResourceLocation> skillet = PamSkilletBridge.getBridgedOutputs();
+		Set<ResourceLocation> pamPot = PamPotBridge.getBridgedOutputs();
+		Set<ResourceLocation> fdPot = FdBridges.Pot.getBridgedOutputs();
+		Set<ResourceLocation> bakeware = PamBakewareBridge.getBridgedOutputs();
 		if (fdCutting.contains(id) || pamCutting.contains(id))
 			tools.add("Cutting Board");
 		if (skillet.contains(id))

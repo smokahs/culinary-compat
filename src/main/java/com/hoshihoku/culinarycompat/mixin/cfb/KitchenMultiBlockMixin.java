@@ -26,6 +26,10 @@ public abstract class KitchenMultiBlockMixin implements CcKitchenMemberView {
 
 	@Unique
 	private static final ResourceLocation CULINARYCOMPAT$BAKEWARE = new ResourceLocation("culinarycompat", "bakeware");
+	@Unique
+	private static final Set<ResourceLocation> CULINARYCOMPAT$NEIGHBOR_TARGETS = Set.of(CULINARYCOMPAT$BAKEWARE,
+			new ResourceLocation("farmersdelight", "cutting_board"), new ResourceLocation("farmersdelight", "skillet"),
+			new ResourceLocation("farmersdelight", "cooking_pot"));
 
 	@Inject(method = "findNeighbourKitchenBlocks", at = @At("HEAD"), remap = false)
 	private void culinarycompat$recordMember(Level level, BlockPos pos, boolean extendedUpSearch, CallbackInfo ci) {
@@ -42,7 +46,7 @@ public abstract class KitchenMultiBlockMixin implements CcKitchenMemberView {
 			if (ns.isAir())
 				continue;
 			ResourceLocation nid = ForgeRegistries.BLOCKS.getKey(ns.getBlock());
-			if (CULINARYCOMPAT$BAKEWARE.equals(nid)) {
+			if (CULINARYCOMPAT$NEIGHBOR_TARGETS.contains(nid)) {
 				culinarycompat$memberBlocks.add(nid);
 			}
 		}
