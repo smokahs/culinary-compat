@@ -44,10 +44,14 @@ public final class CfbMissingToolsTooltip {
 			return;
 
 		List<String> tools = new ArrayList<>();
+		Set<ResourceLocation> fdCutting = FdBridges.Cutting.getExclusiveBridgeKeys();
+		Set<ResourceLocation> pamCutting = PamCuttingBridge.getExclusiveBridgeKeys();
 		Set<ResourceLocation> skillet = PamSkilletBridge.getExclusiveBridgeKeys();
 		Set<ResourceLocation> pamPot = PamPotBridge.getExclusiveBridgeKeys();
 		Set<ResourceLocation> fdPot = FdBridges.Pot.getExclusiveBridgeKeys();
 		Set<ResourceLocation> bakeware = PamBakewareBridge.getExclusiveBridgeKeys();
+		if (fdCutting.contains(id) || pamCutting.contains(id))
+			tools.add("Cutting Board");
 		if (skillet.contains(id))
 			tools.add("Skillet");
 		if (pamPot.contains(id) || fdPot.contains(id))
