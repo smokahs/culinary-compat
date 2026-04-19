@@ -37,6 +37,8 @@ public final class ClientModelOffsets {
 	static final ModelProperty<Boolean> OFFSET_APPLIES = new ModelProperty<>();
 
 	private static final String CFB_NAMESPACE = "cookingforblockheads";
+	private static final Set<ResourceLocation> OFFSET_BLOCKLIST_BELOW = Set
+			.of(new ResourceLocation(CFB_NAMESPACE, "cooking_table"));
 	private static final float OFFSET_Y = -1.0f / 16.0f;
 	private static final int VERTEX_STRIDE_INTS = 8;
 
@@ -64,7 +66,9 @@ public final class ClientModelOffsets {
 	private static boolean isCfbBelow(BlockAndTintGetter level, BlockPos pos) {
 		BlockState below = level.getBlockState(pos.below());
 		ResourceLocation id = ForgeRegistries.BLOCKS.getKey(below.getBlock());
-		return id != null && CFB_NAMESPACE.equals(id.getNamespace());
+		if (id == null || !CFB_NAMESPACE.equals(id.getNamespace()))
+			return false;
+		return !OFFSET_BLOCKLIST_BELOW.contains(id);
 	}
 
 	private static BakedQuad translateY(BakedQuad q, float dy) {
