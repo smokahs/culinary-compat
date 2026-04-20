@@ -36,8 +36,11 @@ Optional restore of Pam's 1.12.2 food values, optional strip of edibility from i
 
 JEI and EMI plugins with five kitchen-bridge categories and workstation hints.
 
---------------------------------------
+### Configuration
 
+Client and server config files are included! More options will be added to them as well. Feel free to give some suggestions!
+
+--------------------------------------
 ## Installation
 
 Drop `culinarycompat-<version>.jar` into `mods/`. All integrations are soft dependencies, runs cleanly with any subset.
