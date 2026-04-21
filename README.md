@@ -3,6 +3,7 @@
 </p>
 
 # Culinary Compat!
+<a href='https://files.minecraftforge.net'><img alt="forge" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg"></a>
 
 A clean, lightweight compatibility layer for **Pam's HarvestCraft 2**, **Farmer's Delight**, and **Cooking for Blockheads**!
 
