@@ -9,11 +9,13 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import com.hoshihoku.culinarycompat.compat.DepCheck;
-import com.hoshihoku.culinarycompat.compat.cfb.CfbIntegration;
-import com.hoshihoku.culinarycompat.config.ModConfigs;
-import com.hoshihoku.culinarycompat.foodnerf.FoodNerfHandler;
-import com.hoshihoku.culinarycompat.network.NetworkHandler;
-import com.hoshihoku.culinarycompat.registry.ModRegistry;
+import com.hoshihoku.culinarycompat.compat.cfb.CFB;
+import com.hoshihoku.culinarycompat.config.Configs;
+import com.hoshihoku.culinarycompat.foodnerf.FoodNerf;
+import com.hoshihoku.culinarycompat.network.Network;
+import com.hoshihoku.culinarycompat.registry.Blocks;
+import com.hoshihoku.culinarycompat.registry.Items;
+import com.hoshihoku.culinarycompat.registry.Sounds;
 import com.mojang.logging.LogUtils;
 
 import org.slf4j.Logger;
@@ -26,23 +28,23 @@ public class CulinaryCompat {
 	public CulinaryCompat(FMLJavaModLoadingContext context) {
 		IEventBus modEventBus = context.getModEventBus();
 
-		ModRegistry.Items.ITEMS.register(modEventBus);
-		ModRegistry.Blocks.BLOCKS.register(modEventBus);
-		ModRegistry.Sounds.SOUNDS.register(modEventBus);
+		Items.ITEMS.register(modEventBus);
+		Blocks.BLOCKS.register(modEventBus);
+		Sounds.SOUNDS.register(modEventBus);
 
 		modEventBus.addListener(DepCheck::onCommonSetup);
-		modEventBus.addListener(FoodNerfHandler::onCommonSetup);
+		modEventBus.addListener(FoodNerf::onCommonSetup);
 		modEventBus.addListener(CulinaryCompat::onCommonSetup);
 
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfigs.Common.SPEC);
-		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ModConfigs.Client.SPEC);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Configs.Common.SPEC);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Configs.Client.SPEC);
 
-		CfbIntegration.init(modEventBus);
+		CFB.init(modEventBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	private static void onCommonSetup(FMLCommonSetupEvent event) {
-		NetworkHandler.register();
+		Network.register();
 	}
 }

@@ -5,17 +5,16 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "culinarycompat.refmap.json",
   "mixins": [
-    "cfb.CookingRegistryMixin",
-    "cfb.CuttingBoardBlockMixin",
-    "cfb.CuttingBoardShapeMixin",
-    "cfb.FdCookwareShapeMixin",
-    "cfb.KitchenMultiBlockMixin",
-    "cfb.RecipeBookMenuMixin"
+    "cfb.CuttingBoard",
+    "cfb.FdCookware",
+    "cfb.Multiblock",
+    "cfb.RecipeBook",
+    "cfb.Registry"
   ],
   "client": [
-    "client.CuttingBoardRendererOffsetMixin",
-    "client.RecipeBookScreenMixin",
-    "client.SkilletRendererOffsetMixin"
+    "client.CuttingBoardOffset",
+    "client.RecipeBook",
+    "client.SkilletOffset"
   ],
   "server": [],
   "injectors": {
