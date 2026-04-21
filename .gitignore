@@ -22,3 +22,5 @@ eclipse
 run
 run-data
 .vscode
+src/generated/
+src/test/
