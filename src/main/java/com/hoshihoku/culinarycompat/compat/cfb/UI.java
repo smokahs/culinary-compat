@@ -113,7 +113,18 @@ public final class UI {
 			if (id == null)
 				return;
 			if (KITCHEN_MEMBER_ITEMS.contains(id)) {
-				event.getToolTip().add(Component.translatable(TOOLTIP_KEY).withStyle(ChatFormatting.YELLOW));
+				List<Component> tip = event.getToolTip();
+				// skip if cfb already added the line natively
+				boolean already = false;
+				for (Component line : tip) {
+					if (line.getContents() instanceof TranslatableContents tc && TOOLTIP_KEY.equals(tc.getKey())) {
+						already = true;
+						break;
+					}
+				}
+				if (!already) {
+					tip.add(Component.translatable(TOOLTIP_KEY).withStyle(ChatFormatting.YELLOW));
+				}
 			} else if (FD_NETHERITE_KNIFE.equals(id)) {
 				event.getToolTip().add(
 						Component.literal("Never dulls when used in a kitchen.").withStyle(ChatFormatting.DARK_PURPLE));

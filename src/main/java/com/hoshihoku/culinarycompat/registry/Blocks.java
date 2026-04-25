@@ -34,6 +34,8 @@ public final class Blocks {
 
 	public static class Bakeware extends HorizontalDirectionalBlock {
 		private static final String CFB_NAMESPACE = "cookingforblockheads";
+		// cooking_table is full-height; sits flat without offset
+		private static final ResourceLocation CFB_COOKING_TABLE = new ResourceLocation(CFB_NAMESPACE, "cooking_table");
 		private static final double OFFSET = -1.0 / 16.0;
 		private static final VoxelShape SHAPE_NS = Shapes.or(Block.box(2, 0, 3, 14, 4, 13),
 				Block.box(1, 2, 6, 2, 4, 10), Block.box(14, 2, 6, 15, 4, 10));
@@ -63,7 +65,8 @@ public final class Blocks {
 			boolean ns = facing.getAxis() == Direction.Axis.Z;
 			BlockState below = level.getBlockState(pos.below());
 			ResourceLocation belowId = ForgeRegistries.BLOCKS.getKey(below.getBlock());
-			boolean onCfb = belowId != null && CFB_NAMESPACE.equals(belowId.getNamespace());
+			boolean onCfb = belowId != null && CFB_NAMESPACE.equals(belowId.getNamespace())
+					&& !CFB_COOKING_TABLE.equals(belowId);
 			if (onCfb)
 				return ns ? SHAPE_NS_OFFSET : SHAPE_EW_OFFSET;
 			return ns ? SHAPE_NS : SHAPE_EW;

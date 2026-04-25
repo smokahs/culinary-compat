@@ -19,9 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -199,6 +197,8 @@ public final class BakeState {
 		}
 	}
 
+	// registered via balm events (cfb adds its tooltip via balm; same dispatch
+	// chain)
 	@OnlyIn(Dist.CLIENT)
 	public static final class Tooltip {
 		private static final String CFB_CLICK_CRAFT_ONE = "tooltip.cookingforblockheads:click_to_craft_one";
@@ -207,8 +207,13 @@ public final class BakeState {
 		private Tooltip() {
 		}
 
-		@SubscribeEvent(priority = EventPriority.LOWEST)
-		public static void onItemTooltip(ItemTooltipEvent event) {
+		public static void register() {
+			net.blay09.mods.balm.api.Balm.getEvents().onEvent(
+					net.blay09.mods.balm.api.event.client.ItemTooltipEvent.class, Tooltip::onItemTooltip,
+					net.blay09.mods.balm.api.event.EventPriority.Lowest);
+		}
+
+		private static void onItemTooltip(net.blay09.mods.balm.api.event.client.ItemTooltipEvent event) {
 			if (!(Minecraft.getInstance().screen instanceof RecipeBookScreen))
 				return;
 
@@ -217,7 +222,7 @@ public final class BakeState {
 			if (id == null)
 				return;
 
-			boolean isBakeware = Pam.Bakeware.getExclusiveBridgeKeys().contains(id);
+			boolean isBakeware = Pam.Bakeware.getBridgedOutputs().contains(id);
 			if (isBakeware && Configs.Common.bakewareEnabled) {
 				List<Component> tip = event.getToolTip();
 				tip.removeIf(line -> line.getContents() instanceof TranslatableContents tc

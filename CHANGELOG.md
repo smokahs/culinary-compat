@@ -23,5 +23,11 @@
 3. changed some logic to make sure every bridge recipe requires its workstation present.
 4. Disabled FD bread_from_smelting and bread_from_smoking recipes. Disabled vanilla 3x wheat bread recipe (redundant)
 
-# v1.0.3
+## v1.0.3
 1. reworked recipe handler a bit to ensure compat with hoshihoku modpack
+
+## v1.0.4 
+1. removed redundant cfb multiblock kitchen tooltips
+2. fixed model offsets on cooking_table block
+3. fixed bake tooltip using cfb native balm tooltips (see 4.)
+4. added balm dependency (shouldn't be a problem, cfb already has balm dependency)

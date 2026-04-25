@@ -56,7 +56,8 @@ public final class CFB {
 		MinecraftForge.EVENT_BUS.register(UI.CraftSound.class);
 		MinecraftForge.EVENT_BUS.register(BakeState.Manager.class);
 		if (FMLEnvironment.dist == Dist.CLIENT) {
-			MinecraftForge.EVENT_BUS.register(BakeState.Tooltip.class);
+			// wait for balm client runtime to be up before registering tooltip handler
+			net.blay09.mods.balm.api.client.BalmClient.onRuntimeAvailable(BakeState.Tooltip::register);
 		}
 
 		if (ModList.get().isLoaded(Pam.PAM_MODID)) {

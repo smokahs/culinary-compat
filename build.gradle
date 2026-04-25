@@ -99,6 +99,7 @@ dependencies {
     compileOnly fg.deobf("curse.maven:jei-238222:7920915")
     compileOnly fg.deobf("curse.maven:emi-580555:6420945")
     compileOnly fg.deobf("curse.maven:cooking-for-blockheads-231484:7454483")
+    compileOnly fg.deobf("curse.maven:balm-531761:7420617")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }

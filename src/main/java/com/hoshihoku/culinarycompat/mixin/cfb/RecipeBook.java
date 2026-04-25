@@ -111,7 +111,7 @@ public abstract class RecipeBook {
 		}
 		if (!(player instanceof ServerPlayer sp))
 			return;
-		if (!Pam.Bakeware.getExclusiveBridgeKeys().contains(id))
+		if (!Pam.Bakeware.getBridgedOutputs().contains(id))
 			return;
 		if (!Configs.Common.bakewareEnabled)
 			return;

@@ -22,6 +22,9 @@ public abstract class FdCookware {
 	@Unique
 	private static final String CULINARYCOMPAT$CFB_NAMESPACE = "cookingforblockheads";
 	@Unique
+	private static final ResourceLocation CULINARYCOMPAT$COOKING_TABLE = new ResourceLocation(
+			CULINARYCOMPAT$CFB_NAMESPACE, "cooking_table");
+	@Unique
 	private static final double CULINARYCOMPAT$OFFSET = -1.0 / 16.0;
 
 	@Inject(method = "getShape(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;", at = @At("RETURN"), cancellable = true, remap = true, require = 0)
@@ -29,7 +32,8 @@ public abstract class FdCookware {
 			CallbackInfoReturnable<VoxelShape> cir) {
 		BlockState below = level.getBlockState(pos.below());
 		ResourceLocation belowId = ForgeRegistries.BLOCKS.getKey(below.getBlock());
-		if (belowId != null && CULINARYCOMPAT$CFB_NAMESPACE.equals(belowId.getNamespace())) {
+		if (belowId != null && CULINARYCOMPAT$CFB_NAMESPACE.equals(belowId.getNamespace())
+				&& !CULINARYCOMPAT$COOKING_TABLE.equals(belowId)) {
 			cir.setReturnValue(cir.getReturnValue().move(0, CULINARYCOMPAT$OFFSET, 0));
 		}
 	}

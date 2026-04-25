@@ -645,6 +645,14 @@ public final class Pam {
 			Set<Item> skItems = tagItems(SK_TAG);
 			Set<Item> ptItems = tagItems(PT_TAG);
 			Set<Item> bkItems = tagItems(BK_TAG);
+			// pam bakeware item is removed from forge:tool_bakeware tag for cfb gating, but
+			// pam recipes still
+			// reference it directly — re-add for classify so bakeware recipes get stripped
+			// + bridged
+			Item pamBakewareItem = ForgeRegistries.ITEMS.getValue(Bakeware.PAM_BAKEWARE_ITEM_ID);
+			if (pamBakewareItem != null) {
+				bkItems.add(pamBakewareItem);
+			}
 
 			CulinaryCompat.LOGGER.info("Pam recipe strip tag sizes: cb={}, sk={}, pt={}, bk={}", cbItems.size(),
 					skItems.size(), ptItems.size(), bkItems.size());

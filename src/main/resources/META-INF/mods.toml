@@ -85,3 +85,10 @@ description='''${mod_description}'''
     versionRange="[16.0,17.0)"
     ordering="AFTER"
     side="BOTH"
+
+[[dependencies.culinarycompat]]
+    modId="balm"
+    mandatory=false
+    versionRange="[7.0,8)"
+    ordering="AFTER"
+    side="BOTH"
