@@ -51,12 +51,13 @@ public final class CFB {
 		CulinaryCompat.LOGGER.info("CFB + FD detected — enabling cutting board kitchen integration.");
 
 		MinecraftForge.EVENT_BUS.register(KitchenConnector.class);
-		MinecraftForge.EVENT_BUS.register(UI.Tooltip.class);
-		MinecraftForge.EVENT_BUS.register(UI.MissingToolsTooltip.class);
 		MinecraftForge.EVENT_BUS.register(FarmersDelight.Cutting.class);
 		MinecraftForge.EVENT_BUS.register(UI.CraftSound.class);
 		MinecraftForge.EVENT_BUS.register(BakeState.Manager.class);
 		if (FMLEnvironment.dist == Dist.CLIENT) {
+			// client-only tooltips (thanks MaveTheMaverick and RainbowMagicMarker)
+			MinecraftForge.EVENT_BUS.register(UI.Tooltip.class);
+			MinecraftForge.EVENT_BUS.register(UI.MissingToolsTooltip.class);
 			// wait for balm client runtime to be up before registering tooltip handler
 			net.blay09.mods.balm.api.client.BalmClient.onRuntimeAvailable(BakeState.Tooltip::register);
 		}
