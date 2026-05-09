@@ -5,11 +5,12 @@
 # Culinary Compat!
 <a href='https://files.minecraftforge.net'><img alt="forge" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg"></a>
 
-A clean, lightweight compatibility layer for **Pam's HarvestCraft 2**, **Farmer's Delight (+various addons!)**, and **Cooking for Blockheads**!
+A compatibility layer primarily for Cooking for Blockheads, Pam's Harvest Craft's Mods and the Farmer's Delight mods (+ various FD addons!). Additions, bug fixes, and much more, a must-have mod for culinary connoisseurs!
 
 Minecraft 1.20.1, Forge 47+, MIT.
 
-[![CurseForge](https://img.shields.io/badge/curseforge-culinary%20compat-f16436)](https://www.curseforge.com/minecraft/mc-mods/culinary-compat)
+  [![CurseForge Version](https://img.shields.io/curseforge/v/1516050?label=CurseForge&color=orange&logo=curseforge&style=for-the-badge)](https://www.curseforge.com/minecraft/mc-mods/culinary-compat)
+  [![Modrinth Version](https://img.shields.io/modrinth/v/culinary-compat?label=Modrinth&color=00AF5C&logo=modrinth&style=for-the-badge)](https://modrinth.com/mod/culinary-compat)
 
 ## Changelog
 
@@ -17,29 +18,35 @@ See the [CHANGELOG](CHANGELOG.md) for all changes.
 
 --------------------------------------
 
-## Features
+## Full Featureset
 
-### Kitchen Multiblock
+### - Kitchen Multiblock
 
-Farmer's Delight (Pot, Skillet, Cutting Board) blocks are now registered as valid CFB "Kitchen Multiblock" blocks. All their respective recipes are visible through the CFB "Cooking Table"!
+The Farmer's Delight (Pot, Skillet, Cutting Board) blocks are now registered as valid CFB "Kitchen Multiblock" blocks. All their respective recipes are visible through the CFB "Cooking Table"!
 
 Pam's HarvestCraft 2 recipes (cutting board, skillet, pot, saucepan, oven) are bridged too, each gated on the correct Farmer's Delight tool being in the kitchen. If Farmer's Delight Version doesn't exist, Pam's tool serves as replacement.
 
-### Bakeware
+### - Custom Bakeware Block
 
 New Bakeware block, custom block to Culinary Compat which allows all Pam's bakeware recipes! Instead of unintuitive shapeless crafting, the CFB recipes mimic an oven! Click once to confirm, click again to bake, 4-second timer with cooldown overlay, sounds, and a cancel-refund. Fully configurable.
 
-### Food Rebalancing
+### - Food Rebalancing
 
 Optional restore of Pam's 1.12.2 food values, optional strip of edibility from ingredients (butter, spices, etc.), optional nerf of vanilla Minecraft foods. These Features have been forked from Pixel1011's Mod PamsHC2 Food Nerf!
 
-### Recipe Viewers
+### - Recipe Viewers
 
 JEI and EMI plugins with five kitchen-bridge categories and workstation hints.
 
-### Configuration
+### - Configuration
 
 Client and server config files are included! More options will be added to them as well. Feel free to give some suggestions!
+
+## Currently Supported Addons
+<details> <summary>Farmers Delight</summary>
+    - Storage Delight 
+</details>
+
 
 --------------------------------------
 ## Installation

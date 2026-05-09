@@ -38,7 +38,7 @@
 3. Thank you to everyone who submitted issues! v1.0.6-beta should have all the fixes!
 
 ## v1.0.6
-1. Fixed issue from [MaveTheMaverick and RainbowMagicMarker's reports]https://github.com/smokahs/culinary-compat/issues/2, thanks guys!
+1. Fixed issue from [MaveTheMaverick and RainbowMagicMarker's reports](https://github.com/smokahs/culinary-compat/issues/2), thanks guys!
 
 ## v1.0.7
 1. Made certain inedible ingredients craftable again (thanks stylzm!)
