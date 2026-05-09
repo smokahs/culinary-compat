@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.registry;
+package io.github.smokahs.culinarycompat.registry;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,15 +19,15 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import com.hoshihoku.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.CulinaryCompat;
 
 public final class Blocks {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
 			CulinaryCompat.MODID);
 
 	public static final RegistryObject<Block> BAKEWARE = BLOCKS.register("bakeware",
-			() -> new Bakeware(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(1.5f)
-					.sound(SoundType.METAL).noOcclusion()));
+			() -> new Bakeware(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(0.5f, 6.0f)
+					.sound(SoundType.LANTERN).noOcclusion()));
 
 	private Blocks() {
 	}

@@ -31,3 +31,7 @@
 2. fixed model offsets on cooking_table block
 3. fixed bake tooltip using cfb native balm tooltips (see 4.)
 4. added balm dependency (shouldn't be a problem, cfb already has balm dependency)
+
+## v1.0.5
+1. Added support for [Storage Delight](https://www.curseforge.com/minecraft/mc-mods/storage-delight-forge) per the request of RobynTheGhoul on Curseforge!
+2. Bakeware block now behaves like FD (pot, skillet) blocks with identical sounds and mineability

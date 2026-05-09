@@ -1,0 +1,23 @@
+{
+	"modid": "storagedelight",
+	"kitchenConnectors": [
+		"storagedelight:drawer",
+		"storagedelight:drawer_door",
+		"storagedelight:drawer_books",
+		"storagedelight:glass_cabinet",
+		"storagedelight:cabinet_variant",
+		"storagedelight:bookshelf_door",
+		"storagedelight:small_drawers",
+		"storagedelight:countertop"
+	],
+	"kitchenItemProviders": [
+		"storagedelight:drawer",
+		"storagedelight:drawer_door",
+		"storagedelight:drawer_books",
+		"storagedelight:glass_cabinet",
+		"storagedelight:cabinet_variant",
+		"storagedelight:bookshelf_door",
+		"storagedelight:small_drawers",
+		"storagedelight:countertop"
+	]
+}

@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.compat.cfb;
+package io.github.smokahs.culinarycompat.compat.cfb;
 
 import java.util.Set;
 import java.util.function.BiPredicate;
@@ -24,7 +24,8 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.hoshihoku.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.compat.cfb.addons.farmersdelight.StorageDelight;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -59,6 +60,8 @@ public final class CFB {
 			// wait for balm client runtime to be up before registering tooltip handler
 			net.blay09.mods.balm.api.client.BalmClient.onRuntimeAvailable(BakeState.Tooltip::register);
 		}
+
+		StorageDelight.init();
 
 		if (ModList.get().isLoaded(Pam.PAM_MODID)) {
 			CulinaryCompat.LOGGER
