@@ -46,15 +46,24 @@ public class Category implements IRecipeCategory<Bridges.Entry> {
 				? helper.createBlankDrawable(16, 16)
 				: helper.createDrawableItemStack(iconStack);
 
-		this.background = switch (kind) {
-			case CUTTINGBOARD -> helper.createDrawable(CUTTING_BG, 0, 0, 117, 57);
-			default -> helper.createBlankDrawable(118, 56);
-		};
+		this.background = kind == Bridges.Kind.CUTTINGBOARD ? new IDrawable() {
+			private final IDrawable diamond = helper.createDrawable(CUTTING_BG, 4, 29, 40, 21);
+			@Override
+			public int getWidth() {
+				return 118;
+			}
+			@Override
+			public int getHeight() {
+				return 56;
+			}
+			@Override
+			public void draw(GuiGraphics graphics, int xOffset, int yOffset) {
+				diamond.draw(graphics, xOffset + 10, yOffset + 35);
+			}
+		} : helper.createBlankDrawable(118, 56);
 
 		this.potArrow = kind == Bridges.Kind.POT ? helper.createDrawable(FD_INTERFACE, 176, 15, 24, 17) : null;
-		this.shapelessArrow = (kind != Bridges.Kind.POT && kind != Bridges.Kind.CUTTINGBOARD)
-				? helper.getRecipeArrow()
-				: null;
+		this.shapelessArrow = kind != Bridges.Kind.POT ? helper.getRecipeArrow() : null;
 		this.fireIcon = kind != Bridges.Kind.CUTTINGBOARD ? helper.createDrawable(FD_INTERFACE, 176, 0, 17, 15) : null;
 	}
 
@@ -118,13 +127,15 @@ public class Category implements IRecipeCategory<Bridges.Entry> {
 
 	private void layoutCutting(IRecipeLayoutBuilder builder, Bridges.Entry recipe, List<Ingredient> food,
 			Ingredient tool) {
+		for (int i = 0; i < Math.min(food.size(), 9); i++) {
+			int col = i % 3, row = i / 3;
+			builder.addSlot(RecipeIngredientRole.INPUT, col * 18 + 1, row * 18 + 1).setStandardSlotBackground()
+					.addIngredients(food.get(i));
+		}
 		if (tool != null) {
-			builder.addSlot(RecipeIngredientRole.CATALYST, 16, 8).addIngredients(tool);
+			builder.addSlot(RecipeIngredientRole.CATALYST, 61, 1).setStandardSlotBackground().addIngredients(tool);
 		}
-		if (!food.isEmpty()) {
-			builder.addSlot(RecipeIngredientRole.INPUT, 16, 27).addIngredients(food.get(0));
-		}
-		builder.addSlot(RecipeIngredientRole.OUTPUT, 86, 20).addItemStack(recipe.output());
+		builder.addOutputSlot(97, 19).setOutputSlotBackground().addItemStack(recipe.output());
 	}
 
 	private void layoutShapeless(IRecipeLayoutBuilder builder, Bridges.Entry recipe, List<Ingredient> food) {
@@ -145,10 +156,10 @@ public class Category implements IRecipeCategory<Bridges.Entry> {
 			fireIcon.draw(guiGraphics, 97, 41);
 			return;
 		}
-		if (kind == Bridges.Kind.CUTTINGBOARD)
-			return;
 		shapelessArrow.draw(guiGraphics, 60, 18);
-		fireIcon.draw(guiGraphics, 97, 41);
+		if (fireIcon != null) {
+			fireIcon.draw(guiGraphics, 97, 41);
+		}
 	}
 
 	private static ItemStack resolveToolStack(Bridges.Kind kind) {

@@ -135,8 +135,6 @@ public final class Pam {
 				ItemStack result = recipe.getResultItem(registries);
 				if (result.isEmpty())
 					continue;
-				if (!result.getItem().isEdible())
-					continue;
 
 				NonNullList<Ingredient> stripped = NonNullList.create();
 				for (Ingredient ing : original) {
@@ -274,8 +272,6 @@ public final class Pam {
 				ItemStack result = recipe.getResultItem(registries);
 				if (result.isEmpty())
 					continue;
-				if (!result.getItem().isEdible())
-					continue;
 
 				NonNullList<Ingredient> swapped = NonNullList.createWithCapacity(original.size());
 				for (Ingredient ing : original) {
@@ -397,8 +393,6 @@ public final class Pam {
 
 				ItemStack result = recipe.getResultItem(registries);
 				if (result.isEmpty())
-					continue;
-				if (!result.getItem().isEdible())
 					continue;
 
 				NonNullList<Ingredient> stripped = NonNullList.create();
@@ -528,8 +522,6 @@ public final class Pam {
 
 				ItemStack result = recipe.getResultItem(registries);
 				if (result.isEmpty())
-					continue;
-				if (!result.getItem().isEdible())
 					continue;
 
 				NonNullList<Ingredient> stripped = NonNullList.create();

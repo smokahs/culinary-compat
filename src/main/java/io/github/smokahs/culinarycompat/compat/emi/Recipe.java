@@ -101,12 +101,13 @@ public class Recipe implements EmiRecipe {
 
 	@Override
 	public int getDisplayWidth() {
-		return kind == Bridges.Kind.CUTTINGBOARD ? 117 : 118;
+		return 118;
 	}
 
 	@Override
 	public int getDisplayHeight() {
-		return kind == Bridges.Kind.CUTTINGBOARD ? 57 : 56;
+		int rows = Math.max(1, (int) Math.ceil(foodInputs.size() / 3.0));
+		return Math.max(rows * 18 + 23, 40);
 	}
 
 	@Override
@@ -126,19 +127,23 @@ public class Recipe implements EmiRecipe {
 		widgets.addTexture(EmiTexture.SHAPELESS, 97, 0);
 		widgets.addTexture(new EmiTexture(FD_INTERFACE, 176, 15, 24, 17, 24, 17, 256, 256), 60, 18);
 		widgets.addSlot(outputs.get(0), 92, 14).large(true).recipeContext(this);
-		widgets.addTexture(new EmiTexture(FD_INTERFACE, 176, 0, 17, 15, 17, 15, 256, 256), 97, 41);
+		int rows = Math.max(1, (int) Math.ceil(foodInputs.size() / 3.0));
+		widgets.addTexture(new EmiTexture(FD_INTERFACE, 176, 0, 24, 21, 17, 15, 256, 256), 18, rows * 18 + 2);
 	}
 
 	private void drawCutting(WidgetHolder widgets) {
-		widgets.addTexture(new EmiTexture(CUTTING_BG, 0, 0, 117, 57, 117, 57, 256, 256), 0, 0);
-
+		for (int i = 0; i < Math.min(foodInputs.size(), 9); i++) {
+			int col = i % 3, row = i / 3;
+			widgets.addSlot(foodInputs.get(i), col * 18, row * 18);
+		}
 		if (toolInput != null) {
-			widgets.addSlot(toolInput, 16, 8).drawBack(false);
+			widgets.addSlot(toolInput, 60, 0);
 		}
-		if (!foodInputs.isEmpty()) {
-			widgets.addSlot(foodInputs.get(0), 16, 27).drawBack(false);
-		}
-		widgets.addSlot(outputs.get(0), 86, 20).drawBack(false).recipeContext(this);
+		widgets.addTexture(EmiTexture.EMPTY_ARROW, 60, 18);
+		widgets.addSlot(outputs.get(0), 92, 14).large(true).recipeContext(this);
+		int rows = Math.max(1, (int) Math.ceil(foodInputs.size() / 3.0));
+		int diamondY = rows * 18 + 2;
+		widgets.addTexture(new EmiTexture(CUTTING_BG, 4, 29, 40, 21, 40, 21, 256, 256), 10, diamondY);
 	}
 
 	private void drawShapeless(WidgetHolder widgets) {
@@ -149,6 +154,7 @@ public class Recipe implements EmiRecipe {
 		widgets.addTexture(EmiTexture.SHAPELESS, 97, 0);
 		widgets.addTexture(EmiTexture.EMPTY_ARROW, 60, 18);
 		widgets.addSlot(outputs.get(0), 92, 14).large(true).recipeContext(this);
-		widgets.addTexture(new EmiTexture(FD_INTERFACE, 176, 0, 17, 15, 17, 15, 256, 256), 97, 41);
+		int rows = Math.max(1, (int) Math.ceil(foodInputs.size() / 3.0));
+		widgets.addTexture(new EmiTexture(FD_INTERFACE, 176, 0, 24, 21, 17, 15, 256, 256), 18, rows * 18 + 2);
 	}
 }
