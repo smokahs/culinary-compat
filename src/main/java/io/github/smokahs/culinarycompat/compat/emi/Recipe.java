@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.compat.emi;
+package io.github.smokahs.culinarycompat.compat.emi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.hoshihoku.culinarycompat.bridges.Bridges;
+import io.github.smokahs.culinarycompat.bridges.Bridges;
 
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;

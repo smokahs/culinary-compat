@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat;
+package io.github.smokahs.culinarycompat;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -8,14 +8,14 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import com.hoshihoku.culinarycompat.compat.DepCheck;
-import com.hoshihoku.culinarycompat.compat.cfb.CFB;
-import com.hoshihoku.culinarycompat.config.Configs;
-import com.hoshihoku.culinarycompat.foodnerf.FoodNerf;
-import com.hoshihoku.culinarycompat.network.Network;
-import com.hoshihoku.culinarycompat.registry.Blocks;
-import com.hoshihoku.culinarycompat.registry.Items;
-import com.hoshihoku.culinarycompat.registry.Sounds;
+import io.github.smokahs.culinarycompat.compat.DepCheck;
+import io.github.smokahs.culinarycompat.compat.cfb.CFB;
+import io.github.smokahs.culinarycompat.config.Configs;
+import io.github.smokahs.culinarycompat.foodnerf.FoodNerf;
+import io.github.smokahs.culinarycompat.network.Network;
+import io.github.smokahs.culinarycompat.registry.Blocks;
+import io.github.smokahs.culinarycompat.registry.Items;
+import io.github.smokahs.culinarycompat.registry.Sounds;
 import com.mojang.logging.LogUtils;
 
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.compat.cfb;
+package io.github.smokahs.culinarycompat.compat.cfb;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,11 +23,11 @@ import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.hoshihoku.culinarycompat.config.Configs;
-import com.hoshihoku.culinarycompat.network.Network;
-import com.hoshihoku.culinarycompat.network.Network.BakePhase;
-import com.hoshihoku.culinarycompat.network.Network.BakeStatusPacket;
-import com.hoshihoku.culinarycompat.registry.Sounds;
+import io.github.smokahs.culinarycompat.config.Configs;
+import io.github.smokahs.culinarycompat.network.Network;
+import io.github.smokahs.culinarycompat.network.Network.BakePhase;
+import io.github.smokahs.culinarycompat.network.Network.BakeStatusPacket;
+import io.github.smokahs.culinarycompat.registry.Sounds;
 
 public final class BakeState {
 	private BakeState() {

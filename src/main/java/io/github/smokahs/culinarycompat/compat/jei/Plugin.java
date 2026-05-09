@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.compat.jei;
+package io.github.smokahs.culinarycompat.compat.jei;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -20,9 +20,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.hoshihoku.culinarycompat.CulinaryCompat;
-import com.hoshihoku.culinarycompat.bridges.Bridges;
-import com.hoshihoku.culinarycompat.compat.cfb.FarmersDelight;
+import io.github.smokahs.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.bridges.Bridges;
+import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -64,7 +64,7 @@ public final class Plugin implements IModPlugin {
 		ItemStack skillet = itemStack("farmersdelight", "skillet");
 		ItemStack oven = itemStack("cookingforblockheads", "oven");
 		ItemStack pot = itemStack("farmersdelight", "cooking_pot");
-		ItemStack bakeware = new ItemStack(com.hoshihoku.culinarycompat.registry.Items.BAKEWARE.get());
+		ItemStack bakeware = new ItemStack(io.github.smokahs.culinarycompat.registry.Items.BAKEWARE.get());
 		registerCategory(registration, Bridges.Kind.CUTTINGBOARD, cuttingBoard);
 		registerCategory(registration, Bridges.Kind.SKILLET, skillet);
 		registerCategory(registration, Bridges.Kind.OVEN, oven);
@@ -109,7 +109,7 @@ public final class Plugin implements IModPlugin {
 		ItemStack skillet = itemStack("farmersdelight", "skillet");
 		ItemStack oven = itemStack("cookingforblockheads", "oven");
 		ItemStack pot = itemStack("farmersdelight", "cooking_pot");
-		ItemStack bakeware = new ItemStack(com.hoshihoku.culinarycompat.registry.Items.BAKEWARE.get());
+		ItemStack bakeware = new ItemStack(io.github.smokahs.culinarycompat.registry.Items.BAKEWARE.get());
 
 		for (Map.Entry<Bridges.Kind, Category> ce : CATEGORIES.entrySet()) {
 			Category cat = ce.getValue();

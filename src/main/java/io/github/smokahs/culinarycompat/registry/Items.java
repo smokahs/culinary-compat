@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.registry;
+package io.github.smokahs.culinarycompat.registry;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -6,7 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import com.hoshihoku.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.CulinaryCompat;
 
 public final class Items {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,

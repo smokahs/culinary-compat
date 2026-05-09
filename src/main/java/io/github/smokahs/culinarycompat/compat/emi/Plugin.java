@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.compat.emi;
+package io.github.smokahs.culinarycompat.compat.emi;
 
 import java.util.EnumMap;
 import java.util.HashSet;
@@ -13,9 +13,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.hoshihoku.culinarycompat.CulinaryCompat;
-import com.hoshihoku.culinarycompat.bridges.Bridges;
-import com.hoshihoku.culinarycompat.compat.cfb.FarmersDelight;
+import io.github.smokahs.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.bridges.Bridges;
+import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
 
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
@@ -81,7 +81,7 @@ public final class Plugin implements EmiPlugin {
 		ItemStack skillet = itemStack("farmersdelight", "skillet");
 		ItemStack oven = itemStack("cookingforblockheads", "oven");
 		ItemStack pot = itemStack("farmersdelight", "cooking_pot");
-		ItemStack bakeware = new ItemStack(com.hoshihoku.culinarycompat.registry.Items.BAKEWARE.get());
+		ItemStack bakeware = new ItemStack(io.github.smokahs.culinarycompat.registry.Items.BAKEWARE.get());
 
 		registerCategory(registry, Bridges.Kind.CUTTINGBOARD, cuttingBoard);
 		registerCategory(registry, Bridges.Kind.SKILLET, skillet);

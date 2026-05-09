@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.mixin.cfb;
+package io.github.smokahs.culinarycompat.mixin.cfb;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;

@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.registry;
+package io.github.smokahs.culinarycompat.registry;
 
 import java.util.function.Predicate;
 

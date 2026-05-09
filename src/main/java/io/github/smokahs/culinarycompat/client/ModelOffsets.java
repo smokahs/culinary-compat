@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.client;
+package io.github.smokahs.culinarycompat.client;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.hoshihoku.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.CulinaryCompat;
 
 // -1px offset for fd items on the cfb blocks
 @Mod.EventBusSubscriber(modid = CulinaryCompat.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

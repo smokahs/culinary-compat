@@ -1,11 +1,11 @@
-package com.hoshihoku.culinarycompat.registry;
+package io.github.smokahs.culinarycompat.registry;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import com.hoshihoku.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.CulinaryCompat;
 
 @Mod.EventBusSubscriber(modid = CulinaryCompat.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class CreativeTab {

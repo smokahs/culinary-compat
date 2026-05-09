@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.bridges;
+package io.github.smokahs.culinarycompat.bridges;
 
 import java.util.ArrayList;
 import java.util.Collection;

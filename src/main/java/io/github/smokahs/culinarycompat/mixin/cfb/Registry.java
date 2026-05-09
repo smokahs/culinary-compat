@@ -1,12 +1,12 @@
-package com.hoshihoku.culinarycompat.mixin.cfb;
+package io.github.smokahs.culinarycompat.mixin.cfb;
 
 import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraftforge.fml.ModList;
 
-import com.hoshihoku.culinarycompat.compat.cfb.FarmersDelight;
-import com.hoshihoku.culinarycompat.compat.cfb.Pam;
+import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
+import io.github.smokahs.culinarycompat.compat.cfb.Pam;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

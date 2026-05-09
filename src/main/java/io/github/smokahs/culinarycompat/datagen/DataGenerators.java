@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.datagen;
+package io.github.smokahs.culinarycompat.datagen;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
@@ -18,7 +18,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import com.hoshihoku.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.CulinaryCompat;
 
 import org.jetbrains.annotations.Nullable;
 

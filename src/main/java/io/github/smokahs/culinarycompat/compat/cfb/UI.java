@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.compat.cfb;
+package io.github.smokahs.culinarycompat.compat.cfb;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.hoshihoku.culinarycompat.bridges.Bridges;
+import io.github.smokahs.culinarycompat.bridges.Bridges;
 
 public final class UI {
 	private UI() {

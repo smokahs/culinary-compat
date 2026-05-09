@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.network;
+package io.github.smokahs.culinarycompat.network;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -13,7 +13,7 @@ import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
-import com.hoshihoku.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.CulinaryCompat;
 
 public final class Network {
 	private static final String VERSION = "1";
@@ -51,7 +51,7 @@ public final class Network {
 		public static void handle(BakeStatusPacket msg, Supplier<NetworkEvent.Context> ctx) {
 			ctx.get()
 					.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT,
-							() -> () -> com.hoshihoku.culinarycompat.compat.cfb.BakeState.Client.onStatus(msg.phase,
+							() -> () -> io.github.smokahs.culinarycompat.compat.cfb.BakeState.Client.onStatus(msg.phase,
 									msg.outputId)));
 			ctx.get().setPacketHandled(true);
 		}

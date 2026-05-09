@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.mixin.cfb;
+package io.github.smokahs.culinarycompat.mixin.cfb;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.hoshihoku.culinarycompat.compat.cfb.CFB;
+import io.github.smokahs.culinarycompat.compat.cfb.CFB;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

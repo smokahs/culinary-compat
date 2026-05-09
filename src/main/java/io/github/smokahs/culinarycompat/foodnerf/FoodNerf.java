@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.foodnerf;
+package io.github.smokahs.culinarycompat.foodnerf;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -17,8 +17,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.hoshihoku.culinarycompat.CulinaryCompat;
-import com.hoshihoku.culinarycompat.config.Configs;
+import io.github.smokahs.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.config.Configs;
 import com.mojang.datafixers.util.Pair;
 
 public final class FoodNerf {

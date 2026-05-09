@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.mixin.cfb;
+package io.github.smokahs.culinarycompat.mixin.cfb;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,12 +24,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.google.common.collect.Multimap;
-import com.hoshihoku.culinarycompat.compat.cfb.BakeState;
-import com.hoshihoku.culinarycompat.compat.cfb.CFB;
-import com.hoshihoku.culinarycompat.compat.cfb.FarmersDelight;
-import com.hoshihoku.culinarycompat.compat.cfb.Pam;
-import com.hoshihoku.culinarycompat.config.Configs;
-import com.hoshihoku.culinarycompat.network.Network.BakePhase;
+import io.github.smokahs.culinarycompat.compat.cfb.BakeState;
+import io.github.smokahs.culinarycompat.compat.cfb.CFB;
+import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
+import io.github.smokahs.culinarycompat.compat.cfb.Pam;
+import io.github.smokahs.culinarycompat.config.Configs;
+import io.github.smokahs.culinarycompat.network.Network.BakePhase;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

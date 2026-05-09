@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.compat.cfb;
+package io.github.smokahs.culinarycompat.compat.cfb;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,10 +33,10 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
 
-import com.hoshihoku.culinarycompat.CulinaryCompat;
-import com.hoshihoku.culinarycompat.bridges.Bridges;
-import com.hoshihoku.culinarycompat.registry.Items;
-import com.hoshihoku.culinarycompat.registry.Recipes;
+import io.github.smokahs.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.bridges.Bridges;
+import io.github.smokahs.culinarycompat.registry.Items;
+import io.github.smokahs.culinarycompat.registry.Recipes;
 
 public final class Pam {
 	public static final String PAM_MODID = "pamhc2foodcore";

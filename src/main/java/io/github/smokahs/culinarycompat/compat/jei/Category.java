@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.compat.jei;
+package io.github.smokahs.culinarycompat.compat.jei;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import com.hoshihoku.culinarycompat.bridges.Bridges;
+import io.github.smokahs.culinarycompat.bridges.Bridges;
 
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;

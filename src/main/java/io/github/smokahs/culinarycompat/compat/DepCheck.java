@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.compat;
+package io.github.smokahs.culinarycompat.compat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-import com.hoshihoku.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.CulinaryCompat;
 
 @Mod.EventBusSubscriber(modid = CulinaryCompat.MODID)
 public final class DepCheck {

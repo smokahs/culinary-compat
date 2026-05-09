@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.mixin.client;
+package io.github.smokahs.culinarycompat.mixin.client;
 
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.BlockPos;

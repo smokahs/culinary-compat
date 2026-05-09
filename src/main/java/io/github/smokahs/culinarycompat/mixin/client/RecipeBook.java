@@ -1,4 +1,4 @@
-package com.hoshihoku.culinarycompat.mixin.client;
+package io.github.smokahs.culinarycompat.mixin.client;
 
 import net.blay09.mods.cookingforblockheads.api.FoodRecipeWithStatus;
 import net.blay09.mods.cookingforblockheads.api.RecipeStatus;
