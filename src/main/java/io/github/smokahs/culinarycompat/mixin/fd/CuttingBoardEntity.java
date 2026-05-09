@@ -175,6 +175,10 @@ public abstract class CuttingBoardEntity implements MultiCuttingExtras {
 		Optional<MultiCutting> match = level.getRecipeManager().getRecipeFor(Recipes.MULTI_CUTTING_TYPE.get(), wrapper,
 				level);
 		if (match.isEmpty()) {
+			if (player != null) {
+				player.displayClientMessage(net.minecraft.network.chat.Component.literal("That doesn't seem right..."),
+						true);
+			}
 			cir.setReturnValue(false);
 			return;
 		}
