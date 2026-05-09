@@ -46,3 +46,8 @@
 3. Huge Cutting board additions!
     - Multi-Input Support 
     - All of Pam's Cutting Board Recipes fully implemented!
+    - New Mechanics:
+        - Right click the cutting board with an ingredient to stack it! (up to 9)
+        - Right click a cutting board containing multiple ingredients with an empty hand to remove the top item. 
+        - Crouch + Right Click a cutting board containing multiple ingredients with an empty hand to remove ALL items!
+        - Invalid Recipe Popup: "That doesn't seem right..."
