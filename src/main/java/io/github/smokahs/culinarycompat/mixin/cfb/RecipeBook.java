@@ -24,12 +24,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.google.common.collect.Multimap;
-import io.github.smokahs.culinarycompat.compat.cfb.BakeState;
-import io.github.smokahs.culinarycompat.compat.cfb.CFB;
-import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
-import io.github.smokahs.culinarycompat.compat.cfb.Pam;
-import io.github.smokahs.culinarycompat.config.Configs;
-import io.github.smokahs.culinarycompat.network.Network.BakePhase;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -38,6 +32,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import io.github.smokahs.culinarycompat.compat.cfb.BakeState;
+import io.github.smokahs.culinarycompat.compat.cfb.CFB;
+import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
+import io.github.smokahs.culinarycompat.compat.cfb.Pam;
+import io.github.smokahs.culinarycompat.config.Configs;
+import io.github.smokahs.culinarycompat.network.Network.BakePhase;
 
 @Mixin(value = RecipeBookMenu.class, remap = false)
 public abstract class RecipeBook {

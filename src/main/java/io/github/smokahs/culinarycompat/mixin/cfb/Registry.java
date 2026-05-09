@@ -5,13 +5,13 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraftforge.fml.ModList;
 
-import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
-import io.github.smokahs.culinarycompat.compat.cfb.Pam;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
+import io.github.smokahs.culinarycompat.compat.cfb.Pam;
 
 @Mixin(value = CookingRegistry.class, remap = false)
 public abstract class Registry {

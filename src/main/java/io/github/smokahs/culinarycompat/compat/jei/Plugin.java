@@ -23,7 +23,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import io.github.smokahs.culinarycompat.CulinaryCompat;
 import io.github.smokahs.culinarycompat.bridges.Bridges;
 import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
-
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;

@@ -11,13 +11,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import io.github.smokahs.culinarycompat.compat.cfb.CFB;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import io.github.smokahs.culinarycompat.compat.cfb.CFB;
 
 @Mixin(value = KitchenMultiBlock.class, remap = false)
 public abstract class Multiblock implements CFB.KitchenMemberView {

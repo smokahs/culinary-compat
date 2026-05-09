@@ -18,9 +18,9 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import io.github.smokahs.culinarycompat.CulinaryCompat;
-
 import org.jetbrains.annotations.Nullable;
+
+import io.github.smokahs.culinarycompat.CulinaryCompat;
 
 @Mod.EventBusSubscriber(modid = CulinaryCompat.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {

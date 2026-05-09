@@ -17,9 +17,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.mojang.datafixers.util.Pair;
+
 import io.github.smokahs.culinarycompat.CulinaryCompat;
 import io.github.smokahs.culinarycompat.config.Configs;
-import com.mojang.datafixers.util.Pair;
 
 public final class FoodNerf {
 	private FoodNerf() {

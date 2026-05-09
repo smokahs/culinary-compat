@@ -8,6 +8,10 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import com.mojang.logging.LogUtils;
+
+import org.slf4j.Logger;
+
 import io.github.smokahs.culinarycompat.compat.DepCheck;
 import io.github.smokahs.culinarycompat.compat.cfb.CFB;
 import io.github.smokahs.culinarycompat.config.Configs;
@@ -16,9 +20,6 @@ import io.github.smokahs.culinarycompat.network.Network;
 import io.github.smokahs.culinarycompat.registry.Blocks;
 import io.github.smokahs.culinarycompat.registry.Items;
 import io.github.smokahs.culinarycompat.registry.Sounds;
-import com.mojang.logging.LogUtils;
-
-import org.slf4j.Logger;
 
 @Mod(CulinaryCompat.MODID)
 public class CulinaryCompat {

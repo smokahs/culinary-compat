@@ -34,7 +34,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import io.github.smokahs.culinarycompat.bridges.Bridges;
 import io.github.smokahs.culinarycompat.registry.Recipes;
-
 import vectorwing.farmersdelight.common.crafting.CookingPotRecipe;
 
 public final class FarmersDelight {

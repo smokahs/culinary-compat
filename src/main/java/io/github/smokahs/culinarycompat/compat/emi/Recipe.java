@@ -9,14 +9,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import io.github.smokahs.culinarycompat.bridges.Bridges;
-
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
+import io.github.smokahs.culinarycompat.bridges.Bridges;
 
 public class Recipe implements EmiRecipe {
 	private static final ResourceLocation CUTTING_BG = new ResourceLocation("farmersdelight",

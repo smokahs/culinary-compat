@@ -13,15 +13,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import io.github.smokahs.culinarycompat.CulinaryCompat;
-import io.github.smokahs.culinarycompat.bridges.Bridges;
-import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
-
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.stack.EmiStack;
+import io.github.smokahs.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.bridges.Bridges;
+import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
 
 @EmiEntrypoint
 @OnlyIn(Dist.CLIENT)

@@ -24,11 +24,11 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import io.github.smokahs.culinarycompat.CulinaryCompat;
-import io.github.smokahs.culinarycompat.compat.cfb.addons.farmersdelight.StorageDelight;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import io.github.smokahs.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.compat.cfb.addons.farmersdelight.StorageDelight;
 
 public final class CFB {
 	public static final String CFB_MODID = "cookingforblockheads";
