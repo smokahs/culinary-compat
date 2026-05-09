@@ -9,10 +9,14 @@
     "cfb.FdCookware",
     "cfb.Multiblock",
     "cfb.RecipeBook",
-    "cfb.Registry"
+    "cfb.Registry",
+    "fd.CuttingBoardEntity",
+    "fd.CuttingBoardUse",
+    "fd.SyncedBlockEntityAccessor"
   ],
   "client": [
     "client.CuttingBoardOffset",
+    "client.CuttingBoardRender",
     "client.RecipeBook",
     "client.SkilletOffset"
   ],

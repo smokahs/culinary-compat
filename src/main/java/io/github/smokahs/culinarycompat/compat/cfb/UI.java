@@ -24,6 +24,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import io.github.smokahs.culinarycompat.bridges.Bridges;
+import io.github.smokahs.culinarycompat.config.Configs;
 
 public final class UI {
 	private UI() {
@@ -125,7 +126,7 @@ public final class UI {
 				if (!already) {
 					tip.add(Component.translatable(TOOLTIP_KEY).withStyle(ChatFormatting.YELLOW));
 				}
-			} else if (FD_NETHERITE_KNIFE.equals(id)) {
+			} else if (FD_NETHERITE_KNIFE.equals(id) && Configs.Common.opNetheriteKnife) {
 				event.getToolTip().add(
 						Component.literal("Never dulls when used in a kitchen.").withStyle(ChatFormatting.DARK_PURPLE));
 			}

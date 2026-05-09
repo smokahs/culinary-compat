@@ -304,6 +304,53 @@ public final class Pam {
 				}
 			}
 		}
+
+		public static List<io.github.smokahs.culinarycompat.recipe.MultiCutting> buildMultiCuttingRecipes(
+				RegistryAccess registries) {
+			List<io.github.smokahs.culinarycompat.recipe.MultiCutting> out = new ArrayList<>();
+			Item cuttingboardItem = ForgeRegistries.ITEMS.getValue(CUTTINGBOARD_ITEM_ID);
+			if (cuttingboardItem == null) {
+				return out;
+			}
+			ItemStack cbProbe = new ItemStack(cuttingboardItem);
+			List<Recipe<?>> templatesSnapshot;
+			synchronized (TEMPLATES) {
+				templatesSnapshot = new ArrayList<>(TEMPLATES);
+			}
+			for (Recipe<?> recipe : templatesSnapshot) {
+				if (!(recipe instanceof ShapelessRecipe)) {
+					continue;
+				}
+				NonNullList<Ingredient> original = recipe.getIngredients();
+				if (original.isEmpty()) {
+					continue;
+				}
+				boolean hasCb = false;
+				NonNullList<Ingredient> food = NonNullList.create();
+				for (Ingredient ing : original) {
+					if (ing == null || ing == Ingredient.EMPTY) {
+						continue;
+					}
+					if (ing.test(cbProbe)) {
+						hasCb = true;
+						continue;
+					}
+					food.add(ing);
+				}
+				if (!hasCb || food.isEmpty()
+						|| food.size() > io.github.smokahs.culinarycompat.recipe.MultiCutting.MAX_INPUTS) {
+					continue;
+				}
+				ItemStack result = recipe.getResultItem(registries);
+				if (result.isEmpty()) {
+					continue;
+				}
+				ResourceLocation id = new ResourceLocation(BRIDGE_NAMESPACE,
+						"pam_multi_cutting/" + recipe.getId().getNamespace() + "_" + recipe.getId().getPath());
+				out.add(new io.github.smokahs.culinarycompat.recipe.MultiCutting(id, food, result.copy()));
+			}
+			return out;
+		}
 	}
 
 	public static final class Pot {
@@ -689,12 +736,16 @@ public final class Pam {
 					kept.add(recipe);
 				}
 			}
-			rm.replaceRecipes(kept);
 
 			Cutting.setTemplates(cbTemplates);
 			Skillet.setTemplates(skTemplates);
 			Pot.setTemplates(ptTemplates);
 			Bakeware.setTemplates(bkTemplates);
+
+			List<io.github.smokahs.culinarycompat.recipe.MultiCutting> multi = Cutting
+					.buildMultiCuttingRecipes(server.registryAccess());
+			kept.addAll(multi);
+			rm.replaceRecipes(kept);
 
 			Cutting.registerBridges(rm, server.registryAccess());
 			Skillet.registerBridges(rm, server.registryAccess());

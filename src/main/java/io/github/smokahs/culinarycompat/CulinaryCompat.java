@@ -19,6 +19,7 @@ import io.github.smokahs.culinarycompat.foodnerf.FoodNerf;
 import io.github.smokahs.culinarycompat.network.Network;
 import io.github.smokahs.culinarycompat.registry.Blocks;
 import io.github.smokahs.culinarycompat.registry.Items;
+import io.github.smokahs.culinarycompat.registry.Recipes;
 import io.github.smokahs.culinarycompat.registry.Sounds;
 
 @Mod(CulinaryCompat.MODID)
@@ -32,6 +33,8 @@ public class CulinaryCompat {
 		Items.ITEMS.register(modEventBus);
 		Blocks.BLOCKS.register(modEventBus);
 		Sounds.SOUNDS.register(modEventBus);
+		Recipes.RECIPE_SERIALIZERS.register(modEventBus);
+		Recipes.RECIPE_TYPES.register(modEventBus);
 
 		modEventBus.addListener(DepCheck::onCommonSetup);
 		modEventBus.addListener(FoodNerf::onCommonSetup);

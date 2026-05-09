@@ -42,5 +42,7 @@
 
 ## v1.0.7
 1. Made certain inedible ingredients craftable again (thanks stylzm!)
-2. reworked recipe displays in EMI/JEI
-3. Fixed cutting board recipes to show all inputs
+2. Reworked ALL Culinary Compat recipe displays in EMI/JEI
+3. Huge Cutting board additions!
+    - Multi-Input Support 
+    - All of Pam's Cutting Board Recipes fully implemented!

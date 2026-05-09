@@ -31,6 +31,8 @@ public final class Configs {
 		private static final ForgeConfigSpec.IntValue BAKEWARE_DURATION_TICKS;
 		private static final ForgeConfigSpec.BooleanValue BAKEWARE_REFUND_ON_CANCEL;
 
+		private static final ForgeConfigSpec.BooleanValue OP_NETHERITE_KNIFE;
+
 		static {
 			BUILDER.comment("Pam's HarvestCraft 2 food rebalancing. Requires restart to take effect.").push("foodNerf");
 			NERF_PAMS = BUILDER
@@ -54,6 +56,12 @@ public final class Configs {
 					"refund ingredients if the player closes the cooking table menu while a bake is in progress.")
 					.translation("culinarycompat.config.bakewareRefundOnCancel").define("refundOnCancel", true);
 			BUILDER.pop();
+
+			BUILDER.comment("Cutting board behavior.").push("cuttingBoard");
+			OP_NETHERITE_KNIFE = BUILDER.comment(
+					"OP Netherite knife! Farmer's Delight netherite knife takes no durability damage when used on the cutting board.")
+					.translation("culinarycompat.config.opNetheriteKnife").define("opNetheriteKnife", true);
+			BUILDER.pop();
 		}
 
 		public static final ForgeConfigSpec SPEC = BUILDER.build();
@@ -66,6 +74,8 @@ public final class Configs {
 		public static int bakewareDurationTicks;
 		public static boolean bakewareRefundOnCancel;
 
+		public static boolean opNetheriteKnife;
+
 		private Common() {
 		}
 
@@ -76,6 +86,7 @@ public final class Configs {
 			bakewareEnabled = BAKEWARE_ENABLED.get();
 			bakewareDurationTicks = BAKEWARE_DURATION_TICKS.get();
 			bakewareRefundOnCancel = BAKEWARE_REFUND_ON_CANCEL.get();
+			opNetheriteKnife = OP_NETHERITE_KNIFE.get();
 		}
 	}
 
