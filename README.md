@@ -9,7 +9,8 @@ A compatibility layer primarily for Cooking for Blockheads, Pam's Harvest Craft'
 
 Minecraft 1.20.1, Forge 47+, MIT.
 
-[![CurseForge Version](https://img.shields.io/curseforge/v/1516050?label=CurseForge&color=orange&logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/culinary-compat) [![Modrinth Version](https://img.shields.io/modrinth/v/culinary-compat?label=Modrinth&color=00AF5C&logo=modrinth)](https://modrinth.com/mod/culinary-compat)
+  [![CurseForge Version](https://img.shields.io/curseforge/v/1516050?label=CurseForge&color=orange&logo=curseforge&style=for-the-badge)](https://www.curseforge.com/minecraft/mc-mods/culinary-compat)
+  [![Modrinth Version](https://img.shields.io/modrinth/v/culinary-compat?label=Modrinth&color=00AF5C&logo=modrinth&style=for-the-badge)](https://modrinth.com/mod/culinary-compat)
 
 ## Changelog
 
