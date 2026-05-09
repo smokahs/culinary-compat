@@ -35,3 +35,4 @@
 ## v1.0.5
 1. Added support for [Storage Delight](https://www.curseforge.com/minecraft/mc-mods/storage-delight-forge) per the request of RobynTheGhoul on Curseforge!
 2. Bakeware block now behaves like FD (pot, skillet) blocks with identical sounds and mineability
+3. Thank you to everyone who submitted issues! v1.0.6-beta should have all the fixes!
