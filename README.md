@@ -50,12 +50,12 @@ JEI and EMI plugins with five kitchen-bridge categories and workstation hints.
 
 Client and server config files are included! More options will be added to them as well. Feel free to give some suggestions!
 
-## Currently Supported Addons & Integrations
+## Currently Supported (optional) Addons & Integrations 
 <details> <summary>Farmer's Delight Addons</summary>
     - Storage Delight 
 </details>
 
-<details> <summary>Applied Energistics 2 (optional)</summary>
+<details> <summary>Applied Energistics 2</summary>
     - ME Kitchen Station: wirelessly connect your CFB kitchen to your AE2 Network (Refined storage coming soon!)
 </details>
 
