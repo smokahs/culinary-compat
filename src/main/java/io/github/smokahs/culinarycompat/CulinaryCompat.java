@@ -13,12 +13,14 @@ import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
 
 import io.github.smokahs.culinarycompat.compat.DepCheck;
+import io.github.smokahs.culinarycompat.compat.ae2.Bridge;
 import io.github.smokahs.culinarycompat.compat.cfb.CFB;
 import io.github.smokahs.culinarycompat.config.Configs;
 import io.github.smokahs.culinarycompat.foodnerf.FoodNerf;
 import io.github.smokahs.culinarycompat.network.Network;
 import io.github.smokahs.culinarycompat.registry.Blocks;
 import io.github.smokahs.culinarycompat.registry.Items;
+import io.github.smokahs.culinarycompat.registry.LootFunctions;
 import io.github.smokahs.culinarycompat.registry.Recipes;
 import io.github.smokahs.culinarycompat.registry.Sounds;
 
@@ -35,6 +37,7 @@ public class CulinaryCompat {
 		Sounds.SOUNDS.register(modEventBus);
 		Recipes.RECIPE_SERIALIZERS.register(modEventBus);
 		Recipes.RECIPE_TYPES.register(modEventBus);
+		LootFunctions.LOOT_FUNCTIONS.register(modEventBus);
 
 		modEventBus.addListener(DepCheck::onCommonSetup);
 		modEventBus.addListener(FoodNerf::onCommonSetup);
@@ -44,6 +47,7 @@ public class CulinaryCompat {
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Configs.Client.SPEC);
 
 		CFB.init(modEventBus);
+		Bridge.init(modEventBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}

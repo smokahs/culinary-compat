@@ -48,7 +48,7 @@ public final class CFB {
 			return;
 		}
 		active = true;
-		CulinaryCompat.LOGGER.info("CFB + FD detected — enabling cutting board kitchen integration.");
+		CulinaryCompat.LOGGER.info("CFB + FD detected, enabling cutting board kitchen integration.");
 
 		MinecraftForge.EVENT_BUS.register(KitchenConnector.class);
 		MinecraftForge.EVENT_BUS.register(FarmersDelight.Cutting.class);
@@ -65,8 +65,7 @@ public final class CFB {
 		StorageDelight.init();
 
 		if (ModList.get().isLoaded(Pam.PAM_MODID)) {
-			CulinaryCompat.LOGGER
-					.info("Pam food core detected — enabling Pam cuttingboarditem → FD knife replacement.");
+			CulinaryCompat.LOGGER.info("Pam food core detected, enabling Pam cuttingboarditem → FD knife replacement.");
 			modEventBus.register(Pam.CreativeTabFilter.class);
 			MinecraftForge.EVENT_BUS.register(Pam.RecipeStripper.class);
 		}

@@ -13,7 +13,7 @@ displayName="${mod_name}"
 displayURL="https://curseforge.com/minecraft/mc-mods/culinary-compat"
 logoFile="icon.png"
 authors="${mod_authors}"
-credits="Pam (Pam's HarvestCraft 2), vectorwing (Farmer's Delight), BlayTheNinth (Cooking for Blockheads)"
+credits="Pam, vectorwing, BlayTheNinth, Pixel_1101, ItsSebastrn"
 description='''${mod_description}'''
 
 [[dependencies.culinarycompat]]
@@ -97,5 +97,26 @@ description='''${mod_description}'''
     modId="balm"
     mandatory=false
     versionRange="[7.0,8)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.culinarycompat]]
+    modId="ae2"
+    mandatory=false
+    versionRange="[15.0,16)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.culinarycompat]]
+    modId="refinedstorage"
+    mandatory=false
+    versionRange="[1.12.0,2)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.culinarycompat]]
+    modId="patchouli"
+    mandatory=false
+    versionRange="[1.20.1-80,)"
     ordering="AFTER"
     side="BOTH"

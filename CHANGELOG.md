@@ -1,5 +1,33 @@
 # Beta Changelog
 
+## v1.0.8
+1. Added Patchouli as an *OPTIONAL* dependency for the new *Head Chef's Journal* guide (see 3.)
+2. Forked ALL features of [AppliedCooking](https://github.com/Sebastrn/AppliedCooking) (thanks ItsSebastrn!) into Culinary Compat as a soft-dep AE2 bridge
+    - New block: *ME Kitchen Station* (`culinarycompat:ae2_kitchen_station`)
+        - Wirelessly links any AE2 ME network to a Cooking For Blockheads kitchen multiblock via a Wireless Connector
+        - All **NEW** storage modes:
+            - AE2 → Kitchen: kitchen recipes pull ingredients from the ME network (original AppliedCooking behavior)
+            - Kitchen → AE2: kitchen cabinets, fridges, etc. show up in your AE2 terminal as storage
+            - BIDIRECTIONAL: Works both ways!
+                - Priority value supported, full integer range, uses AE2's native priority system (same as storage cells and storage buses)
+        - Custom AE2 GUI (right-click the block):
+            - *Mode* cycle: `ME → Kitchen`, `Kitchen → ME`, or `BIDIRECTIONAL` (default)
+            - *Screen* cycle: On / Off (purely cosmetic once linked and connected)
+            - *Priority* wrench tab in the upper-right opens AE2's native priority page
+            - Hover the *Mode* and *Screen* labels for in-context tooltips
+        - Black screen when disconnected, purple when linked to an active ME Network
+        - model offset when placed on full blocks and `cfb:cooking_table` (no more z-fighting on counters, cabinets, Storage Delight blocks, etc.)
+        - Green *Linked* tooltip indicator when bound to a wireless access point, matching the AE2 wireless terminals
+        - Hold-Shift expanded info on the item tooltip, pointing to the *Head Chef's Journal*
+        - Preserves the access-point link when broken and picked up
+3. Added the *Head Chef's Journal* (`culinarycompat:guidebook`)
+    - Crafted with a vanilla book + cake
+    - Patchouli categories and entries auto-show/hide based on which optional mods are installed
+    - First category added: *Applied Energistics*, with a deep walkthrough of the ME Kitchen Station, settings panel, mode directions, priority, and screen reference images. More to entries to come! 
+4. Tooltip + EMI cleanups:
+    - Stripped EMI's `(+NBT)` tag from the ME Kitchen station
+    - Hides the duped Patchouli copy of the journal from EMI search
+
 ## v1.0.7
 1. Made certain inedible ingredients craftable again (thanks stylzm!)
 2. Reworked ALL Culinary Compat recipe displays in EMI/JEI

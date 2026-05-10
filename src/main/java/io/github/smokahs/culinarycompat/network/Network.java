@@ -14,6 +14,8 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
 import io.github.smokahs.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.compat.ae2.Bridge;
+import io.github.smokahs.culinarycompat.compat.ae2.StationSettingsPacket;
 
 public final class Network {
 	private static final String VERSION = "1";
@@ -28,6 +30,11 @@ public final class Network {
 		int id = 0;
 		CHANNEL.registerMessage(id++, BakeStatusPacket.class, BakeStatusPacket::encode, BakeStatusPacket::decode,
 				BakeStatusPacket::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+		if (Bridge.isActive()) {
+			CHANNEL.registerMessage(id++, StationSettingsPacket.class, StationSettingsPacket::encode,
+					StationSettingsPacket::decode, StationSettingsPacket::handle,
+					Optional.of(NetworkDirection.PLAY_TO_SERVER));
+		}
 	}
 
 	public static void sendToClient(ServerPlayer player, BakeStatusPacket packet) {

@@ -1,0 +1,11 @@
+{
+  "name": "culinarycompat.guide.name",
+  "landing_text": "culinarycompat.guide.landing",
+  "subtitle": "culinarycompat.guide.banner",
+  "model": "culinarycompat:guidebook",
+  "show_progress": false,
+  "version": 0,
+  "i18n": true,
+  "index_icon": "minecraft:cake",
+  "use_resource_pack": true
+}

@@ -101,6 +101,9 @@ dependencies {
     compileOnly fg.deobf("curse.maven:cooking-for-blockheads-231484:7454483")
     compileOnly fg.deobf("curse.maven:storage-delight-forge-979761:7946523")
     compileOnly fg.deobf("curse.maven:balm-531761:7420617")
+    compileOnly fg.deobf("curse.maven:applied-energistics-2-223794:7148487")
+    compileOnly fg.deobf("curse.maven:refined-storage-243076:4844585")
+    compileOnly fg.deobf("curse.maven:patchouli-306770:7731017")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }

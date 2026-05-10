@@ -1,0 +1,7 @@
+{
+  "name": "category.culinarycompat.ae2.name",
+  "description": "category.culinarycompat.ae2.description",
+  "icon": "culinarycompat:textures/categories/ae2.png",
+  "sortnum": 1,
+  "flag": "mod:ae2"
+}

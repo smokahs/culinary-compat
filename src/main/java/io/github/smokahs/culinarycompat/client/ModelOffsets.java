@@ -3,9 +3,9 @@ package io.github.smokahs.culinarycompat.client;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.function.BiPredicate;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -31,20 +31,38 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import io.github.smokahs.culinarycompat.CulinaryCompat;
 
-// -1px offset for fd items on the cfb blocks
 @Mod.EventBusSubscriber(modid = CulinaryCompat.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class ModelOffsets {
 	static final ModelProperty<Boolean> OFFSET_APPLIES = new ModelProperty<>();
 
 	private static final String CFB_NAMESPACE = "cookingforblockheads";
-	private static final Set<ResourceLocation> OFFSET_BLOCKLIST_BELOW = Set
-			.of(new ResourceLocation(CFB_NAMESPACE, "cooking_table"));
-	private static final float OFFSET_Y = -1.0f / 16.0f;
+	private static final ResourceLocation CFB_COOKING_TABLE = new ResourceLocation(CFB_NAMESPACE, "cooking_table");
 	private static final int VERTEX_STRIDE_INTS = 8;
 
-	private static final Set<ResourceLocation> TARGETS = Set.of(new ResourceLocation("farmersdelight", "cutting_board"),
-			new ResourceLocation("farmersdelight", "skillet"), new ResourceLocation("farmersdelight", "cooking_pot"),
-			new ResourceLocation(CulinaryCompat.MODID, "bakeware"));
+	// fd blocks + custom bakeware offsets
+	private static final Rule CFB_BELOW_DOWN = new Rule(-1.0f / 16.0f, (level, pos) -> {
+		BlockState below = level.getBlockState(pos.below());
+		ResourceLocation id = ForgeRegistries.BLOCKS.getKey(below.getBlock());
+		return id != null && CFB_NAMESPACE.equals(id.getNamespace()) && !CFB_COOKING_TABLE.equals(id);
+	});
+
+	// ME station model offsets on select blocks
+	private static final Rule STURDY_UP = new Rule(1.0f / 16.0f, (level, pos) -> {
+		BlockPos below = pos.below();
+		BlockState belowState = level.getBlockState(below);
+		if (belowState.isFaceSturdy(level, below, Direction.UP)) {
+			return true;
+		}
+		ResourceLocation id = ForgeRegistries.BLOCKS.getKey(belowState.getBlock());
+		return id != null && CFB_NAMESPACE.equals(id.getNamespace()) && "cooking_table".equals(id.getPath());
+	});
+
+	private static final Map<ResourceLocation, Rule> RULES = Map.of(
+			new ResourceLocation("farmersdelight", "cutting_board"), CFB_BELOW_DOWN,
+			new ResourceLocation("farmersdelight", "skillet"), CFB_BELOW_DOWN,
+			new ResourceLocation("farmersdelight", "cooking_pot"), CFB_BELOW_DOWN,
+			new ResourceLocation(CulinaryCompat.MODID, "bakeware"), CFB_BELOW_DOWN,
+			new ResourceLocation(CulinaryCompat.MODID, "ae2_kitchen_station"), STURDY_UP);
 
 	private ModelOffsets() {
 	}
@@ -54,21 +72,15 @@ public final class ModelOffsets {
 		Map<ResourceLocation, BakedModel> models = event.getModels();
 		for (Map.Entry<ResourceLocation, BakedModel> e : models.entrySet()) {
 			ResourceLocation key = e.getKey();
-			if (key instanceof ModelResourceLocation mrl && "inventory".equals(mrl.getVariant()))
+			if (key instanceof ModelResourceLocation mrl && "inventory".equals(mrl.getVariant())) {
 				continue;
-			ResourceLocation id = new ResourceLocation(key.getNamespace(), key.getPath());
-			if (!TARGETS.contains(id) || e.getValue() instanceof OffsetBakedModel)
+			}
+			Rule rule = RULES.get(new ResourceLocation(key.getNamespace(), key.getPath()));
+			if (rule == null || e.getValue() instanceof OffsetBakedModel) {
 				continue;
-			e.setValue(new OffsetBakedModel(e.getValue()));
+			}
+			e.setValue(new OffsetBakedModel(e.getValue(), rule));
 		}
-	}
-
-	private static boolean isCfbBelow(BlockAndTintGetter level, BlockPos pos) {
-		BlockState below = level.getBlockState(pos.below());
-		ResourceLocation id = ForgeRegistries.BLOCKS.getKey(below.getBlock());
-		if (id == null || !CFB_NAMESPACE.equals(id.getNamespace()))
-			return false;
-		return !OFFSET_BLOCKLIST_BELOW.contains(id);
 	}
 
 	private static BakedQuad translateY(BakedQuad q, float dy) {
@@ -80,19 +92,25 @@ public final class ModelOffsets {
 		return new BakedQuad(v, q.getTintIndex(), q.getDirection(), q.getSprite(), q.isShade());
 	}
 
+	private record Rule(float offsetY, BiPredicate<BlockAndTintGetter, BlockPos> condition) {
+	}
+
 	static final class OffsetBakedModel implements BakedModel {
 		private final BakedModel wrapped;
+		private final Rule rule;
 		private final ConcurrentMap<QuadKey, List<BakedQuad>> cache = new ConcurrentHashMap<>();
 
-		OffsetBakedModel(BakedModel wrapped) {
+		OffsetBakedModel(BakedModel wrapped, Rule rule) {
 			this.wrapped = wrapped;
+			this.rule = rule;
 		}
 
 		@Override
 		public ModelData getModelData(BlockAndTintGetter level, BlockPos pos, BlockState state, ModelData data) {
 			ModelData base = wrapped.getModelData(level, pos, state, data);
-			if (isCfbBelow(level, pos))
+			if (rule.condition.test(level, pos)) {
 				return base.derive().with(OFFSET_APPLIES, Boolean.TRUE).build();
+			}
 			return base;
 		}
 
@@ -101,14 +119,17 @@ public final class ModelOffsets {
 				RenderType rt) {
 			List<BakedQuad> base = wrapped.getQuads(state, side, rand, data, rt);
 			Boolean flag = data.get(OFFSET_APPLIES);
-			if (flag == null || !flag)
+			if (flag == null || !flag) {
 				return base;
+			}
 			return cache.computeIfAbsent(new QuadKey(state, side, rt), k -> {
-				if (base.isEmpty())
+				if (base.isEmpty()) {
 					return base;
+				}
 				List<BakedQuad> out = new ArrayList<>(base.size());
-				for (BakedQuad q : base)
-					out.add(translateY(q, OFFSET_Y));
+				for (BakedQuad q : base) {
+					out.add(translateY(q, rule.offsetY));
+				}
 				return out;
 			});
 		}

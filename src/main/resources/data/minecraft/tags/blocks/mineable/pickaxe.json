@@ -1,6 +1,7 @@
 {
 	"replace": false,
 	"values": [
-		"culinarycompat:bakeware"
+		"culinarycompat:bakeware",
+		{"id": "culinarycompat:ae2_kitchen_station", "required": false}
 	]
 }

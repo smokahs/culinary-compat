@@ -1,0 +1,6 @@
+{
+	"modid": "ae2",
+	"kitchenItemProviders": [
+		"culinarycompat:ae2_kitchen_station"
+	]
+}

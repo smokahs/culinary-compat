@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -35,9 +36,30 @@ public final class Plugin implements EmiPlugin {
 	@Override
 	public void register(EmiRegistry registry) {
 		hideStacks(registry);
+		hideBoundPatchouliJournal(registry);
 		registerBridgeCategories(registry);
 		hideBridgedCampfireRecipes(registry);
 		hideFdCookingRecipes(registry);
+	}
+
+	// hide duped patchouli book
+	private static void hideBoundPatchouliJournal(EmiRegistry registry) {
+		try {
+			registry.removeEmiStacks(stack -> {
+				ItemStack is = stack.getItemStack();
+				if (is == null || is.isEmpty()) {
+					return false;
+				}
+				ResourceLocation id = ForgeRegistries.ITEMS.getKey(is.getItem());
+				if (id == null || !"patchouli".equals(id.getNamespace()) || !"guide_book".equals(id.getPath())) {
+					return false;
+				}
+				CompoundTag tag = is.getTag();
+				return tag != null && "culinarycompat:guide".equals(tag.getString("patchouli:book"));
+			});
+		} catch (Exception e) {
+			CulinaryCompat.LOGGER.error("EMI hide bound patchouli journal failed", e);
+		}
 	}
 
 	private static void hideFdCookingRecipes(EmiRegistry registry) {

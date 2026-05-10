@@ -1,0 +1,57 @@
+{
+  "name": "entry.culinarycompat.ae2.kitchen_station.name",
+  "icon": "culinarycompat:ae2_kitchen_station",
+  "category": "culinarycompat:ae2",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "entry.culinarycompat.ae2.kitchen_station.page0"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "culinarycompat:ae2_kitchen_station",
+      "text": "entry.culinarycompat.ae2.kitchen_station.page1"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "entry.culinarycompat.ae2.kitchen_station.page2.title",
+      "images": [
+        "culinarycompat:textures/gui/entries/ae2-kitchen-station-disconnected.png"
+      ],
+      "text": "entry.culinarycompat.ae2.kitchen_station.page2"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "entry.culinarycompat.ae2.kitchen_station.page3.title",
+      "images": [
+        "culinarycompat:textures/gui/entries/ae2-kitchen-station-connected.png"
+      ],
+      "text": "entry.culinarycompat.ae2.kitchen_station.page3"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "entry.culinarycompat.ae2.kitchen_station.page4.title",
+      "text": "entry.culinarycompat.ae2.kitchen_station.page4"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "entry.culinarycompat.ae2.kitchen_station.page5.title",
+      "text": "entry.culinarycompat.ae2.kitchen_station.page5"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "entry.culinarycompat.ae2.kitchen_station.page6.title",
+      "text": "entry.culinarycompat.ae2.kitchen_station.page6"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "entry.culinarycompat.ae2.kitchen_station.page7.title",
+      "text": "entry.culinarycompat.ae2.kitchen_station.page7"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "culinarycompat:ae2_kitchen_station": 0
+  },
+  "sortnum": 0,
+  "flag": "mod:ae2"
+}
