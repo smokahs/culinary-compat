@@ -30,6 +30,14 @@ Pam's HarvestCraft 2 recipes (cutting board, skillet, pot, saucepan, oven) are b
 
 New Bakeware block, custom block to Culinary Compat which allows all Pam's bakeware recipes! Instead of unintuitive shapeless crafting, the CFB recipes mimic an oven! Click once to confirm, click again to bake, 4-second timer with cooldown overlay, sounds, and a cancel-refund. Fully configurable.
 
+### - AE2 Wireless Bridge
+
+The ME Kitchen Station wirelessly links any Applied Energistics 2 ME network to your CFB kitchen multiblock. Bidirectional by default: your AE2 network can feed kitchen recipes AND your kitchen cabinets, fridges, and counters show up on your ME terminal. Right-click the block for a settings panel to switch direction modes (ME → Kitchen, Kitchen → ME, or Bidirectional), a cosmetic screen toggle, and a wrench tab opening AE2's native priority page. All features were forked from [Sebastrn's AppliedCooking](https://github.com/Sebastrn/AppliedCooking)! Thanks Sebastrn!
+
+### - Head Chef's Journal
+
+A Patchouli guidebook crafted with a vanilla book + cake. Categories and entries auto-show/hide based on which optional mods you have installed, so it stays relevant to whatever subset of integrations you're running. Currently covers the AE2 bridge in depth, more sections will be added as the mod grows as well!
+
 ### - Food Rebalancing
 
 Optional restore of Pam's 1.12.2 food values, optional strip of edibility from ingredients (butter, spices, etc.), optional nerf of vanilla Minecraft foods. These Features have been forked from Pixel1011's Mod PamsHC2 Food Nerf!
@@ -42,9 +50,17 @@ JEI and EMI plugins with five kitchen-bridge categories and workstation hints.
 
 Client and server config files are included! More options will be added to them as well. Feel free to give some suggestions!
 
-## Currently Supported Addons
-<details> <summary>Farmers Delight</summary>
+## Currently Supported Addons & Integrations
+<details> <summary>Farmer's Delight Addons</summary>
     - Storage Delight 
+</details>
+
+<details> <summary>Applied Energistics 2 (optional)</summary>
+    - ME Kitchen Station: wirelessly connect your CFB kitchen to your AE2 Network (Refined storage coming soon!)
+</details>
+
+<details> <summary>Patchouli</summary>
+    - Adds an in game guidebook, titled "Head Chef's Journal"
 </details>
 
 
@@ -55,11 +71,13 @@ Drop `culinarycompat-<version>.jar` into `mods/`. All integrations are soft depe
 
 [Pam's HC2 Food Core](https://www.curseforge.com/minecraft/mc-mods/pams-harvestcraft-2-food-core), [Food Extended](https://www.curseforge.com/minecraft/mc-mods/pams-harvestcraft-2-food-extended), [Crops](https://www.curseforge.com/minecraft/mc-mods/pams-harvestcraft-2-crops), [Trees](https://www.curseforge.com/minecraft/mc-mods/pams-harvestcraft-2-trees), [Farmer's Delight](https://www.curseforge.com/minecraft/mc-mods/farmers-delight), [Cooking for Blockheads](https://www.curseforge.com/minecraft/mc-mods/cooking-for-blockheads).
 
+Optional, unlock additional features: [Applied Energistics 2](https://www.curseforge.com/minecraft/mc-mods/applied-energistics-2) (ME Kitchen Station), [Patchouli](https://www.curseforge.com/minecraft/mc-mods/patchouli) (Head Chef's Journal).
+
 --------------------------------------
 
 ## Credits
 
-This mod wouldn't exist without: Pam (Pam's HarvestCraft 2), vectorwing (Farmer's Delight), BlayTheNinth (Cooking for Blockheads).
+This mod wouldn't exist without: Pam (Pam's HarvestCraft 2), vectorwing (Farmer's Delight), BlayTheNinth (Cooking for Blockheads), and ItsSebastrn (AppliedCooking, MIT — basis for the ME Kitchen Station).
 
 --------------------------------------
 
