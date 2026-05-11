@@ -52,6 +52,7 @@ Client and server config files are included! More options will be added to them 
 
 ## Currently Supported (optional) Addons & Integrations 
 <details> <summary>Farmer's Delight Addons</summary>
+  
     - Storage Delight
     - Ender's Delight
     - End's Delight
