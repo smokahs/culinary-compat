@@ -5,7 +5,7 @@
 # Culinary Compat!
 <a href='https://files.minecraftforge.net'><img alt="forge" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg"></a>
 
-The ultimate culinary compatibility mod! With current support for mods like Farmers Delight (+ addons), Cooking for Blockheads, Pam's mods, AE2, & many others with additions, bug fixes, & more. A must-have mod for culinary connoisseurs!
+The ultimate culinary compatibility mod! Brigding the culinary gaps between mods like Farmers Delight (+ addons) and Cooking for Blockheads, the Pam's mods, AE2, & many others with additions, bug fixes, & more! A must-have mod for culinary connoisseurs!
 
 Minecraft 1.20.1, Forge 47+, MIT.
 
