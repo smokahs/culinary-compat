@@ -5,7 +5,7 @@
 # Culinary Compat!
 <a href='https://files.minecraftforge.net'><img alt="forge" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/forge_vector.svg"></a>
 
-The ultimate culinary compatibility mod! With current support for mods like Farmers Delight (+ addons), Cooking for Blockheads, Pam's mods, AE2, & many others with additions, bug fixes, & more. A must-have mod for culinary connoisseurs!
+The ultimate culinary compatibility mod! Brigding the culinary gaps between mods like Farmers Delight (+ addons) and Cooking for Blockheads, the Pam's mods, AE2, & many others with additions, bug fixes, & more! A must-have mod for culinary connoisseurs!
 
 Minecraft 1.20.1, Forge 47+, MIT.
 
@@ -32,7 +32,7 @@ New Bakeware block, custom block to Culinary Compat which allows all Pam's bakew
 
 ### - AE2 Wireless Bridge
 
-The ME Kitchen Station wirelessly links any Applied Energistics 2 ME network to your CFB kitchen multiblock. Bidirectional by default: your AE2 network can feed kitchen recipes AND your kitchen cabinets, fridges, and counters show up on your ME terminal. Right-click the block for a settings panel to switch direction modes (ME → Kitchen, Kitchen → ME, or Bidirectional), a cosmetic screen toggle, and a wrench tab opening AE2's native priority page. All features were forked from [Sebastrn's AppliedCooking](https://github.com/Sebastrn/AppliedCooking)! Thanks Sebastrn!
+The ME Kitchen Station wirelessly links any Applied Energistics 2 ME network to your CFB kitchen multiblock. Bidirectional by default: your AE2 network can feed kitchen recipes AND your kitchen cabinets, fridges, and counters show up on your ME terminal. Right-click the block for a settings panel to switch direction modes (ME → Kitchen, Kitchen → ME, or Bidirectional), a cosmetic screen toggle, and a wrench tab opening AE2's native priority page. Thanks Sebastrn!
 
 ### - Head Chef's Journal
 
@@ -71,16 +71,16 @@ Drop `culinarycompat-<version>.jar` into `mods/`. All integrations are soft depe
 
 [Pam's HC2 Food Core](https://www.curseforge.com/minecraft/mc-mods/pams-harvestcraft-2-food-core), [Food Extended](https://www.curseforge.com/minecraft/mc-mods/pams-harvestcraft-2-food-extended), [Crops](https://www.curseforge.com/minecraft/mc-mods/pams-harvestcraft-2-crops), [Trees](https://www.curseforge.com/minecraft/mc-mods/pams-harvestcraft-2-trees), [Farmer's Delight](https://www.curseforge.com/minecraft/mc-mods/farmers-delight), [Cooking for Blockheads](https://www.curseforge.com/minecraft/mc-mods/cooking-for-blockheads).
 
-Optional, unlock additional features: [Applied Energistics 2](https://www.curseforge.com/minecraft/mc-mods/applied-energistics-2) (ME Kitchen Station), [Patchouli](https://www.curseforge.com/minecraft/mc-mods/patchouli) (Head Chef's Journal).
+Optional, : [Applied Energistics 2](https://www.curseforge.com/minecraft/mc-mods/applied-energistics-2) (ME Kitchen Station), [Patchouli](https://www.curseforge.com/minecraft/mc-mods/patchouli) (Head Chef's Journal).
 
 --------------------------------------
 
 ## Credits
 
-This mod wouldn't exist without: Pam (Pam's HarvestCraft 2), vectorwing (Farmer's Delight), BlayTheNinth (Cooking for Blockheads), and ItsSebastrn (AppliedCooking, MIT — basis for the ME Kitchen Station).
+This mod wouldn't exist without: Pam (Pam's HarvestCraft 2), vectorwing (Farmer's Delight), BlayTheNinth (Cooking for Blockheads), Pixel 1101 (PXH2 Nerf), and ItsSebastrn (AppliedCooking).
 
 --------------------------------------
 
 ## Issues
 
-[GitHub issue tracker](https://github.com/smokahs/Culinary-Compat/issues). Include MC+Forge version, Culinary Compat version, installed mod subset, and `logs/latest.log`.
+[GitHub issue tracker](https://github.com/smokahs/Culinary-Compat/issues). Include MC+Forge version, Culinary Compat version, installed mod subset, crash log (if applicable), and `logs/latest.log`.
