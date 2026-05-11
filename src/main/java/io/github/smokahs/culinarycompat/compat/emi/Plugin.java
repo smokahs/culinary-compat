@@ -129,6 +129,11 @@ public final class Plugin implements EmiPlugin {
 		if (!pot.isEmpty()) {
 			registry.addWorkstation(CATEGORIES.get(Bridges.Kind.POT), EmiStack.of(pot));
 		}
+		// fiery cooking pot (twilightdelight)
+		ItemStack fieryPot = itemStack("twilightdelight", "fiery_cooking_pot");
+		if (!fieryPot.isEmpty()) {
+			registry.addWorkstation(CATEGORIES.get(Bridges.Kind.POT), EmiStack.of(fieryPot));
+		}
 		if (!bakeware.isEmpty()) {
 			registry.addWorkstation(CATEGORIES.get(Bridges.Kind.BAKEWARE), EmiStack.of(bakeware));
 		}

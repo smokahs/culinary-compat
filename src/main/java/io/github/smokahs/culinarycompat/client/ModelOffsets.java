@@ -19,6 +19,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ChunkRenderTypeSet;
@@ -30,6 +31,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import io.github.smokahs.culinarycompat.CulinaryCompat;
+import vectorwing.farmersdelight.common.block.CookingPotBlock;
+import vectorwing.farmersdelight.common.block.CuttingBoardBlock;
+import vectorwing.farmersdelight.common.block.SkilletBlock;
 
 @Mod.EventBusSubscriber(modid = CulinaryCompat.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class ModelOffsets {
@@ -57,12 +61,21 @@ public final class ModelOffsets {
 		return id != null && CFB_NAMESPACE.equals(id.getNamespace()) && "cooking_table".equals(id.getPath());
 	});
 
-	private static final Map<ResourceLocation, Rule> RULES = Map.of(
-			new ResourceLocation("farmersdelight", "cutting_board"), CFB_BELOW_DOWN,
-			new ResourceLocation("farmersdelight", "skillet"), CFB_BELOW_DOWN,
-			new ResourceLocation("farmersdelight", "cooking_pot"), CFB_BELOW_DOWN,
+	private static final Map<ResourceLocation, Rule> EXPLICIT_RULES = Map.of(
 			new ResourceLocation(CulinaryCompat.MODID, "bakeware"), CFB_BELOW_DOWN,
 			new ResourceLocation(CulinaryCompat.MODID, "ae2_kitchen_station"), STURDY_UP);
+
+	private static Rule resolveRule(ResourceLocation blockId) {
+		Rule explicit = EXPLICIT_RULES.get(blockId);
+		if (explicit != null) {
+			return explicit;
+		}
+		Block block = ForgeRegistries.BLOCKS.getValue(blockId);
+		if (block instanceof CookingPotBlock || block instanceof SkilletBlock || block instanceof CuttingBoardBlock) {
+			return CFB_BELOW_DOWN;
+		}
+		return null;
+	}
 
 	private ModelOffsets() {
 	}
@@ -75,7 +88,7 @@ public final class ModelOffsets {
 			if (key instanceof ModelResourceLocation mrl && "inventory".equals(mrl.getVariant())) {
 				continue;
 			}
-			Rule rule = RULES.get(new ResourceLocation(key.getNamespace(), key.getPath()));
+			Rule rule = resolveRule(new ResourceLocation(key.getNamespace(), key.getPath()));
 			if (rule == null || e.getValue() instanceof OffsetBakedModel) {
 				continue;
 			}

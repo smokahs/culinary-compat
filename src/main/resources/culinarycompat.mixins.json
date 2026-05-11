@@ -10,6 +10,8 @@
     "cfb.Multiblock",
     "cfb.RecipeBook",
     "cfb.Registry",
+    "compat.EndersDelight",
+    "compat.EndsDelight",
     "fd.CuttingBoardEntity",
     "fd.CuttingBoardUse",
     "fd.SyncedBlockEntityAccessor"

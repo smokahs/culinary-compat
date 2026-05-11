@@ -1,5 +1,33 @@
 # Beta Changelog
 
+## v1.0.9
+1. [Issue #3](https://github.com/smokahs/culinary-compat/issues/3) addon stove and cabinet multiblock support (thanks MaveTheMaverick!)
+    - All of the following blocks now supported in a CFB multiblock kitchen:
+        - Ender's Delight: `endersdelight:endstone_stove`
+        - End's Delight: `ends_delight:end_stove`
+        - Nether's Delight: `nethersdelight:blackstone_stove`
+        - Twilight's Flavor and Delight: `twilightdelight:maze_stove`
+    - Also fixed an issue with the `farmersdelight:cabinets` blocks that i found while fixing #1, so now certain cabinets from various addons and fd itself: 
+        - Join the CFB multiblock as connectors
+        - Expose their inventory to CFB recipes and the AE2 *ME Kitchen Station*
+    - Yellow *Multiblock Kitchen* tooltip added to all the above (easy recipe viewer searching)
+2. Twilight's Flavor and Delight Fiery Cooking Pot fixes
+    - Recognized as a valid Cooking Pot inside the CFB multiblock (pot recipes now craftable when)
+    - Registered as a Pot workstation in both JEI and EMI
+    - Model offset on CFB blocks now matches the outline shape
+3. Farmer's Delight 1.3.1 compat
+    - Fixed cutting board crash from FD changing `CuttingBoardBlockEntity.addItem` return type
+    - Fixed cutting board knife sound id (FD renamed `block.cutting_board.knife` to `block.cutting_board.knife_cut`)
+    - Reimplemented FD's removed `ItemUtils.isInventoryEmpty` helper for addons still calling it
+        - Patches Ender's Delight ticking crash ([their issue #37](https://github.com/Ax3dGaming/EndersDelight/issues/37))
+        - Patches End's Delight ticking crash ([their issue #59](https://github.com/FoggyHillside/End-s-Delight/issues/59))
+4. **Major** Cutting board improvements to support new FD 1.3.1!
+    - Slot 1 capped at 1 item per right-click again (FD 1.3.1 had dropped the slot limit, letting whole stacks dump in)
+    - Crouch + right-click an empty cutting board with food to 'bulk cut' (or whatever fd is calling it) up to 64 items
+    - Multi-input cutting + extras placement are disabled while slot 1 is >1
+    - Sneak + right click with an empty hand or knife to pick up all cutting board ingredients!
+5. Op Netherite Knife config option is now respected during CFB recipe-book bridge crafts (was always treated as immune regardless of the toggle, whoops lol)
+
 ## v1.0.8
 1. Added Patchouli as an *OPTIONAL* dependency for the new *Head Chef's Journal* guide (see 3.)
 2. Forked ALL features of [AppliedCooking](https://github.com/Sebastrn/AppliedCooking) (thanks ItsSebastrn!) into Culinary Compat as a soft-dep AE2 bridge

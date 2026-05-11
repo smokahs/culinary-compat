@@ -132,6 +132,11 @@ public final class Plugin implements IModPlugin {
 		if (po != null && !pot.isEmpty()) {
 			registration.addRecipeCatalyst(pot, po.type());
 		}
+		// fiery cooking pot (twilightdelight)
+		ItemStack fieryPot = itemStack("twilightdelight", "fiery_cooking_pot");
+		if (po != null && !fieryPot.isEmpty()) {
+			registration.addRecipeCatalyst(fieryPot, po.type());
+		}
 		Category bk = CATEGORIES.get(Bridges.Kind.BAKEWARE);
 		if (bk != null && !bakeware.isEmpty()) {
 			registration.addRecipeCatalyst(bakeware, bk.type());

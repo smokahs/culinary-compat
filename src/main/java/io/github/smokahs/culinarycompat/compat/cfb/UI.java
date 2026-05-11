@@ -6,15 +6,20 @@ import java.util.Set;
 
 import net.blay09.mods.cookingforblockheads.menu.inventory.InventoryCraftBook;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -25,6 +30,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import io.github.smokahs.culinarycompat.bridges.Bridges;
 import io.github.smokahs.culinarycompat.config.Configs;
+import vectorwing.farmersdelight.common.block.CookingPotBlock;
+import vectorwing.farmersdelight.common.block.CuttingBoardBlock;
+import vectorwing.farmersdelight.common.block.SkilletBlock;
+import vectorwing.farmersdelight.common.block.StoveBlock;
 
 public final class UI {
 	private UI() {
@@ -32,7 +41,7 @@ public final class UI {
 
 	public static final class CraftSound {
 		private static final ResourceLocation KNIFE_SOUND_ID = new ResourceLocation(CFB.FD_MODID,
-				"block.cutting_board.knife");
+				"block.cutting_board.knife_cut");
 		private static final ResourceLocation SKILLET_SOUND_ID = new ResourceLocation(CFB.FD_MODID,
 				"block.skillet.add_food");
 		private static final ResourceLocation POT_SOUND_ID = new ResourceLocation(CFB.FD_MODID,
@@ -96,10 +105,10 @@ public final class UI {
 
 	@OnlyIn(Dist.CLIENT)
 	public static final class Tooltip {
-		private static final Set<ResourceLocation> KITCHEN_MEMBER_ITEMS = Set.of(
-				new ResourceLocation(CFB.FD_MODID, "cutting_board"), new ResourceLocation(CFB.FD_MODID, "stove"),
-				new ResourceLocation(CFB.FD_MODID, "skillet"), new ResourceLocation(CFB.FD_MODID, "cooking_pot"),
-				new ResourceLocation("culinarycompat", "bakeware"));
+		private static final Set<ResourceLocation> EXTRA_KITCHEN_MEMBER_ITEMS = Set
+				.of(new ResourceLocation("culinarycompat", "bakeware"));
+		private static final TagKey<Block> FD_CABINETS = TagKey.create(Registries.BLOCK,
+				new ResourceLocation(CFB.FD_MODID, "cabinets"));
 		private static final ResourceLocation FD_NETHERITE_KNIFE = new ResourceLocation(CFB.FD_MODID,
 				"netherite_knife");
 		private static final String TOOLTIP_KEY = "tooltip.cookingforblockheads:multiblock_kitchen";
@@ -110,10 +119,11 @@ public final class UI {
 		@SubscribeEvent
 		public static void onItemTooltip(ItemTooltipEvent event) {
 			ItemStack stack = event.getItemStack();
-			ResourceLocation id = ForgeRegistries.ITEMS.getKey(stack.getItem());
+			Item item = stack.getItem();
+			ResourceLocation id = ForgeRegistries.ITEMS.getKey(item);
 			if (id == null)
 				return;
-			if (KITCHEN_MEMBER_ITEMS.contains(id)) {
+			if (isKitchenMember(item, id)) {
 				List<Component> tip = event.getToolTip();
 				// skip if cfb already added the line natively
 				boolean already = false;
@@ -130,6 +140,23 @@ public final class UI {
 				event.getToolTip().add(
 						Component.literal("Never dulls when used in a kitchen.").withStyle(ChatFormatting.DARK_PURPLE));
 			}
+		}
+
+		private static boolean isKitchenMember(Item item, ResourceLocation id) {
+			if (EXTRA_KITCHEN_MEMBER_ITEMS.contains(id))
+				return true;
+			if (!(item instanceof BlockItem blockItem))
+				return false;
+			Block block = blockItem.getBlock();
+			if (block instanceof StoveBlock || block instanceof SkilletBlock || block instanceof CookingPotBlock
+					|| block instanceof CuttingBoardBlock) {
+				return true;
+			}
+			ResourceLocation blockId = ForgeRegistries.BLOCKS.getKey(block);
+			if (blockId != null && CFB.KitchenConnector.ADDON_STOVE_IDS.contains(blockId)) {
+				return true;
+			}
+			return block.defaultBlockState().is(FD_CABINETS);
 		}
 	}
 

@@ -21,6 +21,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import com.google.common.collect.Multimap;
@@ -39,6 +40,9 @@ import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
 import io.github.smokahs.culinarycompat.compat.cfb.Pam;
 import io.github.smokahs.culinarycompat.config.Configs;
 import io.github.smokahs.culinarycompat.network.Network.BakePhase;
+import vectorwing.farmersdelight.common.block.CookingPotBlock;
+import vectorwing.farmersdelight.common.block.CuttingBoardBlock;
+import vectorwing.farmersdelight.common.block.SkilletBlock;
 
 @Mixin(value = RecipeBookMenu.class, remap = false)
 public abstract class RecipeBook {
@@ -162,14 +166,14 @@ public abstract class RecipeBook {
 	@Unique
 	private Set<ResourceLocation> culinarycompat$toolsMissingKeys() {
 		Set<ResourceLocation> tools = new HashSet<>();
-		if (!culinarycompat$memberPresent(CULINARYCOMPAT$FD_CUTTING_BOARD)) {
+		if (!culinarycompat$kitchenHas(CuttingBoardBlock.class, CULINARYCOMPAT$FD_CUTTING_BOARD)) {
 			tools.addAll(FarmersDelight.Cutting.getBridgedOutputs());
 			tools.addAll(Pam.Cutting.getBridgedOutputs());
 		}
-		if (!culinarycompat$memberPresent(CULINARYCOMPAT$FD_SKILLET)) {
+		if (!culinarycompat$kitchenHas(SkilletBlock.class, CULINARYCOMPAT$FD_SKILLET)) {
 			tools.addAll(Pam.Skillet.getBridgedOutputs());
 		}
-		if (!culinarycompat$memberPresent(CULINARYCOMPAT$FD_COOKING_POT)) {
+		if (!culinarycompat$kitchenHas(CookingPotBlock.class, CULINARYCOMPAT$FD_COOKING_POT)) {
 			tools.addAll(Pam.Pot.getBridgedOutputs());
 			tools.addAll(FarmersDelight.Pot.getBridgedOutputs());
 		}
@@ -185,5 +189,22 @@ public abstract class RecipeBook {
 			return false;
 		Set<ResourceLocation> members = ((CFB.KitchenMemberView) multiBlock).culinarycompat$getMemberBlocks();
 		return members.contains(id);
+	}
+
+	// any block extending the given FD class (addon pots, skillets, etc) should count as valid kitchen 'members'
+	@Unique
+	private boolean culinarycompat$kitchenHas(Class<?> blockClass, ResourceLocation fastpathId) {
+		if (multiBlock == null)
+			return false;
+		Set<ResourceLocation> members = ((CFB.KitchenMemberView) multiBlock).culinarycompat$getMemberBlocks();
+		if (members.contains(fastpathId))
+			return true;
+		for (ResourceLocation memberId : members) {
+			Block block = ForgeRegistries.BLOCKS.getValue(memberId);
+			if (block != null && blockClass.isInstance(block)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

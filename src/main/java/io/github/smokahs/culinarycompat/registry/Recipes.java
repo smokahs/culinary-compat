@@ -18,6 +18,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import io.github.smokahs.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.config.Configs;
 import io.github.smokahs.culinarycompat.recipe.MultiCutting;
 
 public final class Recipes {
@@ -70,7 +71,8 @@ public final class Recipes {
 			ItemStack copy = stack.copy();
 			copy.setCount(1);
 			ResourceLocation id = ForgeRegistries.ITEMS.getKey(copy.getItem());
-			if ((immuneItemId != null && immuneItemId.equals(id)) || !copy.isDamageableItem()) {
+			boolean isImmune = immuneItemId != null && immuneItemId.equals(id) && Configs.Common.opNetheriteKnife;
+			if (isImmune || !copy.isDamageableItem()) {
 				return copy;
 			}
 			int newDamage = copy.getDamageValue() + 1;

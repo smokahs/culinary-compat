@@ -77,27 +77,26 @@ public abstract class CuttingBoardEntity implements MultiCuttingExtras {
 		return CULINARYCOMPAT$NETHERITE_KNIFE_ID.equals(id);
 	}
 
+	// FD 1.3.1 dropped the slot limit on its handler, so it messed up the multi ingredient recipes
 	@Inject(method = "addItem", at = @At("HEAD"), cancellable = true)
-	private void culinarycompat$addToFirstEmpty(ItemStack itemStack, CallbackInfoReturnable<Boolean> cir) {
-		if (itemStack.isEmpty()) {
-			cir.setReturnValue(false);
+	private void culinarycompat$addOne(ItemStack itemStack, CallbackInfoReturnable<ItemStack> cir) {
+		if (itemStack.isEmpty() || isItemCarvingBoard) {
 			return;
 		}
 		if (inventory.getStackInSlot(0).isEmpty()) {
 			inventory.setStackInSlot(0, itemStack.split(1));
-			isItemCarvingBoard = false;
 			((SyncedBlockEntityAccessor) (Object) this).culinarycompat$invokeInventoryChanged();
-			cir.setReturnValue(true);
+			cir.setReturnValue(itemStack);
 			return;
 		}
 		for (int i = 0; i < culinarycompat$extras.getSlots(); i++) {
 			if (culinarycompat$extras.getStackInSlot(i).isEmpty()) {
 				culinarycompat$extras.setStackInSlot(i, itemStack.split(1));
-				cir.setReturnValue(true);
+				cir.setReturnValue(itemStack);
 				return;
 			}
 		}
-		cir.setReturnValue(false);
+		cir.setReturnValue(itemStack);
 	}
 
 	@Inject(method = "removeItem", at = @At("HEAD"), cancellable = true)
@@ -114,8 +113,10 @@ public abstract class CuttingBoardEntity implements MultiCuttingExtras {
 		ItemStack base = inventory.getStackInSlot(0);
 		if (!base.isEmpty()) {
 			ItemStack out = base.split(1);
-			inventory.setStackInSlot(0, ItemStack.EMPTY);
-			isItemCarvingBoard = false;
+			if (base.isEmpty()) {
+				inventory.setStackInSlot(0, ItemStack.EMPTY);
+				isItemCarvingBoard = false;
+			}
 			((SyncedBlockEntityAccessor) (Object) this).culinarycompat$invokeInventoryChanged();
 			cir.setReturnValue(out);
 			return;
@@ -147,6 +148,9 @@ public abstract class CuttingBoardEntity implements MultiCuttingExtras {
 			return;
 		}
 		if (!toolStack.is(CULINARYCOMPAT$KNIVES_TAG)) {
+			return;
+		}
+		if (inventory.getStackInSlot(0).getCount() > 1) {
 			return;
 		}
 		boolean hasExtras = false;

@@ -104,6 +104,10 @@ dependencies {
     compileOnly fg.deobf("curse.maven:applied-energistics-2-223794:7148487")
     compileOnly fg.deobf("curse.maven:refined-storage-243076:4844585")
     compileOnly fg.deobf("curse.maven:patchouli-306770:7731017")
+    compileOnly fg.deobf("curse.maven:ends-delight-662675:6180421")
+    compileOnly fg.deobf("curse.maven:enders-delight-827163:6474007")
+    compileOnly fg.deobf("curse.maven:nethers-delight-496394:4736227")
+    compileOnly fg.deobf("curse.maven:twilights-flavors-delight-871735:8046920")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }

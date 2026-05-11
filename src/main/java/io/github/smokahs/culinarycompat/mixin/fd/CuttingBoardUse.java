@@ -59,11 +59,19 @@ public abstract class CuttingBoardUse {
 			return;
 		}
 
-		if (!held.isEmpty() && !held.is(CULINARYCOMPAT$KNIVES_TAG) && !board.isEmpty()) {
-			if (board.addItem(player.getAbilities().instabuild ? held.copy() : held)) {
+		if (!held.isEmpty() && !held.is(CULINARYCOMPAT$KNIVES_TAG) && !board.isEmpty()
+				&& board.getInventory().getStackInSlot(0).getCount() <= 1) {
+			IItemHandler extras = ((MultiCuttingExtras) board).culinarycompat$getExtras();
+			for (int i = 0; i < extras.getSlots(); i++) {
+				if (!extras.getStackInSlot(i).isEmpty()) {
+					continue;
+				}
+				ItemStack one = player.getAbilities().instabuild ? held.copy().split(1) : held.split(1);
+				extras.insertItem(i, one, false);
 				level.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.WOOD_PLACE,
 						SoundSource.BLOCKS, 1.0f, 0.8f);
 				cir.setReturnValue(InteractionResult.SUCCESS);
+				return;
 			}
 		}
 	}

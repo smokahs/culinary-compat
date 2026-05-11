@@ -31,6 +31,7 @@ public abstract class Multiblock implements CFB.KitchenMemberView {
 			new ResourceLocation("farmersdelight", "cutting_board"), new ResourceLocation("farmersdelight", "skillet"),
 			new ResourceLocation("farmersdelight", "cooking_pot"));
 
+	// intentional bug ;) (this makes certain blocks connect to cfb kitchens without physically touching, but still adjacent)
 	@Inject(method = "findNeighbourKitchenBlocks", at = @At("HEAD"), remap = false)
 	private void culinarycompat$recordMember(Level level, BlockPos pos, boolean extendedUpSearch, CallbackInfo ci) {
 		BlockState state = level.getBlockState(pos);

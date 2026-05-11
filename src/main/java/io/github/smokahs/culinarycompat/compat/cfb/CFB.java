@@ -5,11 +5,17 @@ import java.util.function.BiPredicate;
 
 import net.blay09.mods.cookingforblockheads.ForgeCookingForBlockheads;
 import net.blay09.mods.cookingforblockheads.api.capability.DefaultKitchenConnector;
+import net.blay09.mods.cookingforblockheads.api.capability.DefaultKitchenItemProvider;
 import net.blay09.mods.cookingforblockheads.api.capability.IKitchenConnector;
+import net.blay09.mods.cookingforblockheads.api.capability.IKitchenItemProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.Container;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
@@ -29,6 +35,10 @@ import org.jetbrains.annotations.Nullable;
 
 import io.github.smokahs.culinarycompat.CulinaryCompat;
 import io.github.smokahs.culinarycompat.compat.cfb.addons.farmersdelight.StorageDelight;
+import vectorwing.farmersdelight.common.block.entity.CookingPotBlockEntity;
+import vectorwing.farmersdelight.common.block.entity.CuttingBoardBlockEntity;
+import vectorwing.farmersdelight.common.block.entity.SkilletBlockEntity;
+import vectorwing.farmersdelight.common.block.entity.StoveBlockEntity;
 
 public final class CFB {
 	public static final String CFB_MODID = "cookingforblockheads";
@@ -54,6 +64,7 @@ public final class CFB {
 		MinecraftForge.EVENT_BUS.register(FarmersDelight.Cutting.class);
 		MinecraftForge.EVENT_BUS.register(UI.CraftSound.class);
 		MinecraftForge.EVENT_BUS.register(BakeState.Manager.class);
+		MinecraftForge.EVENT_BUS.register(CuttingBoardInteract.class);
 		if (FMLEnvironment.dist == Dist.CLIENT) {
 			// client-only tooltips (thanks MaveTheMaverick and RainbowMagicMarker)
 			MinecraftForge.EVENT_BUS.register(UI.Tooltip.class);
@@ -77,33 +88,54 @@ public final class CFB {
 
 	public static final class KitchenConnector {
 		private static final ResourceLocation KEY = new ResourceLocation("culinarycompat", "kitchen_connector");
-
-		private static final ResourceLocation FD_CUTTING_BOARD_BE = new ResourceLocation(FD_MODID, "cutting_board");
-		private static final ResourceLocation FD_STOVE_BE = new ResourceLocation(FD_MODID, "stove");
-		private static final ResourceLocation FD_SKILLET_BE = new ResourceLocation(FD_MODID, "skillet");
-		private static final ResourceLocation FD_COOKING_POT_BE = new ResourceLocation(FD_MODID, "cooking_pot");
+		private static final ResourceLocation ITEM_PROVIDER_KEY = new ResourceLocation("culinarycompat",
+				"kitchen_item_provider");
 
 		private static final ResourceLocation CFB_COUNTER = new ResourceLocation(CFB_MODID, "counter");
-		private static final ResourceLocation FD_STOVE_BLOCK = new ResourceLocation(FD_MODID, "stove");
+		private static final TagKey<Block> FD_HEAT_SOURCES = TagKey.create(Registries.BLOCK,
+				new ResourceLocation(FD_MODID, "heat_sources"));
+		private static final TagKey<Block> FD_CABINETS = TagKey.create(Registries.BLOCK,
+				new ResourceLocation(FD_MODID, "cabinets"));
+		static final Set<ResourceLocation> ADDON_STOVE_IDS = Set.of(
+				new ResourceLocation("endersdelight", "endstone_stove"),
+				new ResourceLocation("ends_delight", "end_stove"),
+				new ResourceLocation("nethersdelight", "blackstone_stove"),
+				new ResourceLocation("twilightdelight", "maze_stove"));
 
 		private KitchenConnector() {
 		}
+		private static final BiPredicate<Level, BlockPos> ALWAYS_ACTIVE = (level, pos) -> true;
 
 		@SubscribeEvent
 		public static void onAttach(AttachCapabilitiesEvent<BlockEntity> event) {
 			BlockEntity be = event.getObject();
-			ResourceLocation typeId = ForgeRegistries.BLOCK_ENTITY_TYPES.getKey(be.getType());
-			if (typeId == null)
-				return;
-
-			if (FD_CUTTING_BOARD_BE.equals(typeId)) {
+			if (be instanceof CuttingBoardBlockEntity) {
 				event.addCapability(KEY, new Provider(be, KitchenConnector::hasCounterBelow));
-			} else if (FD_STOVE_BE.equals(typeId)) {
-				event.addCapability(KEY, new Provider(be, KitchenConnector::hasCfbNeighborHorizontally));
-			} else if (FD_SKILLET_BE.equals(typeId)) {
+				return;
+			}
+			if (be instanceof StoveBlockEntity) {
+				event.addCapability(KEY, new Provider(be, ALWAYS_ACTIVE));
+				return;
+			}
+			if (be instanceof SkilletBlockEntity) {
 				event.addCapability(KEY, new Provider(be, KitchenConnector::hasCookingSurfaceBelow));
-			} else if (FD_COOKING_POT_BE.equals(typeId)) {
+				return;
+			}
+			if (be instanceof CookingPotBlockEntity) {
 				event.addCapability(KEY, new Provider(be, KitchenConnector::hasCookingSurfaceBelow));
+				return;
+			}
+			ResourceLocation typeId = ForgeRegistries.BLOCK_ENTITY_TYPES.getKey(be.getType());
+			if (typeId != null && ADDON_STOVE_IDS.contains(typeId)) {
+				event.addCapability(KEY, new Provider(be, ALWAYS_ACTIVE));
+				return;
+			}
+			BlockState beState = be.getBlockState();
+			if (beState.is(FD_CABINETS)) {
+				event.addCapability(KEY, new Provider(be, ALWAYS_ACTIVE));
+				if (be instanceof Container container) {
+					event.addCapability(ITEM_PROVIDER_KEY, new ItemProvider(container));
+				}
 			}
 		}
 
@@ -112,30 +144,12 @@ public final class CFB {
 			return CFB_COUNTER.equals(ForgeRegistries.BLOCKS.getKey(below.getBlock()));
 		}
 
-		private static boolean hasStoveBelow(Level level, BlockPos pos) {
-			BlockState below = level.getBlockState(pos.below());
-			return FD_STOVE_BLOCK.equals(ForgeRegistries.BLOCKS.getKey(below.getBlock()));
-		}
-
 		private static boolean hasCookingSurfaceBelow(Level level, BlockPos pos) {
 			BlockState below = level.getBlockState(pos.below());
-			ResourceLocation id = ForgeRegistries.BLOCKS.getKey(below.getBlock());
-			if (id == null)
-				return false;
-			if (FD_STOVE_BLOCK.equals(id))
+			if (below.is(FD_HEAT_SOURCES))
 				return true;
-			return CFB_MODID.equals(id.getNamespace());
-		}
-
-		private static boolean hasCfbNeighborHorizontally(Level level, BlockPos pos) {
-			for (Direction d : Direction.Plane.HORIZONTAL) {
-				BlockState neighbor = level.getBlockState(pos.relative(d));
-				ResourceLocation id = ForgeRegistries.BLOCKS.getKey(neighbor.getBlock());
-				if (id != null && CFB_MODID.equals(id.getNamespace())) {
-					return true;
-				}
-			}
-			return false;
+			ResourceLocation id = ForgeRegistries.BLOCKS.getKey(below.getBlock());
+			return id != null && CFB_MODID.equals(id.getNamespace());
 		}
 
 		private static final class Provider implements ICapabilityProvider {
@@ -159,6 +173,24 @@ public final class CFB {
 					return LazyOptional.empty();
 				if (!validity.test(level, owner.getBlockPos()))
 					return LazyOptional.empty();
+				return opt.cast();
+			}
+		}
+
+		private static final class ItemProvider implements ICapabilityProvider {
+			private final IKitchenItemProvider provider;
+			private final LazyOptional<IKitchenItemProvider> opt;
+
+			ItemProvider(Container container) {
+				this.provider = new DefaultKitchenItemProvider(container);
+				this.opt = LazyOptional.of(() -> provider);
+			}
+
+			@Override
+			public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+				if (cap != ForgeCookingForBlockheads.KITCHEN_ITEM_PROVIDER_CAPABILITY) {
+					return LazyOptional.empty();
+				}
 				return opt.cast();
 			}
 		}
