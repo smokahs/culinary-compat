@@ -52,7 +52,11 @@ Client and server config files are included! More options will be added to them 
 
 ## Currently Supported (optional) Addons & Integrations 
 <details> <summary>Farmer's Delight Addons</summary>
-    - Storage Delight 
+    - Storage Delight
+    - Ender's Delight
+    - End's Delight
+    - Nether's Delight
+    - Twilight's Flavor and Delight
 </details>
 
 <details> <summary>Applied Energistics 2</summary>
@@ -63,6 +67,8 @@ Client and server config files are included! More options will be added to them 
     - Adds an in game guidebook, titled "Head Chef's Journal"
 </details>
 
+### Integrations:
+- Fixes crashes from multiple addons that reference outdated (pre 1.3.1) Farmers Delight methods 
 
 --------------------------------------
 ## Installation
