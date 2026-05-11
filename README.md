@@ -83,4 +83,4 @@ This mod wouldn't exist without: Pam (Pam's HarvestCraft 2), vectorwing (Farmer'
 
 ## Issues
 
-[GitHub issue tracker](https://github.com/smokahs/Culinary-Compat/issues). Include MC+Forge version, Culinary Compat version, installed mod subset, and `logs/latest.log`.
+[GitHub issue tracker](https://github.com/smokahs/Culinary-Compat/issues). Include MC+Forge version, Culinary Compat version, installed mod subset, crash log (if applicable), and `logs/latest.log`.
