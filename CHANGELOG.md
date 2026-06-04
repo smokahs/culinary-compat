@@ -1,5 +1,11 @@
 # Beta Changelog
 
+## v1.0.10
+1. [Issue #4](https://github.com/smokahs/culinary-compat/issues/4) bakeware recipes missing in EMI/JEI on dedicated servers (thanks cloby0!)
+    - Recipes were only built server-side, so connected clients never received them and the bakeware category showed empty (the recipes themselves still crafted fine)
+    - entries are now synced to clients on join and datapack reload
+    - this actually affected all bridge categories, but only bakeware was visibly broken since cutting board, skillet, and pot reuse the synced Farmer's Delight recipes
+
 ## v1.0.9
 1. [Issue #3](https://github.com/smokahs/culinary-compat/issues/3) addon stove and cabinet multiblock support (thanks MaveTheMaverick!)
     - All of the following blocks now supported in a CFB multiblock kitchen:

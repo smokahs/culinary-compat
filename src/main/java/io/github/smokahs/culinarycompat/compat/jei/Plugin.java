@@ -40,6 +40,9 @@ public final class Plugin implements IModPlugin {
 
 	private static final Map<Bridges.Kind, Category> CATEGORIES = new EnumMap<>(Bridges.Kind.class);
 
+	private static IJeiRuntime runtime;
+	private static int registeredBridgeCount;
+
 	private static final String[] HIDDEN = {"pamhc2crops:tomatoitem", "pamhc2crops:tomatoseeditem",
 			"pamhc2crops:onionitem", "pamhc2crops:onionseeditem", "pamhc2crops:cabbageitem",
 			"pamhc2crops:cabbageseeditem", "pamhc2crops:riceitem", "pamhc2crops:riceseeditem",
@@ -91,12 +94,15 @@ public final class Plugin implements IModPlugin {
 				continue;
 			bucket.computeIfAbsent(k, key -> new ArrayList<>()).add(e);
 		}
+		int added = 0;
 		for (Map.Entry<Bridges.Kind, List<Bridges.Entry>> en : bucket.entrySet()) {
 			Category cat = CATEGORIES.get(en.getKey());
 			if (cat == null)
 				continue;
 			registration.addRecipes(cat.type(), en.getValue());
+			added += en.getValue().size();
 		}
+		registeredBridgeCount = added;
 	}
 
 	@Override
@@ -143,8 +149,35 @@ public final class Plugin implements IModPlugin {
 		}
 	}
 
+	// add bridge recipes that arrived after JEI started (dedicated server clients)
+	public static void applyRuntimeSync() {
+		if (emiLoaded() || runtime == null || registeredBridgeCount > 0)
+			return;
+		Map<Bridges.Kind, List<Bridges.Entry>> bucket = new EnumMap<>(Bridges.Kind.class);
+		for (Bridges.Entry e : Bridges.getAll()) {
+			Bridges.Kind k = Bridges.Kind.fromSource(e.source());
+			if (k == null)
+				continue;
+			bucket.computeIfAbsent(k, key -> new ArrayList<>()).add(e);
+		}
+		int added = 0;
+		for (Map.Entry<Bridges.Kind, List<Bridges.Entry>> en : bucket.entrySet()) {
+			Category cat = CATEGORIES.get(en.getKey());
+			if (cat == null)
+				continue;
+			try {
+				runtime.getRecipeManager().addRecipes(cat.type(), en.getValue());
+				added += en.getValue().size();
+			} catch (Exception ex) {
+				CulinaryCompat.LOGGER.error("JEI bridge sync addRecipes failed", ex);
+			}
+		}
+		registeredBridgeCount = added;
+	}
+
 	@Override
 	public void onRuntimeAvailable(IJeiRuntime runtime) {
+		Plugin.runtime = runtime;
 		if (emiLoaded())
 			return;
 		List<ItemStack> hide = new ArrayList<>(HIDDEN.length);
@@ -193,6 +226,12 @@ public final class Plugin implements IModPlugin {
 				CulinaryCompat.LOGGER.error("JEI campfire hide failed", e);
 			}
 		}
+	}
+
+	@Override
+	public void onRuntimeUnavailable() {
+		runtime = null;
+		registeredBridgeCount = 0;
 	}
 
 	private static ItemStack itemStack(String ns, String path) {

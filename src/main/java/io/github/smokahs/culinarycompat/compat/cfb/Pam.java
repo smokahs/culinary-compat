@@ -670,6 +670,13 @@ public final class Pam {
 			if (server != null) {
 				run(server);
 			}
+			// push entries so remote clients' EMI/JEI show them
+			net.minecraft.server.level.ServerPlayer player = event.getPlayer();
+			if (player != null) {
+				io.github.smokahs.culinarycompat.network.Network.sendBridges(player);
+			} else {
+				io.github.smokahs.culinarycompat.network.Network.sendBridgesToAll();
+			}
 		}
 
 		private static void run(MinecraftServer server) {

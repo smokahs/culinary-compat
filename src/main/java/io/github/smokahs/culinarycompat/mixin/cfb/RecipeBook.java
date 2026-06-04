@@ -191,7 +191,8 @@ public abstract class RecipeBook {
 		return members.contains(id);
 	}
 
-	// any block extending the given FD class (addon pots, skillets, etc) should count as valid kitchen 'members'
+	// any block extending the given FD class (addon pots, skillets, etc) should
+	// count as valid kitchen 'members'
 	@Unique
 	private boolean culinarycompat$kitchenHas(Class<?> blockClass, ResourceLocation fastpathId) {
 		if (multiBlock == null)

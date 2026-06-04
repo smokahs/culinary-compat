@@ -77,7 +77,8 @@ public abstract class CuttingBoardEntity implements MultiCuttingExtras {
 		return CULINARYCOMPAT$NETHERITE_KNIFE_ID.equals(id);
 	}
 
-	// FD 1.3.1 dropped the slot limit on its handler, so it messed up the multi ingredient recipes
+	// FD 1.3.1 dropped the slot limit on its handler, so it messed up the multi
+	// ingredient recipes
 	@Inject(method = "addItem", at = @At("HEAD"), cancellable = true)
 	private void culinarycompat$addOne(ItemStack itemStack, CallbackInfoReturnable<ItemStack> cir) {
 		if (itemStack.isEmpty() || isItemCarvingBoard) {

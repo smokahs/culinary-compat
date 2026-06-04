@@ -11,9 +11,11 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 
 import io.github.smokahs.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.bridges.Bridges;
 import io.github.smokahs.culinarycompat.compat.ae2.Bridge;
 import io.github.smokahs.culinarycompat.compat.ae2.StationSettingsPacket;
 
@@ -30,6 +32,8 @@ public final class Network {
 		int id = 0;
 		CHANNEL.registerMessage(id++, BakeStatusPacket.class, BakeStatusPacket::encode, BakeStatusPacket::decode,
 				BakeStatusPacket::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+		CHANNEL.registerMessage(id++, Sync.class, Sync::encode, Sync::decode, Sync::handle,
+				Optional.of(NetworkDirection.PLAY_TO_CLIENT));
 		if (Bridge.isActive()) {
 			CHANNEL.registerMessage(id++, StationSettingsPacket.class, StationSettingsPacket::encode,
 					StationSettingsPacket::decode, StationSettingsPacket::handle,
@@ -39,6 +43,15 @@ public final class Network {
 
 	public static void sendToClient(ServerPlayer player, BakeStatusPacket packet) {
 		CHANNEL.sendTo(packet, player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
+	}
+
+	public static void sendBridges(ServerPlayer player) {
+		CHANNEL.sendTo(new Sync(new java.util.ArrayList<>(Bridges.getAll())), player.connection.connection,
+				NetworkDirection.PLAY_TO_CLIENT);
+	}
+
+	public static void sendBridgesToAll() {
+		CHANNEL.send(PacketDistributor.ALL.noArg(), new Sync(new java.util.ArrayList<>(Bridges.getAll())));
 	}
 
 	public enum BakePhase {

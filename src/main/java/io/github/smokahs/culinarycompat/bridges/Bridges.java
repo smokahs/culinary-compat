@@ -57,6 +57,13 @@ public final class Bridges {
 		ENTRIES.put(entry.bridgeId(), entry);
 	}
 
+	public static void replaceAll(Collection<Entry> entries) {
+		ENTRIES.clear();
+		for (Entry e : entries) {
+			ENTRIES.put(e.bridgeId(), e);
+		}
+	}
+
 	public static Collection<Entry> getAll() {
 		return Collections.unmodifiableCollection(new ArrayList<>(ENTRIES.values()));
 	}

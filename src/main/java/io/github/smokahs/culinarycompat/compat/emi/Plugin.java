@@ -33,6 +33,15 @@ public final class Plugin implements EmiPlugin {
 			"pamhc2crops:cabbageseeditem", "pamhc2crops:riceitem", "pamhc2crops:riceseeditem",
 			"pamhc2foodcore:bakewareitem", "pamhc2foodcore:doughitem"};
 
+	// re-run plugin registration
+	public static void requestReload() {
+		try {
+			dev.emi.emi.runtime.EmiReloadManager.reload();
+		} catch (Throwable t) {
+			CulinaryCompat.LOGGER.error("EMI bridge sync reload failed", t);
+		}
+	}
+
 	@Override
 	public void register(EmiRegistry registry) {
 		hideStacks(registry);
