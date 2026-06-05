@@ -1,5 +1,9 @@
 # Beta Changelog
 
+## v1.0.11
+1. [Issue #4](https://github.com/smokahs/culinary-compat/issues/4) bakeware recipes were *still* missing in EMI/JEI on dedicated servers
+    - should've fixed the issue..... lol
+
 ## v1.0.10
 1. [Issue #4](https://github.com/smokahs/culinary-compat/issues/4) bakeware recipes missing in EMI/JEI on dedicated servers (thanks cloby0!)
     - Recipes were only built server-side, so connected clients never received them and the bakeware category showed empty (the recipes themselves still crafted fine)

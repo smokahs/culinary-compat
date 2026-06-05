@@ -4,6 +4,7 @@ import net.blay09.mods.cookingforblockheads.registry.CookingRegistry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,7 +24,7 @@ public abstract class Registry {
 		if (ModList.get().isLoaded("farmersdelight")) {
 			FarmersDelight.Pot.registerBridges(recipeManager, registryAccess);
 		}
-		if (ModList.get().isLoaded(Pam.PAM_MODID)) {
+		if (ModList.get().isLoaded(Pam.PAM_MODID) && ServerLifecycleHooks.getCurrentServer() != null) {
 			Pam.Cutting.registerBridges(recipeManager, registryAccess);
 			Pam.Skillet.registerBridges(recipeManager, registryAccess);
 			Pam.Pot.registerBridges(recipeManager, registryAccess);
