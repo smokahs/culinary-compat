@@ -12,6 +12,9 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShearsItem;
+import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -59,8 +62,8 @@ public abstract class CuttingBoardUse {
 			return;
 		}
 
-		if (!held.isEmpty() && !held.is(CULINARYCOMPAT$KNIVES_TAG) && !board.isEmpty()
-				&& board.getInventory().getStackInSlot(0).getCount() <= 1) {
+		if (!held.isEmpty() && !held.is(CULINARYCOMPAT$KNIVES_TAG) && !culinarycompat$isCarveTool(held)
+				&& !board.isEmpty() && board.getInventory().getStackInSlot(0).getCount() <= 1) {
 			IItemHandler extras = ((MultiCuttingExtras) board).culinarycompat$getExtras();
 			for (int i = 0; i < extras.getSlots(); i++) {
 				if (!extras.getStackInSlot(i).isEmpty()) {
@@ -74,6 +77,12 @@ public abstract class CuttingBoardUse {
 				return;
 			}
 		}
+	}
+
+	// tools ARE TOOLS!!!
+	private static boolean culinarycompat$isCarveTool(ItemStack stack) {
+		Item item = stack.getItem();
+		return item instanceof TieredItem || item instanceof TridentItem || item instanceof ShearsItem;
 	}
 
 	@Inject(method = "onRemove", at = @At("HEAD"), remap = true)

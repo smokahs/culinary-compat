@@ -52,11 +52,16 @@ public abstract class CuttingBoardRender {
 		ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
 		for (int i = 0; i < n; i++) {
 			ItemStack stack = items.get(i);
+			// spiral each item out a little and give it its own yaw so blocks don't overlap and z-fight
+			double theta = i * 2.3999632;
+			double radius = 0.05 * Math.sqrt(i);
+			double ox = radius * Math.cos(theta);
+			double oz = radius * Math.sin(theta);
 			poseStack.pushPose();
-			poseStack.translate(0.5, 0.08 + i * 0.045, 0.5);
-			poseStack.mulPose(Axis.YP.rotationDegrees(-facing.toYRot()));
+			poseStack.translate(0.5 + ox, 0.08 + i * 0.04, 0.5 + oz);
+			poseStack.mulPose(Axis.YP.rotationDegrees(-facing.toYRot() + i * 50.0f));
 			poseStack.mulPose(Axis.XP.rotationDegrees(90.0f));
-			poseStack.scale(0.6f, 0.6f, 0.6f);
+			poseStack.scale(0.55f, 0.55f, 0.55f);
 			itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, combinedLight, combinedOverlay, poseStack,
 					buffer, be.getLevel(), posLong);
 			poseStack.popPose();

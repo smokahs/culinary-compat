@@ -77,29 +77,12 @@ public abstract class CuttingBoardEntity implements MultiCuttingExtras {
 		return CULINARYCOMPAT$NETHERITE_KNIFE_ID.equals(id);
 	}
 
-	// FD 1.3.1 dropped the slot limit on its handler, so it messed up the multi
-	// ingredient recipes
-	// FD's addItem returns boolean (true if stored); CIR must match or mixin crashes casting to Boolean
-	@Inject(method = "addItem", at = @At("HEAD"), cancellable = true)
-	private void culinarycompat$addOne(ItemStack itemStack, CallbackInfoReturnable<Boolean> cir) {
-		if (itemStack.isEmpty() || isItemCarvingBoard) {
-			return;
-		}
-		if (inventory.getStackInSlot(0).isEmpty()) {
-			inventory.setStackInSlot(0, itemStack.split(1));
-			((SyncedBlockEntityAccessor) (Object) this).culinarycompat$invokeInventoryChanged();
-			cir.setReturnValue(true);
-			return;
-		}
-		for (int i = 0; i < culinarycompat$extras.getSlots(); i++) {
-			if (culinarycompat$extras.getStackInSlot(i).isEmpty()) {
-				culinarycompat$extras.setStackInSlot(i, itemStack.split(1));
-				cir.setReturnValue(true);
-				return;
-			}
-		}
-		cir.setReturnValue(false);
-	}
+	// rememba!!!!
+
+	@Unique
+	private ItemStack culinarycompat$displacedBottom = ItemStack.EMPTY;
+	@Unique
+	private int culinarycompat$displacedSlot = -1;
 
 	@Inject(method = "removeItem", at = @At("HEAD"), cancellable = true)
 	private void culinarycompat$removeLast(CallbackInfoReturnable<ItemStack> cir) {
@@ -144,12 +127,14 @@ public abstract class CuttingBoardEntity implements MultiCuttingExtras {
 	@Inject(method = "processStoredItemUsingTool", at = @At("HEAD"), cancellable = true)
 	private void culinarycompat$tryMultiCutting(ItemStack toolStack, @Nullable Player player,
 			CallbackInfoReturnable<Boolean> cir) {
+		culinarycompat$displacedSlot = -1;
 		BlockEntity selfBe = (BlockEntity) (Object) this;
 		Level level = selfBe.getLevel();
 		if (level == null || isItemCarvingBoard) {
 			return;
 		}
 		if (!toolStack.is(CULINARYCOMPAT$KNIVES_TAG)) {
+			culinarycompat$liftTopForTool();
 			return;
 		}
 		if (inventory.getStackInSlot(0).getCount() > 1) {
@@ -209,6 +194,38 @@ public abstract class CuttingBoardEntity implements MultiCuttingExtras {
 		}
 		((SyncedBlockEntityAccessor) (Object) this).culinarycompat$invokeInventoryChanged();
 		cir.setReturnValue(true);
+	}
+
+	// move the topmost stacked item into slot 0 for FD to process
+	@Unique
+	private void culinarycompat$liftTopForTool() {
+		for (int i = culinarycompat$extras.getSlots() - 1; i >= 0; i--) {
+			if (!culinarycompat$extras.getStackInSlot(i).isEmpty()) {
+				culinarycompat$displacedBottom = inventory.getStackInSlot(0);
+				culinarycompat$displacedSlot = i;
+				inventory.setStackInSlot(0, culinarycompat$extras.getStackInSlot(i));
+				culinarycompat$extras.setStackInSlot(i, ItemStack.EMPTY);
+				return;
+			}
+		}
+	}
+
+	@Inject(method = "processStoredItemUsingTool", at = @At("RETURN"))
+	private void culinarycompat$restoreAfterTool(ItemStack toolStack, @Nullable Player player,
+			CallbackInfoReturnable<Boolean> cir) {
+		if (culinarycompat$displacedSlot < 0) {
+			return;
+		}
+		int t = culinarycompat$displacedSlot;
+		culinarycompat$displacedSlot = -1;
+		boolean consumed = cir.getReturnValueZ() && inventory.getStackInSlot(0).isEmpty();
+		if (!consumed) {
+			// top item had no recipe for this tool; put it back where it was
+			culinarycompat$extras.setStackInSlot(t, inventory.getStackInSlot(0));
+		}
+		inventory.setStackInSlot(0, culinarycompat$displacedBottom);
+		culinarycompat$displacedBottom = ItemStack.EMPTY;
+		((SyncedBlockEntityAccessor) (Object) this).culinarycompat$invokeInventoryChanged();
 	}
 
 	@Unique

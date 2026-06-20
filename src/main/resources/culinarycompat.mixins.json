@@ -2,6 +2,7 @@
   "required": true,
   "minVersion": "0.8.5",
   "package": "io.github.smokahs.culinarycompat.mixin",
+  "plugin": "io.github.smokahs.culinarycompat.mixin.CulinaryMixinPlugin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "culinarycompat.refmap.json",
   "mixins": [
@@ -12,6 +13,7 @@
     "cfb.Registry",
     "compat.EndersDelight",
     "compat.EndsDelight",
+    "fd.CuttingBoardCap",
     "fd.CuttingBoardEntity",
     "fd.CuttingBoardUse",
     "fd.SyncedBlockEntityAccessor"

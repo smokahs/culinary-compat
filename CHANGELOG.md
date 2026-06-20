@@ -1,8 +1,11 @@
 # Beta Changelog
 
 ## v1.0.11
-1. [Issue #4](https://github.com/smokahs/culinary-compat/issues/4) bakeware recipes were *still* missing in EMI/JEI on dedicated servers
-    - should've fixed the issue..... lol
+1. Added support for Farmers Delight 1.3.2!
+2. [Issue #4](https://github.com/smokahs/culinary-compat/issues/4) bakeware recipes were *still* missing in EMI/JEI on dedicated servers
+    - Fixed!
+3. [Issue #5](https://github.com/smokahs/culinary-compat/issues/5)
+    - Fixed delightful crash! Thanks 989onan
 
 ## v1.0.10
 1. [Issue #4](https://github.com/smokahs/culinary-compat/issues/4) bakeware recipes missing in EMI/JEI on dedicated servers (thanks cloby0!)
