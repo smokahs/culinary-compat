@@ -52,7 +52,8 @@ public abstract class CuttingBoardRender {
 		ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
 		for (int i = 0; i < n; i++) {
 			ItemStack stack = items.get(i);
-			// spiral each item out a little and give it its own yaw so blocks don't overlap and z-fight
+			// spiral each item out a little and give it its own yaw so blocks don't overlap
+			// and z-fight
 			double theta = i * 2.3999632;
 			double radius = 0.05 * Math.sqrt(i);
 			double ox = radius * Math.cos(theta);
