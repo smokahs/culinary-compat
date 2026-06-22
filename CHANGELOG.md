@@ -1,5 +1,9 @@
 # Beta Changelog
 
+## v1.0.12
+1. [Issue #6](https://github.com/smokahs/culinary-compat/issues/6) login chat spam when optional deps are missing (thanks Syrikal!)
+    - New `notifyMissingDeps` config option (default on) under `notifications`
+
 ## v1.0.11
 1. Added support for Farmers Delight 1.3.2!
 2. [Issue #4](https://github.com/smokahs/culinary-compat/issues/4) bakeware recipes were *still* missing in EMI/JEI on dedicated servers

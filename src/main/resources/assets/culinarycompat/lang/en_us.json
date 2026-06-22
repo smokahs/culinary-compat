@@ -16,6 +16,7 @@
   "culinarycompat.config.bakewareRefundOnCancel": "Refund Ingredients On Cancel",
   "culinarycompat.config.bakedingsound": "Bake Ding Sound",
   "culinarycompat.config.dingvolume": "Ding Volume",
+  "culinarycompat.config.notifyMissingDeps": "Notify Missing Optional Dependencies",
   "block.culinarycompat.ae2_kitchen_station": "ME Kitchen Station",
   "item.culinarycompat.ae2_kitchen_station": "ME Kitchen Station",
   "item.culinarycompat.guidebook": "Head Chef's Journal",

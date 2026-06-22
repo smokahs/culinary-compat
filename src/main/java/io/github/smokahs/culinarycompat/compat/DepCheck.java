@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import io.github.smokahs.culinarycompat.CulinaryCompat;
+import io.github.smokahs.culinarycompat.config.Configs;
 
 @Mod.EventBusSubscriber(modid = CulinaryCompat.MODID)
 public final class DepCheck {
@@ -38,7 +39,7 @@ public final class DepCheck {
 
 	@SubscribeEvent
 	public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-		if (missing.isEmpty())
+		if (missing.isEmpty() || !Configs.Common.notifyMissingDeps)
 			return;
 		Component msg = Component.literal("[Culinary Compat] Missing optional deps: " + String.join(", ", missing)
 				+ ". Install for full recipe/tag integration.").withStyle(ChatFormatting.GOLD);

@@ -33,6 +33,8 @@ public final class Configs {
 
 		private static final ForgeConfigSpec.BooleanValue OP_NETHERITE_KNIFE;
 
+		private static final ForgeConfigSpec.BooleanValue NOTIFY_MISSING_DEPS;
+
 		static {
 			BUILDER.comment("Pam's HarvestCraft 2 food rebalancing. Requires restart to take effect.").push("foodNerf");
 			NERF_PAMS = BUILDER
@@ -62,6 +64,12 @@ public final class Configs {
 					"OP Netherite knife! Farmer's Delight netherite knife takes no durability damage when used on the cutting board.")
 					.translation("culinarycompat.config.opNetheriteKnife").define("opNetheriteKnife", true);
 			BUILDER.pop();
+
+			BUILDER.comment("Chat notifications.").push("notifications");
+			NOTIFY_MISSING_DEPS = BUILDER
+					.comment("show a chat message on login when certain optional dependencies are missing.")
+					.translation("culinarycompat.config.notifyMissingDeps").define("notifyMissingDeps", true);
+			BUILDER.pop();
 		}
 
 		public static final ForgeConfigSpec SPEC = BUILDER.build();
@@ -76,6 +84,8 @@ public final class Configs {
 
 		public static boolean opNetheriteKnife;
 
+		public static boolean notifyMissingDeps;
+
 		private Common() {
 		}
 
@@ -87,6 +97,7 @@ public final class Configs {
 			bakewareDurationTicks = BAKEWARE_DURATION_TICKS.get();
 			bakewareRefundOnCancel = BAKEWARE_REFUND_ON_CANCEL.get();
 			opNetheriteKnife = OP_NETHERITE_KNIFE.get();
+			notifyMissingDeps = NOTIFY_MISSING_DEPS.get();
 		}
 	}
 
