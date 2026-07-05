@@ -12,9 +12,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ShearsItem;
-import net.minecraft.world.item.TieredItem;
-import net.minecraft.world.item.TridentItem;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -27,9 +25,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import io.github.smokahs.culinarycompat.config.Configs;
 import io.github.smokahs.culinarycompat.recipe.MultiCuttingExtras;
 import vectorwing.farmersdelight.common.block.CuttingBoardBlock;
 import vectorwing.farmersdelight.common.block.entity.CuttingBoardBlockEntity;
+import vectorwing.farmersdelight.common.crafting.CuttingBoardRecipe;
+import vectorwing.farmersdelight.common.registry.ModRecipeTypes;
 
 @Mixin(value = CuttingBoardBlock.class, remap = false)
 public abstract class CuttingBoardUse {
@@ -62,8 +63,9 @@ public abstract class CuttingBoardUse {
 			return;
 		}
 
-		if (!held.isEmpty() && !held.is(CULINARYCOMPAT$KNIVES_TAG) && !culinarycompat$isCarveTool(held)
-				&& !board.isEmpty() && board.getInventory().getStackInSlot(0).getCount() <= 1) {
+		if (Configs.Common.multiCutting && !held.isEmpty() && !held.is(CULINARYCOMPAT$KNIVES_TAG)
+				&& !culinarycompat$matchesCuttingTool(level, board, held) && !board.isEmpty()
+				&& board.getInventory().getStackInSlot(0).getCount() <= 1) {
 			IItemHandler extras = ((MultiCuttingExtras) board).culinarycompat$getExtras();
 			for (int i = 0; i < extras.getSlots(); i++) {
 				if (!extras.getStackInSlot(i).isEmpty()) {
@@ -79,10 +81,25 @@ public abstract class CuttingBoardUse {
 		}
 	}
 
-	// tools ARE TOOLS!!!
-	private static boolean culinarycompat$isCarveTool(ItemStack stack) {
-		Item item = stack.getItem();
-		return item instanceof TieredItem || item instanceof TridentItem || item instanceof ShearsItem;
+	// check for any valid fd cutting board tool
+	private static boolean culinarycompat$matchesCuttingTool(Level level, CuttingBoardBlockEntity board,
+			ItemStack held) {
+		IItemHandler extras = ((MultiCuttingExtras) board).culinarycompat$getExtras();
+		for (CuttingBoardRecipe recipe : level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.CUTTING.get())) {
+			if (recipe.getIngredients().isEmpty() || !recipe.getTool().test(held)) {
+				continue;
+			}
+			Ingredient input = recipe.getIngredients().get(0);
+			if (input.test(board.getInventory().getStackInSlot(0))) {
+				return true;
+			}
+			for (int i = 0; i < extras.getSlots(); i++) {
+				if (input.test(extras.getStackInSlot(i))) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	@Inject(method = "onRemove", at = @At("HEAD"), remap = true)

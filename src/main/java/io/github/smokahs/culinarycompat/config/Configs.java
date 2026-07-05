@@ -32,6 +32,7 @@ public final class Configs {
 		private static final ForgeConfigSpec.BooleanValue BAKEWARE_REFUND_ON_CANCEL;
 
 		private static final ForgeConfigSpec.BooleanValue OP_NETHERITE_KNIFE;
+		private static final ForgeConfigSpec.BooleanValue MULTI_CUTTING;
 
 		private static final ForgeConfigSpec.BooleanValue NOTIFY_MISSING_DEPS;
 
@@ -63,6 +64,10 @@ public final class Configs {
 			OP_NETHERITE_KNIFE = BUILDER.comment(
 					"OP Netherite knife! Farmer's Delight netherite knife takes no durability damage when used on the cutting board.")
 					.translation("culinarycompat.config.opNetheriteKnife").define("opNetheriteKnife", true);
+			MULTI_CUTTING = BUILDER.comment(
+					"allow stacking extra items onto an occupied cutting board for multi-item cutting recipes and display.",
+					"when false, only vanilla Farmer's Delight single-item cutting board behavior applies.")
+					.translation("culinarycompat.config.multiCutting").define("multiCutting", true);
 			BUILDER.pop();
 
 			BUILDER.comment("Chat notifications.").push("notifications");
@@ -83,6 +88,7 @@ public final class Configs {
 		public static boolean bakewareRefundOnCancel;
 
 		public static boolean opNetheriteKnife;
+		public static boolean multiCutting;
 
 		public static boolean notifyMissingDeps;
 
@@ -97,6 +103,7 @@ public final class Configs {
 			bakewareDurationTicks = BAKEWARE_DURATION_TICKS.get();
 			bakewareRefundOnCancel = BAKEWARE_REFUND_ON_CANCEL.get();
 			opNetheriteKnife = OP_NETHERITE_KNIFE.get();
+			multiCutting = MULTI_CUTTING.get();
 			notifyMissingDeps = NOTIFY_MISSING_DEPS.get();
 		}
 	}
