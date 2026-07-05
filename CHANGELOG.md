@@ -1,9 +1,8 @@
 # Beta Changelog
 
 ## v1.0.13 
-1. [Issue #8](https://github.com/smokahs/culinary-compat/issues/8) cutting board display placement swallowed valid non-knife cutting tools (Thank you for all the help tcm5025!)
-    - Right-clicking an occupied cutting board with a non-knife tool placed the tool as a display item instead of running the recipe
-    - Now checks the held item against the actual Farmer's Delight cutting recipes for what's on the board, so any real tool processes normally and only non-tool items are placed as display extras
+1. [Issue #8](https://github.com/smokahs/culinary-compat/issues/8) cutting board swallowed valid non-knife cutting tools (Thank you for all the help tcm5025!)
+    - Now checks the held item against the actual Farmer's Delight recipes, so any real tool processes normally and only non-tool items are placed as display extras
     - New `multiCutting` config option (default on) under `cuttingBoard` to disable the extra-item stacking feature entirely
 
 ## v1.0.12
