@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import io.github.smokahs.culinarycompat.compat.cfb.Croptopia;
 import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
 import io.github.smokahs.culinarycompat.compat.cfb.Pam;
 
@@ -29,6 +30,9 @@ public abstract class Registry {
 			Pam.Skillet.registerBridges(recipeManager, registryAccess);
 			Pam.Pot.registerBridges(recipeManager, registryAccess);
 			Pam.Bakeware.registerBridges(recipeManager, registryAccess);
+		}
+		if (ModList.get().isLoaded(Croptopia.CROPTOPIA_MODID) && ServerLifecycleHooks.getCurrentServer() != null) {
+			Croptopia.Stripper.registerBridges(registryAccess);
 		}
 	}
 }

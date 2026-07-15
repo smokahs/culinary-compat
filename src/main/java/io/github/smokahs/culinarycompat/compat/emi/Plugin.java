@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import dev.emi.emi.api.EmiEntrypoint;
@@ -93,6 +94,18 @@ public final class Plugin implements EmiPlugin {
 			if (item != null && item != Items.AIR)
 				hidden.add(item);
 		}
+		// bakeware is Pam-only content; hide the block when Pam is absent
+		if (!ModList.get().isLoaded("pamhc2foodcore")) {
+			Item bakeware = io.github.smokahs.culinarycompat.registry.Items.BAKEWARE.get();
+			if (bakeware != null && bakeware != Items.AIR)
+				hidden.add(bakeware);
+		}
+		// FD present: the croptopia knife is nuked in favor of the FD knife
+		if (ModList.get().isLoaded("croptopia") && ModList.get().isLoaded("farmersdelight")) {
+			Item knife = ForgeRegistries.ITEMS.getValue(new ResourceLocation("croptopia", "knife"));
+			if (knife != null && knife != Items.AIR)
+				hidden.add(knife);
+		}
 		if (hidden.isEmpty())
 			return;
 		try {
@@ -112,14 +125,20 @@ public final class Plugin implements EmiPlugin {
 		ItemStack oven = itemStack("cookingforblockheads", "oven");
 		ItemStack pot = itemStack("farmersdelight", "cooking_pot");
 		ItemStack bakeware = new ItemStack(io.github.smokahs.culinarycompat.registry.Items.BAKEWARE.get());
+		ItemStack foodPress = itemStack("croptopia", "food_press");
+		ItemStack mortar = itemStack("croptopia", "mortar_and_pestle");
 
 		registerCategory(registry, Bridges.Kind.CUTTINGBOARD, cuttingBoard);
 		registerCategory(registry, Bridges.Kind.SKILLET, skillet);
 		registerCategory(registry, Bridges.Kind.OVEN, oven);
 		registerCategory(registry, Bridges.Kind.POT, pot);
 		registerCategory(registry, Bridges.Kind.BAKEWARE, bakeware);
+		registerCategory(registry, Bridges.Kind.FOOD_PRESS, foodPress);
+		registerCategory(registry, Bridges.Kind.MORTAR, mortar);
 
 		ItemStack cookingTable = itemStack("cookingforblockheads", "cooking_table");
+		registerCategory(registry, Bridges.Kind.KITCHEN,
+				cookingTable.isEmpty() ? new ItemStack(Items.CRAFTING_TABLE) : cookingTable);
 		if (!cookingTable.isEmpty()) {
 			EmiStack ctStack = EmiStack.of(cookingTable);
 			for (EmiRecipeCategory cat : CATEGORIES.values()) {
@@ -146,6 +165,12 @@ public final class Plugin implements EmiPlugin {
 		if (!bakeware.isEmpty()) {
 			registry.addWorkstation(CATEGORIES.get(Bridges.Kind.BAKEWARE), EmiStack.of(bakeware));
 		}
+		if (!foodPress.isEmpty()) {
+			registry.addWorkstation(CATEGORIES.get(Bridges.Kind.FOOD_PRESS), EmiStack.of(foodPress));
+		}
+		if (!mortar.isEmpty()) {
+			registry.addWorkstation(CATEGORIES.get(Bridges.Kind.MORTAR), EmiStack.of(mortar));
+		}
 
 		for (Bridges.Entry entry : Bridges.getAll()) {
 			Bridges.Kind kind = Bridges.Kind.fromSource(entry.source());
@@ -159,7 +184,7 @@ public final class Plugin implements EmiPlugin {
 	}
 
 	private static void registerCategory(EmiRegistry registry, Bridges.Kind kind, ItemStack iconStack) {
-		ResourceLocation id = new ResourceLocation(CulinaryCompat.MODID, "kitchen_bridge_" + kind.path);
+		ResourceLocation id = new ResourceLocation(CulinaryCompat.MODID, kind.path);
 		EmiStack icon = iconStack.isEmpty() ? EmiStack.of(new ItemStack(Items.CRAFTING_TABLE)) : EmiStack.of(iconStack);
 		EmiRecipeCategory cat = new EmiRecipeCategory(id, icon);
 		registry.addCategory(cat);

@@ -67,17 +67,24 @@ public final class Plugin implements IModPlugin {
 		ItemStack oven = itemStack("cookingforblockheads", "oven");
 		ItemStack pot = itemStack("farmersdelight", "cooking_pot");
 		ItemStack bakeware = new ItemStack(io.github.smokahs.culinarycompat.registry.Items.BAKEWARE.get());
+		ItemStack foodPress = itemStack("croptopia", "food_press");
+		ItemStack mortar = itemStack("croptopia", "mortar_and_pestle");
+		ItemStack cookingTable = itemStack("cookingforblockheads", "cooking_table");
+		ItemStack kitchenIcon = cookingTable.isEmpty() ? new ItemStack(Items.CRAFTING_TABLE) : cookingTable;
 		registerCategory(registration, Bridges.Kind.CUTTINGBOARD, cuttingBoard);
 		registerCategory(registration, Bridges.Kind.SKILLET, skillet);
 		registerCategory(registration, Bridges.Kind.OVEN, oven);
 		registerCategory(registration, Bridges.Kind.POT, pot);
 		registerCategory(registration, Bridges.Kind.BAKEWARE, bakeware);
+		registerCategory(registration, Bridges.Kind.FOOD_PRESS, foodPress);
+		registerCategory(registration, Bridges.Kind.MORTAR, mortar);
+		registerCategory(registration, Bridges.Kind.KITCHEN, kitchenIcon);
 	}
 
 	private static void registerCategory(IRecipeCategoryRegistration registration, Bridges.Kind kind,
 			ItemStack iconStack) {
-		ResourceLocation uid = new ResourceLocation(CulinaryCompat.MODID, "kitchen_bridge_" + kind.path);
-		Component title = Component.translatable("emi.category.culinarycompat.kitchen_bridge_" + kind.path);
+		ResourceLocation uid = new ResourceLocation(CulinaryCompat.MODID, kind.path);
+		Component title = Component.translatable("emi.category.culinarycompat." + kind.path);
 		Category cat = new Category(uid, kind, title, registration.getJeiHelpers().getGuiHelper(), iconStack);
 		registration.addRecipeCategories(cat);
 		CATEGORIES.put(kind, cat);
@@ -147,6 +154,16 @@ public final class Plugin implements IModPlugin {
 		if (bk != null && !bakeware.isEmpty()) {
 			registration.addRecipeCatalyst(bakeware, bk.type());
 		}
+		ItemStack foodPress = itemStack("croptopia", "food_press");
+		Category fp = CATEGORIES.get(Bridges.Kind.FOOD_PRESS);
+		if (fp != null && !foodPress.isEmpty()) {
+			registration.addRecipeCatalyst(foodPress, fp.type());
+		}
+		ItemStack mortar = itemStack("croptopia", "mortar_and_pestle");
+		Category mo = CATEGORIES.get(Bridges.Kind.MORTAR);
+		if (mo != null && !mortar.isEmpty()) {
+			registration.addRecipeCatalyst(mortar, mo.type());
+		}
 	}
 
 	// add bridge recipes that arrived after JEI started (dedicated server clients)
@@ -188,6 +205,18 @@ public final class Plugin implements IModPlugin {
 			Item item = ForgeRegistries.ITEMS.getValue(rl);
 			if (item != null && item != Items.AIR)
 				hide.add(new ItemStack(item));
+		}
+		// bakeware is Pam-only content; hide the block when Pam is absent
+		if (!ModList.get().isLoaded("pamhc2foodcore")) {
+			Item bakeware = io.github.smokahs.culinarycompat.registry.Items.BAKEWARE.get();
+			if (bakeware != null && bakeware != Items.AIR)
+				hide.add(new ItemStack(bakeware));
+		}
+		// FD present: the croptopia knife is nuked in favor of the FD knife
+		if (ModList.get().isLoaded("croptopia") && ModList.get().isLoaded("farmersdelight")) {
+			Item knife = ForgeRegistries.ITEMS.getValue(new ResourceLocation("croptopia", "knife"));
+			if (knife != null && knife != Items.AIR)
+				hide.add(new ItemStack(knife));
 		}
 		if (!hide.isEmpty()) {
 			try {

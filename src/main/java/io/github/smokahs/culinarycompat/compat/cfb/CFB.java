@@ -1,5 +1,6 @@
 package io.github.smokahs.culinarycompat.compat.cfb;
 
+import java.util.List;
 import java.util.Set;
 import java.util.function.BiPredicate;
 
@@ -80,10 +81,19 @@ public final class CFB {
 			modEventBus.register(Pam.CreativeTabFilter.class);
 			MinecraftForge.EVENT_BUS.register(Pam.RecipeStripper.class);
 		}
+
+		if (ModList.get().isLoaded(Croptopia.CROPTOPIA_MODID)) {
+			CulinaryCompat.LOGGER.info("Croptopia detected, enabling Croptopia kitchen bridge.");
+			MinecraftForge.EVENT_BUS.register(Croptopia.Stripper.class);
+		}
 	}
 
 	public interface KitchenMemberView {
 		Set<ResourceLocation> culinarycompat$getMemberBlocks();
+
+		// kitchen-only item providers (cabinets, drawers, racks) — excludes the
+		// player inventory that KitchenMultiBlock.getItemProviders would append
+		List<IKitchenItemProvider> culinarycompat$getKitchenItemProviders();
 	}
 
 	public static final class KitchenConnector {

@@ -36,6 +36,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import io.github.smokahs.culinarycompat.compat.cfb.BakeState;
 import io.github.smokahs.culinarycompat.compat.cfb.CFB;
+import io.github.smokahs.culinarycompat.compat.cfb.Croptopia;
 import io.github.smokahs.culinarycompat.compat.cfb.FarmersDelight;
 import io.github.smokahs.culinarycompat.compat.cfb.Pam;
 import io.github.smokahs.culinarycompat.config.Configs;
@@ -169,18 +170,45 @@ public abstract class RecipeBook {
 		if (!culinarycompat$kitchenHas(CuttingBoardBlock.class, CULINARYCOMPAT$FD_CUTTING_BOARD)) {
 			tools.addAll(FarmersDelight.Cutting.getBridgedOutputs());
 			tools.addAll(Pam.Cutting.getBridgedOutputs());
+			tools.addAll(Croptopia.getKnifeOutputs());
 		}
 		if (!culinarycompat$kitchenHas(SkilletBlock.class, CULINARYCOMPAT$FD_SKILLET)) {
 			tools.addAll(Pam.Skillet.getBridgedOutputs());
+			tools.addAll(Croptopia.getFryingPanOutputs());
 		}
 		if (!culinarycompat$kitchenHas(CookingPotBlock.class, CULINARYCOMPAT$FD_COOKING_POT)) {
 			tools.addAll(Pam.Pot.getBridgedOutputs());
 			tools.addAll(FarmersDelight.Pot.getBridgedOutputs());
+			tools.addAll(Croptopia.getCookingPotOutputs());
 		}
 		if (!culinarycompat$memberPresent(CULINARYCOMPAT$BAKEWARE)) {
 			tools.addAll(Pam.Bakeware.getBridgedOutputs());
 		}
+		if (!Croptopia.getFoodPressOutputs().isEmpty() && !culinarycompat$kitchenHasItem(Croptopia.FOOD_PRESS_ITEM)) {
+			tools.addAll(Croptopia.getFoodPressOutputs());
+		}
+		if (!Croptopia.getMortarOutputs().isEmpty() && !culinarycompat$kitchenHasItem(Croptopia.MORTAR_ITEM)) {
+			tools.addAll(Croptopia.getMortarOutputs());
+		}
 		return tools;
+	}
+
+	@Unique
+	private boolean culinarycompat$kitchenHasItem(ResourceLocation itemId) {
+		if (multiBlock == null)
+			return false;
+		List<IKitchenItemProvider> providers = ((CFB.KitchenMemberView) multiBlock)
+				.culinarycompat$getKitchenItemProviders();
+		for (IKitchenItemProvider provider : providers) {
+			int slots = provider.getSlots();
+			for (int i = 0; i < slots; i++) {
+				ItemStack stack = provider.getStackInSlot(i);
+				if (!stack.isEmpty() && itemId.equals(ForgeRegistries.ITEMS.getKey(stack.getItem()))) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	@Unique

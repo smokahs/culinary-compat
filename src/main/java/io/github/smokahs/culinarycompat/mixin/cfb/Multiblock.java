@@ -1,9 +1,11 @@
 package io.github.smokahs.culinarycompat.mixin.cfb;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import net.blay09.mods.cookingforblockheads.KitchenMultiBlock;
+import net.blay09.mods.cookingforblockheads.api.capability.IKitchenItemProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -11,7 +13,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,6 +25,10 @@ import io.github.smokahs.culinarycompat.compat.cfb.CFB;
 
 @Mixin(value = KitchenMultiBlock.class, remap = false)
 public abstract class Multiblock implements CFB.KitchenMemberView {
+	@Shadow(remap = false)
+	@Final
+	private List<IKitchenItemProvider> itemProviderList;
+
 	@Unique
 	private final Set<ResourceLocation> culinarycompat$memberBlocks = new HashSet<>();
 
@@ -57,5 +65,10 @@ public abstract class Multiblock implements CFB.KitchenMemberView {
 	@Override
 	public Set<ResourceLocation> culinarycompat$getMemberBlocks() {
 		return culinarycompat$memberBlocks;
+	}
+
+	@Override
+	public List<IKitchenItemProvider> culinarycompat$getKitchenItemProviders() {
+		return itemProviderList == null ? List.of() : itemProviderList;
 	}
 }
