@@ -2,6 +2,7 @@
   "replace": false,
   "values": [],
   "remove": [
-    {"id": "pamhc2crops:tomatoitem", "required": false}
+    {"id": "pamhc2crops:tomatoitem", "required": false},
+    {"id": "croptopia:tomato", "required": false}
   ]
 }

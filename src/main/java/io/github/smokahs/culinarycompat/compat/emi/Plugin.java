@@ -32,7 +32,11 @@ public final class Plugin implements EmiPlugin {
 	private static final String[] HIDDEN = {"pamhc2crops:tomatoitem", "pamhc2crops:tomatoseeditem",
 			"pamhc2crops:onionitem", "pamhc2crops:onionseeditem", "pamhc2crops:cabbageitem",
 			"pamhc2crops:cabbageseeditem", "pamhc2crops:riceitem", "pamhc2crops:riceseeditem",
-			"pamhc2foodcore:bakewareitem", "pamhc2foodcore:doughitem"};
+			"pamhc2foodcore:bakewareitem", "pamhc2foodcore:doughitem",
+			// croptopia tomato/onion/rice/cabbage + seeds are replaced by FD equivalents
+			// (loot + tags); hide them
+			"croptopia:tomato", "croptopia:tomato_seed", "croptopia:onion", "croptopia:onion_seed", "croptopia:cabbage",
+			"croptopia:cabbage_seed", "croptopia:rice", "croptopia:rice_seed"};
 
 	// re-run plugin registration
 	public static void requestReload() {

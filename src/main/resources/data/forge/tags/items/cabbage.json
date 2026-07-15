@@ -2,7 +2,6 @@
   "replace": false,
   "values": [],
   "remove": [
-    {"id": "pamhc2crops:cabbageitem", "required": false},
     {"id": "croptopia:cabbage", "required": false}
   ]
 }

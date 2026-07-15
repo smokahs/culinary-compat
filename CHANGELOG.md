@@ -5,9 +5,10 @@
     - Croptopia's crafting recipes now bridge into the Cooking for Blockheads kitchen, the same way Pam's HarvestCraft does
     - Recipes that need a Croptopia frying pan, cooking pot, or knife are gated behind the matching Farmer's Delight workstation in the multiblock (skillet, cooking pot, cutting board)
     - Recipes that need the Croptopia food press or mortar and pestle require that tool to be present somewhere in the kitchen's storage (cabinet, drawer, or tool rack)
-    - When Farmer's Delight is installed, Croptopia knife recipes now call for a Farmer's Delight knife instead of the Croptopia one (matching the Pam and Farmer's Delight cutting board bridges); the redundant Croptopia knife's crafting recipe is disabled and the item is hidden from JEI/EMI and the creative menu
+    - When Farmer's Delight is installed, Croptopia knife recipes now call for a Farmer's Delight knife instead of the Croptopia one (matching the Pam and Farmer's Delight cutting board); the redundant Croptopia knife's crafting recipe is disabled and the item is hidden from JEI/EMI and the creative menu
     - Recipes that use more than one tool require *all* of their tools to be satisfied
-    - Toolless Croptopia meals are now only craftable in the CFB cooking table; seeds, saplings, dyes, and the tool items themselves keep their normal crafting table recipe
+    - Toolless Croptopia meals are now only craftable in the CFB cooking table
+    - Croptopia crops (tomato, onion, rice, and cabbage) now drop the Farmer's Delight equivalent and seeds instead of the Croptopia ones, same thing with crafting recipes
 2. Simplified some player facing text
 
 ## v1.0.13 
