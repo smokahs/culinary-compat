@@ -35,10 +35,6 @@ import io.github.smokahs.culinarycompat.CulinaryCompat;
 import io.github.smokahs.culinarycompat.bridges.Bridges;
 import io.github.smokahs.culinarycompat.registry.Recipes;
 
-// gates croptopia crafting recipes behind the CFB kitchen. every tool is stripped
-// from the recipe; the gate lives in the RecipeBook mixin. pan/pot/knife require the
-// matching Farmer's Delight workstation block in the multiblock; food press and
-// mortar require the croptopia item itself present in the kitchen storage.
 public final class Croptopia {
 	public static final String CROPTOPIA_MODID = "croptopia";
 	public static final ResourceLocation FOOD_PRESS_ITEM = new ResourceLocation(CROPTOPIA_MODID, "food_press");
@@ -46,9 +42,6 @@ public final class Croptopia {
 
 	private static final String BRIDGE_NAMESPACE = "culinarycompat";
 	private static final String BRIDGE_PATH_PREFIX = "croptopia_bridge/";
-	private static final String KITCHEN_SOURCE = "croptopia_kitchen";
-	private static final ResourceLocation CFB_COOKING_TABLE = new ResourceLocation("cookingforblockheads",
-			"cooking_table");
 	// FD present: croptopia knife recipes swap to the FD knives tag and show the
 	// netherite knife, matching the Pam + FD cutting board bridges.
 	private static final ResourceLocation KNIVES_TAG_ID = new ResourceLocation("forge", "tools/knives");
@@ -61,13 +54,10 @@ public final class Croptopia {
 	private static final Set<ResourceLocation> KNIFE_OUTPUTS = ConcurrentHashMap.newKeySet();
 	private static final Set<ResourceLocation> FOOD_PRESS_OUTPUTS = ConcurrentHashMap.newKeySet();
 	private static final Set<ResourceLocation> MORTAR_OUTPUTS = ConcurrentHashMap.newKeySet();
-	private static final Set<ResourceLocation> KITCHEN_OUTPUTS = ConcurrentHashMap.newKeySet();
 
 	private Croptopia() {
 	}
 
-	// croptopia tool -> the requirement shown/enforced for its recipes. declaration
-	// order also defines primary-tool priority for multi-tool recipes.
 	private enum Tool {
 		FRYING_PAN("croptopia:frying_pan", "croptopia_frying_pan", "farmersdelight:skillet"), COOKING_POT(
 				"croptopia:cooking_pot", "croptopia_cooking_pot",
@@ -118,8 +108,6 @@ public final class Croptopia {
 	}
 
 	public static final class Stripper {
-		// captured at strip time so the bridges can be re-added every time CFB rebuilds
-		// its food registry (CookingRegistry.initFoodRegistry wipes it on each reload).
 		private record Template(ResourceLocation bridgeId, String source, NonNullList<Ingredient> food,
 				ItemStack result, ItemStack workstation, ResourceLocation outputId, EnumSet<Tool> used,
 				boolean knifeSwap) {
@@ -184,8 +172,6 @@ public final class Croptopia {
 					Tool tool = toolOf(ing);
 					if (tool != null) {
 						used.add(tool);
-						// FD present: keep an FD knife in the recipe in place of the croptopia
-						// knife, so it reads and crafts like the Pam + FD cutting board bridges.
 						if (tool == Tool.KNIFE && fdPresent) {
 							food.add(fdKnife);
 						}
@@ -205,28 +191,17 @@ public final class Croptopia {
 				if (outputId == null) {
 					continue;
 				}
-				// FD present: drop croptopia's own knife recipe so the FD knife is the go-to
-				// knife; players craft/use it instead of the redundant croptopia one.
 				if (fdPresent && Tool.KNIFE.itemId.equals(outputId)) {
 					toStrip.add(recipe.getId());
 					continue;
 				}
-				// toolless recipes: only pull cooked food into the kitchen. seeds, saplings,
-				// dyes and the tool items themselves keep their normal crafting-table recipe.
-				if (used.isEmpty() && !result.getItem().isEdible()) {
+				if (used.isEmpty()) {
 					continue;
 				}
 
-				String source;
-				ItemStack workstation;
-				if (used.isEmpty()) {
-					source = KITCHEN_SOURCE;
-					workstation = stackOf(CFB_COOKING_TABLE);
-				} else {
-					Tool primary = used.iterator().next();
-					source = primary.source;
-					workstation = stackOf(primary.workstationId);
-				}
+				Tool primary = used.iterator().next();
+				String source = primary.source;
+				ItemStack workstation = stackOf(primary.workstationId);
 
 				boolean knifeSwap = fdPresent && used.contains(Tool.KNIFE);
 				ResourceLocation bridgeId = new ResourceLocation(BRIDGE_NAMESPACE,
@@ -237,8 +212,6 @@ public final class Croptopia {
 			}
 
 			if (toStrip.isEmpty()) {
-				// already stripped (a later datapack re-sync). the Registry mixin re-adds
-				// the bridges from the stored templates, so leave existing state intact.
 				CulinaryCompat.LOGGER.info("Croptopia kitchen bridge: no matching recipes");
 				return;
 			}
@@ -256,14 +229,11 @@ public final class Croptopia {
 			registerBridges(registries);
 
 			CulinaryCompat.LOGGER.info(
-					"Croptopia kitchen bridge: moved {} recipes into the kitchen (pan={}, pot={}, knife={}, press={}, mortar={}, toolless={})",
+					"Croptopia kitchen bridge: moved {} tool recipes into the kitchen (pan={}, pot={}, knife={}, press={}, mortar={})",
 					found.size(), FRYING_PAN_OUTPUTS.size(), COOKING_POT_OUTPUTS.size(), KNIFE_OUTPUTS.size(),
-					FOOD_PRESS_OUTPUTS.size(), MORTAR_OUTPUTS.size(), KITCHEN_OUTPUTS.size());
+					FOOD_PRESS_OUTPUTS.size(), MORTAR_OUTPUTS.size());
 		}
 
-		// rebuilds the CFB food recipes, JEI/EMI bridge entries and gate sets from the
-		// stored templates. called on every CookingRegistry.initFoodRegistry (Registry
-		// mixin) because CFB clears its food registry on each recipe reload.
 		public static void registerBridges(RegistryAccess registries) {
 			clearState();
 			for (Template t : templates) {
@@ -278,12 +248,8 @@ public final class Croptopia {
 				CookingRegistry.addFoodRecipe(bridge, registries);
 				Bridges.register(new Bridges.Entry(t.source(), t.bridgeId(), new ArrayList<>(t.food()),
 						t.result().copy(), t.workstation().copy()));
-				if (t.used().isEmpty()) {
-					KITCHEN_OUTPUTS.add(t.outputId());
-				} else {
-					for (Tool tool : t.used()) {
-						tool.outputs().add(t.outputId());
-					}
+				for (Tool tool : t.used()) {
+					tool.outputs().add(t.outputId());
 				}
 			}
 		}
@@ -294,15 +260,11 @@ public final class Croptopia {
 			KNIFE_OUTPUTS.clear();
 			FOOD_PRESS_OUTPUTS.clear();
 			MORTAR_OUTPUTS.clear();
-			KITCHEN_OUTPUTS.clear();
 			for (Tool tool : Tool.values()) {
 				Bridges.clearBySource(tool.source);
 			}
-			Bridges.clearBySource(KITCHEN_SOURCE);
 		}
 
-		// a tool ingredient is a bare single-item reference to one of the croptopia
-		// tools; tag ingredients (the actual food) never classify as a tool.
 		private static Tool toolOf(Ingredient ing) {
 			ItemStack[] items = ing.getItems();
 			if (items.length != 1) {

@@ -19,6 +19,8 @@ import net.blay09.mods.cookingforblockheads.registry.recipe.FoodRecipe;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -144,6 +146,31 @@ public abstract class RecipeBook {
 		}
 		BakeState.Manager.setConfirm(sp, id);
 		ci.cancel();
+	}
+
+	// play a cook sound on kitchen craft
+	@Redirect(method = "tryCraft", at = @At(value = "INVOKE", target = "Lnet/blay09/mods/cookingforblockheads/menu/inventory/InventoryCraftBook;tryCraft(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/NonNullList;Lnet/minecraft/world/entity/player/Player;Lnet/blay09/mods/cookingforblockheads/KitchenMultiBlock;)Lnet/minecraft/world/item/ItemStack;", remap = false), remap = false, require = 0)
+	private ItemStack culinarycompat$craftWithSound(InventoryCraftBook book, ItemStack outputItem,
+			NonNullList<ItemStack> craftMatrix, Player craftingPlayer, KitchenMultiBlock kitchen) {
+		ItemStack result = book.tryCraft(outputItem, craftMatrix, craftingPlayer, kitchen);
+		if (!result.isEmpty() && !craftingPlayer.level().isClientSide()) {
+			ResourceLocation id = ForgeRegistries.ITEMS.getKey(outputItem.getItem());
+			if (id != null && !culinarycompat$isToolOutput(id)) {
+				craftingPlayer.level().playSound(null, craftingPlayer.getX(), craftingPlayer.getY(),
+						craftingPlayer.getZ(), SoundEvents.BUNDLE_INSERT, SoundSource.PLAYERS, 0.8f, 1.0f);
+			}
+		}
+		return result;
+	}
+
+	@Unique
+	private static boolean culinarycompat$isToolOutput(ResourceLocation id) {
+		return FarmersDelight.Cutting.getBridgedOutputs().contains(id) || Pam.Cutting.getBridgedOutputs().contains(id)
+				|| Croptopia.getKnifeOutputs().contains(id) || Pam.Skillet.getBridgedOutputs().contains(id)
+				|| Croptopia.getFryingPanOutputs().contains(id) || Pam.Pot.getBridgedOutputs().contains(id)
+				|| FarmersDelight.Pot.getBridgedOutputs().contains(id) || Croptopia.getCookingPotOutputs().contains(id)
+				|| Pam.Bakeware.getBridgedOutputs().contains(id) || Croptopia.getFoodPressOutputs().contains(id)
+				|| Croptopia.getMortarOutputs().contains(id);
 	}
 
 	@Unique

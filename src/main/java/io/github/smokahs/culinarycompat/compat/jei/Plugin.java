@@ -73,8 +73,6 @@ public final class Plugin implements IModPlugin {
 		ItemStack bakeware = new ItemStack(io.github.smokahs.culinarycompat.registry.Items.BAKEWARE.get());
 		ItemStack foodPress = itemStack("croptopia", "food_press");
 		ItemStack mortar = itemStack("croptopia", "mortar_and_pestle");
-		ItemStack cookingTable = itemStack("cookingforblockheads", "cooking_table");
-		ItemStack kitchenIcon = cookingTable.isEmpty() ? new ItemStack(Items.CRAFTING_TABLE) : cookingTable;
 		registerCategory(registration, Bridges.Kind.CUTTINGBOARD, cuttingBoard);
 		registerCategory(registration, Bridges.Kind.SKILLET, skillet);
 		registerCategory(registration, Bridges.Kind.OVEN, oven);
@@ -82,7 +80,6 @@ public final class Plugin implements IModPlugin {
 		registerCategory(registration, Bridges.Kind.BAKEWARE, bakeware);
 		registerCategory(registration, Bridges.Kind.FOOD_PRESS, foodPress);
 		registerCategory(registration, Bridges.Kind.MORTAR, mortar);
-		registerCategory(registration, Bridges.Kind.KITCHEN, kitchenIcon);
 	}
 
 	private static void registerCategory(IRecipeCategoryRegistration registration, Bridges.Kind kind,

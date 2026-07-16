@@ -22,9 +22,7 @@ public final class Bridges {
 				Set.of("pam_skillet", "croptopia_frying_pan")), OVEN("oven", Set.of("campfire_oven")), POT("pot",
 						Set.of("pam_pot", "fd_cooking", "croptopia_cooking_pot")), BAKEWARE("bakeware",
 								Set.of("pam_bakeware")), FOOD_PRESS("food_press",
-										Set.of("croptopia_food_press")), MORTAR("mortar",
-												Set.of("croptopia_mortar")), KITCHEN("kitchen",
-														Set.of("croptopia_kitchen"));
+										Set.of("croptopia_food_press")), MORTAR("mortar", Set.of("croptopia_mortar"));
 
 		public final String path;
 		public final Set<String> sources;

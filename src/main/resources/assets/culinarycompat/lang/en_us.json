@@ -6,7 +6,6 @@
   "emi.category.culinarycompat.bakeware": "Bakeware",
   "emi.category.culinarycompat.food_press": "Food Press",
   "emi.category.culinarycompat.mortar": "Mortar and Pestle",
-  "emi.category.culinarycompat.kitchen": "Kitchen Crafting",
   "culinarycompat.emi.requires": "Requires a %s!",
   "culinarycompat.emi.workstation.unknown": "missing workstation",
   "block.culinarycompat.bakeware": "Bakeware",

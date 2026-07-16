@@ -141,8 +141,6 @@ public final class Plugin implements EmiPlugin {
 		registerCategory(registry, Bridges.Kind.MORTAR, mortar);
 
 		ItemStack cookingTable = itemStack("cookingforblockheads", "cooking_table");
-		registerCategory(registry, Bridges.Kind.KITCHEN,
-				cookingTable.isEmpty() ? new ItemStack(Items.CRAFTING_TABLE) : cookingTable);
 		if (!cookingTable.isEmpty()) {
 			EmiStack ctStack = EmiStack.of(cookingTable);
 			for (EmiRecipeCategory cat : CATEGORIES.values()) {

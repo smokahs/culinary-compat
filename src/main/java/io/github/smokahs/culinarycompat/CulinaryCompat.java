@@ -23,6 +23,7 @@ import io.github.smokahs.culinarycompat.registry.Items;
 import io.github.smokahs.culinarycompat.registry.LootFunctions;
 import io.github.smokahs.culinarycompat.registry.Recipes;
 import io.github.smokahs.culinarycompat.registry.Sounds;
+import io.github.smokahs.culinarycompat.resource.OverridePack;
 
 @Mod(CulinaryCompat.MODID)
 public class CulinaryCompat {
@@ -42,6 +43,7 @@ public class CulinaryCompat {
 		modEventBus.addListener(DepCheck::onCommonSetup);
 		modEventBus.addListener(FoodNerf::onCommonSetup);
 		modEventBus.addListener(CulinaryCompat::onCommonSetup);
+		modEventBus.addListener(OverridePack::onAddPackFinders);
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Configs.Common.SPEC);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Configs.Client.SPEC);
