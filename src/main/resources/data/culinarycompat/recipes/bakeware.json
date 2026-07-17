@@ -2,8 +2,17 @@
 	"type": "minecraft:crafting_shaped",
 	"conditions": [
 		{
-			"type": "forge:mod_loaded",
-			"modid": "pamhc2foodcore"
+			"type": "forge:or",
+			"values": [
+				{
+					"type": "forge:mod_loaded",
+					"modid": "pamhc2foodcore"
+				},
+				{
+					"type": "forge:mod_loaded",
+					"modid": "croptopia"
+				}
+			]
 		}
 	],
 	"pattern": [

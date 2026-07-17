@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:bread" },
+    { "item": "farmersdelight:cooked_bacon" },
+    { "tag": "forge:lettuce" },
+    { "tag": "forge:tomatoes" }
+  ],
+  "result": {
+    "item": "croptopia:blt",
+    "count": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "conditions": [
+    {
+      "type": "forge:false"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "croptopia:cooking_pot"
+    },
+    {
+      "tag": "forge:water_bottles"
+    },
+    {
+      "tag": "forge:flour"
+    }
+  ],
+  "result": {
+    "item": "croptopia:dough",
+    "count": 1
+  }
+}

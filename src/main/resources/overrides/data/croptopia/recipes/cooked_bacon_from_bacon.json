@@ -1,0 +1,11 @@
+{
+  "conditions": [
+    { "type": "forge:false" }
+  ],
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "ingredient": { "item": "croptopia:bacon" },
+  "result": "croptopia:cooked_bacon"
+}

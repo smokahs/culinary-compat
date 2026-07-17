@@ -36,7 +36,14 @@ public final class Plugin implements EmiPlugin {
 			// croptopia tomato/onion/rice/cabbage + seeds are replaced by FD equivalents
 			// (loot + tags); hide them
 			"croptopia:tomato", "croptopia:tomato_seed", "croptopia:onion", "croptopia:onion_seed", "croptopia:cabbage",
-			"croptopia:cabbage_seed", "croptopia:rice", "croptopia:rice_seed"};
+			"croptopia:cabbage_seed", "croptopia:rice", "croptopia:rice_seed",
+			// croptopia bacon pair is replaced by FD bacon (recipes overridden); hide them
+			"croptopia:bacon", "croptopia:cooked_bacon",
+			// croptopia dupes of FD/vanilla items + meals; recipes disabled or rewritten to
+			// FD
+			"croptopia:milk_bottle", "croptopia:dough", "croptopia:apple_pie", "croptopia:beef_stew",
+			"croptopia:fruit_salad", "croptopia:hamburger", "croptopia:melon_juice", "croptopia:pumpkin_soup",
+			"croptopia:ratatouille", "croptopia:shepherds_pie", "croptopia:cabbage_roll"};
 
 	// re-run plugin registration
 	public static void requestReload() {
@@ -98,8 +105,8 @@ public final class Plugin implements EmiPlugin {
 			if (item != null && item != Items.AIR)
 				hidden.add(item);
 		}
-		// bakeware is Pam-only content; hide the block when Pam is absent
-		if (!ModList.get().isLoaded("pamhc2foodcore")) {
+		// bakeware serves Pam + croptopia baked goods; hide the block when both absent
+		if (!ModList.get().isLoaded("pamhc2foodcore") && !ModList.get().isLoaded("croptopia")) {
 			Item bakeware = io.github.smokahs.culinarycompat.registry.Items.BAKEWARE.get();
 			if (bakeware != null && bakeware != Items.AIR)
 				hidden.add(bakeware);

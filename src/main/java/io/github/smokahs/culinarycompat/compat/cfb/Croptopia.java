@@ -54,6 +54,25 @@ public final class Croptopia {
 	private static final Set<ResourceLocation> KNIFE_OUTPUTS = ConcurrentHashMap.newKeySet();
 	private static final Set<ResourceLocation> FOOD_PRESS_OUTPUTS = ConcurrentHashMap.newKeySet();
 	private static final Set<ResourceLocation> MORTAR_OUTPUTS = ConcurrentHashMap.newKeySet();
+	private static final Set<ResourceLocation> BAKEWARE_OUTPUTS = ConcurrentHashMap.newKeySet();
+
+	private static final ResourceLocation BAKEWARE_ITEM = new ResourceLocation("culinarycompat", "bakeware");
+	private static final String BAKEWARE_SOURCE = "croptopia_bakeware";
+	// croptopia "fries" its oven food; baked outputs re-home to the bakeware gate
+	private static final Set<ResourceLocation> BAKED_GOODS = bakedGoods();
+
+	private static Set<ResourceLocation> bakedGoods() {
+		String[] paths = {"anchovy_pizza", "cheese_pizza", "pineapple_pepperoni_pizza", "pizza", "supreme_pizza",
+				"banana_cream_pie", "cherry_pie", "pecan_pie", "rhubarb_pie", "baked_crepes", "beef_wellington",
+				"brownies", "cinnamon_roll", "cornish_pasty", "quiche", "scones", "kale_chips", "stuffed_artichoke",
+				"roasted_asparagus", "roasted_pumpkin_seeds", "roasted_radishes", "roasted_squash",
+				"roasted_sunflower_seeds", "roasted_turnips", "spaghetti_squash"};
+		Set<ResourceLocation> set = new HashSet<>();
+		for (String path : paths) {
+			set.add(new ResourceLocation(CROPTOPIA_MODID, path));
+		}
+		return Set.copyOf(set);
+	}
 
 	private Croptopia() {
 	}
@@ -107,10 +126,14 @@ public final class Croptopia {
 		return Collections.unmodifiableSet(MORTAR_OUTPUTS);
 	}
 
+	public static Set<ResourceLocation> getBakewareOutputs() {
+		return Collections.unmodifiableSet(BAKEWARE_OUTPUTS);
+	}
+
 	public static final class Stripper {
 		private record Template(ResourceLocation bridgeId, String source, NonNullList<Ingredient> food,
 				ItemStack result, ItemStack workstation, ResourceLocation outputId, EnumSet<Tool> used,
-				boolean knifeSwap) {
+				boolean knifeSwap, boolean bakeware) {
 		}
 
 		private static volatile List<Template> templates = List.of();
@@ -203,11 +226,17 @@ public final class Croptopia {
 				String source = primary.source;
 				ItemStack workstation = stackOf(primary.workstationId);
 
+				boolean bakeware = used.contains(Tool.FRYING_PAN) && BAKED_GOODS.contains(outputId);
+				if (bakeware) {
+					source = BAKEWARE_SOURCE;
+					workstation = stackOf(BAKEWARE_ITEM);
+				}
+
 				boolean knifeSwap = fdPresent && used.contains(Tool.KNIFE);
 				ResourceLocation bridgeId = new ResourceLocation(BRIDGE_NAMESPACE,
 						BRIDGE_PATH_PREFIX + recipe.getId().getPath());
 				found.add(new Template(bridgeId, source, food, result.copy(), workstation.copy(), outputId, used,
-						knifeSwap));
+						knifeSwap, bakeware));
 				toStrip.add(recipe.getId());
 			}
 
@@ -229,9 +258,9 @@ public final class Croptopia {
 			registerBridges(registries);
 
 			CulinaryCompat.LOGGER.info(
-					"Croptopia kitchen bridge: moved {} tool recipes into the kitchen (pan={}, pot={}, knife={}, press={}, mortar={})",
+					"Croptopia kitchen bridge: moved {} tool recipes into the kitchen (pan={}, pot={}, knife={}, press={}, mortar={}, bakeware={})",
 					found.size(), FRYING_PAN_OUTPUTS.size(), COOKING_POT_OUTPUTS.size(), KNIFE_OUTPUTS.size(),
-					FOOD_PRESS_OUTPUTS.size(), MORTAR_OUTPUTS.size());
+					FOOD_PRESS_OUTPUTS.size(), MORTAR_OUTPUTS.size(), BAKEWARE_OUTPUTS.size());
 		}
 
 		public static void registerBridges(RegistryAccess registries) {
@@ -249,7 +278,11 @@ public final class Croptopia {
 				Bridges.register(new Bridges.Entry(t.source(), t.bridgeId(), new ArrayList<>(t.food()),
 						t.result().copy(), t.workstation().copy()));
 				for (Tool tool : t.used()) {
-					tool.outputs().add(t.outputId());
+					if (t.bakeware() && tool == Tool.FRYING_PAN) {
+						BAKEWARE_OUTPUTS.add(t.outputId());
+					} else {
+						tool.outputs().add(t.outputId());
+					}
 				}
 			}
 		}
@@ -260,9 +293,11 @@ public final class Croptopia {
 			KNIFE_OUTPUTS.clear();
 			FOOD_PRESS_OUTPUTS.clear();
 			MORTAR_OUTPUTS.clear();
+			BAKEWARE_OUTPUTS.clear();
 			for (Tool tool : Tool.values()) {
 				Bridges.clearBySource(tool.source);
 			}
+			Bridges.clearBySource(BAKEWARE_SOURCE);
 		}
 
 		private static Tool toolOf(Ingredient ing) {

@@ -13,7 +13,7 @@ displayName="${mod_name}"
 displayURL="https://curseforge.com/minecraft/mc-mods/culinary-compat"
 logoFile="icon.png"
 authors="${mod_authors}"
-credits="Pam, vectorwing, BlayTheNinth, Pixel_1101, ItsSebastrn"
+credits="Pam, vectorwing, BlayTheNinth, Pixel_1101, ItsSebastrn, ACCBDD (Farmer's Croptopia recipes, Apache-2.0)"
 description='''${mod_description}'''
 
 [[dependencies.culinarycompat]]

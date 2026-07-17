@@ -1,0 +1,32 @@
+{
+	"type": "farmersdelight:cooking",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "croptopia"
+		},
+		{
+			"type": "forge:mod_loaded",
+			"modid": "farmersdelight"
+		}
+	],
+	"cookingtime": 200,
+	"experience": 0.8,
+	"ingredients": [
+		{
+			"tag": "forge:vanilla"
+		},
+		{
+			"item": "minecraft:sugar"
+		},
+		{
+			"item": "minecraft:egg"
+		},
+		{
+			"tag": "forge:milks"
+		}
+	],
+	"result": {
+		"item": "croptopia:vanilla_ice_cream"
+	}
+}

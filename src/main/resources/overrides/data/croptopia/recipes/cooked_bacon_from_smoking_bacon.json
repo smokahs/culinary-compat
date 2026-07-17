@@ -1,0 +1,11 @@
+{
+  "conditions": [
+    { "type": "forge:false" }
+  ],
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.2,
+  "ingredient": { "item": "croptopia:bacon" },
+  "result": "croptopia:cooked_bacon"
+}

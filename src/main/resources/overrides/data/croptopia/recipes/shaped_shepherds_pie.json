@@ -1,0 +1,46 @@
+{
+  "conditions": [
+    {
+      "type": "forge:false"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "213",
+    "4F5",
+    "678"
+  ],
+  "key": {
+    "F": {
+      "item": "croptopia:frying_pan"
+    },
+    "1": {
+      "tag": "croptopia:beef_mutton"
+    },
+    "2": {
+      "tag": "forge:salts"
+    },
+    "3": {
+      "item": "croptopia:pepper"
+    },
+    "4": {
+      "item": "minecraft:potato"
+    },
+    "5": {
+      "tag": "forge:tomatoes"
+    },
+    "6": {
+      "tag": "forge:corn"
+    },
+    "7": {
+      "tag": "forge:garlic"
+    },
+    "8": {
+      "tag": "forge:onions"
+    }
+  },
+  "result": {
+    "item": "croptopia:shepherds_pie",
+    "count": 1
+  }
+}

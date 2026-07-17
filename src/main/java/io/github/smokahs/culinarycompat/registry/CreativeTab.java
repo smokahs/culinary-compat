@@ -26,8 +26,8 @@ public final class CreativeTab {
 	@SubscribeEvent
 	public static void onBuildTabContents(BuildCreativeModeTabContentsEvent event) {
 		if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-			// bakeware only exist with Pam installed; hide the block otherwise
-			if (ModList.get().isLoaded("pamhc2foodcore")) {
+			// bakeware serves Pam + croptopia baked goods; hide the block when both absent
+			if (ModList.get().isLoaded("pamhc2foodcore") || ModList.get().isLoaded("croptopia")) {
 				event.accept(Items.BAKEWARE.get());
 			}
 			event.accept(Items.GUIDEBOOK.get());

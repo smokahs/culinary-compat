@@ -1,0 +1,30 @@
+{
+	"type": "farmersdelight:cooking",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "croptopia"
+		},
+		{
+			"type": "forge:mod_loaded",
+			"modid": "farmersdelight"
+		}
+	],
+	"cookingtime": 200,
+	"experience": 0.8,
+	"ingredients": [
+		{
+			"tag": "forge:doughs"
+		},
+		{
+			"tag": "forge:chile_peppers"
+		},
+		{
+			"tag": "forge:tofu"
+		}
+	],
+	"result": {
+		"item": "croptopia:tofu_and_dumplings",
+		"count": 1
+	}
+}

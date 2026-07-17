@@ -48,7 +48,7 @@ public final class Configs {
 					.translation("culinarycompat.config.nerfminecraft").define("nerfMinecraft", false);
 			BUILDER.pop();
 
-			BUILDER.comment("Bakeware cooking flow in the CFB cooking table.").push("bakeware");
+			BUILDER.comment("Bakeware cooking in the CFB cooking table.").push("bakeware");
 			BAKEWARE_ENABLED = BUILDER
 					.comment("enable use cooldown on bakeware recipes. when false, bakeware recipes craft instantly.")
 					.translation("culinarycompat.config.bakewareEnabled").define("enabled", true);
@@ -73,7 +73,7 @@ public final class Configs {
 			BUILDER.comment("Chat notifications.").push("notifications");
 			NOTIFY_MISSING_DEPS = BUILDER
 					.comment("show a chat message on login when certain optional dependencies are missing.")
-					.translation("culinarycompat.config.notifyMissingDeps").define("notifyMissingDeps", true);
+					.translation("culinarycompat.config.notifyMissingDeps").define("notifyMissingDeps", false);
 			BUILDER.pop();
 		}
 

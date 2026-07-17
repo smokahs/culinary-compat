@@ -1,0 +1,33 @@
+{
+	"type": "farmersdelight:cooking",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "croptopia"
+		},
+		{
+			"type": "forge:mod_loaded",
+			"modid": "farmersdelight"
+		}
+	],
+	"cookingtime": 200,
+	"experience": 0.8,
+	"ingredients": [
+		{
+			"item": "minecraft:egg"
+		},
+		{
+			"tag": "forge:chocolates"
+		},
+		{
+			"tag": "forge:milk_bottles"
+		},
+		{
+			"item": "minecraft:sugar"
+		}
+	],
+	"result": {
+		"item": "croptopia:chocolate_ice_cream",
+		"count": 1
+	}
+}

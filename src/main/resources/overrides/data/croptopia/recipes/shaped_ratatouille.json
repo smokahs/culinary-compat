@@ -1,0 +1,46 @@
+{
+  "conditions": [
+    {
+      "type": "forge:false"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "364",
+    "512",
+    "789"
+  ],
+  "key": {
+    "1": {
+      "item": "croptopia:frying_pan"
+    },
+    "2": {
+      "tag": "forge:eggplants"
+    },
+    "3": {
+      "tag": "forge:tomatoes"
+    },
+    "4": {
+      "tag": "forge:squashes"
+    },
+    "5": {
+      "tag": "forge:zucchini"
+    },
+    "6": {
+      "tag": "forge:olive_oils"
+    },
+    "7": {
+      "tag": "forge:onions"
+    },
+    "8": {
+      "tag": "forge:bellpeppers"
+    },
+    "9": {
+      "tag": "forge:basil"
+    }
+  },
+  "result": {
+    "item": "croptopia:ratatouille",
+    "count": 2
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "conditions": [
+    {
+      "type": "forge:false"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "tag": "forge:strawberries"
+    },
+    {
+      "tag": "forge:bananas"
+    },
+    {
+      "tag": "forge:grapes"
+    },
+    {
+      "item": "minecraft:apple"
+    }
+  ],
+  "result": {
+    "item": "croptopia:fruit_salad",
+    "count": 1
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:water_bucket" },
+    { "item": "minecraft:glass_bottle" },
+    { "item": "minecraft:glass_bottle" },
+    { "item": "minecraft:glass_bottle" },
+    { "item": "minecraft:glass_bottle" }
+  ],
+  "result": {
+    "item": "croptopia:water_bottle",
+    "count": 4
+  }
+}

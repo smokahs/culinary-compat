@@ -194,14 +194,18 @@ public final class UI {
 			Set<ResourceLocation> pamPot = Pam.Pot.getBridgedOutputs();
 			Set<ResourceLocation> fdPot = FarmersDelight.Pot.getBridgedOutputs();
 			Set<ResourceLocation> bakeware = Pam.Bakeware.getBridgedOutputs();
-			if (fdCutting.contains(id) || pamCutting.contains(id))
+			if (fdCutting.contains(id) || pamCutting.contains(id) || Croptopia.getKnifeOutputs().contains(id))
 				tools.add("Cutting Board");
-			if (skillet.contains(id))
+			if (skillet.contains(id) || Croptopia.getFryingPanOutputs().contains(id))
 				tools.add("Skillet");
-			if (pamPot.contains(id) || fdPot.contains(id))
+			if (pamPot.contains(id) || fdPot.contains(id) || Croptopia.getCookingPotOutputs().contains(id))
 				tools.add("Cooking Pot");
-			if (bakeware.contains(id))
+			if (bakeware.contains(id) || Croptopia.getBakewareOutputs().contains(id))
 				tools.add("Bakeware");
+			if (Croptopia.getFoodPressOutputs().contains(id))
+				tools.add("Food Press");
+			if (Croptopia.getMortarOutputs().contains(id))
+				tools.add("Mortar and Pestle");
 
 			if (tools.isEmpty())
 				return;

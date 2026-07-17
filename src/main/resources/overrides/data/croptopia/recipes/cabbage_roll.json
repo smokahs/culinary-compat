@@ -1,0 +1,39 @@
+{
+  "conditions": [
+    {
+      "type": "forge:false"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "tag": "croptopia:beef_replacements"
+    },
+    "2": {
+      "tag": "forge:onions"
+    },
+    "4": {
+      "tag": "forge:salts"
+    },
+    "5": {
+      "tag": "forge:cabbage"
+    },
+    "6": {
+      "tag": "forge:rice"
+    },
+    "8": {
+      "item": "croptopia:frying_pan"
+    }
+  },
+  "pattern": [
+    "121",
+    "456",
+    "585"
+  ],
+  "result": {
+    "count": 2,
+    "item": "croptopia:cabbage_roll"
+  },
+  "show_notification": true
+}

@@ -222,7 +222,8 @@ public final class BakeState {
 			if (id == null)
 				return;
 
-			boolean isBakeware = Pam.Bakeware.getBridgedOutputs().contains(id);
+			boolean isBakeware = Pam.Bakeware.getBridgedOutputs().contains(id)
+					|| Croptopia.getBakewareOutputs().contains(id);
 			if (isBakeware && Configs.Common.bakewareEnabled) {
 				List<Component> tip = event.getToolTip();
 				tip.removeIf(line -> line.getContents() instanceof TranslatableContents tc

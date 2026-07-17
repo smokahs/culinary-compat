@@ -1,0 +1,39 @@
+{
+  "conditions": [
+    {
+      "type": "forge:false"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "tag": "forge:onions"
+    },
+    "2": {
+      "tag": "forge:garlic"
+    },
+    "3": {
+      "item": "croptopia:pepper"
+    },
+    "4": {
+      "item": "minecraft:pumpkin"
+    },
+    "5": {
+      "tag": "forge:salts"
+    },
+    "6": {
+      "item": "croptopia:cooking_pot"
+    }
+  },
+  "pattern": [
+    "123",
+    " 5 ",
+    "464"
+  ],
+  "result": {
+    "count": 2,
+    "item": "croptopia:pumpkin_soup"
+  },
+  "show_notification": true
+}

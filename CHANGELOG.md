@@ -1,14 +1,19 @@
 # Beta Changelog
 
 ## v1.0.14
-1. Added Croptopia support!
-    - Croptopia's crafting recipes now bridge into the Cooking for Blockheads kitchen (Serving as alternative to Pam's!) 
-    - Recipes that need a Croptopia frying pan, cooking pot, or knife are gated behind the matching Farmer's Delight workstation in the multiblock (skillet, cooking pot, cutting board)
-    - Recipes that need the Croptopia food press or mortar and pestle require that tool to be present somewhere in the kitchen's storage (cabinet, drawer, or tool rack)
-    - When Farmer's Delight is installed, Croptopia knife recipes now call for a Farmer's Delight knife instead of the Croptopia one (matching the Pam and Farmer's Delight cutting board); the redundant Croptopia knife's crafting recipe is disabled and the item is hidden from JEI/EMI and the creative menu
-    - Recipes that use more than one tool require *all* of their tools to be satisfied
-    - Toolless Croptopia meals stay as normal crafting recipes; Cooking for Blockheads surfaces them in its cooking table on its own (same as Farmer's Delight), so only recipes that need a tool are bridged
-    - Croptopia crops (tomato, onion, rice, and cabbage) now drop the Farmer's Delight equivalent and seeds instead of the Croptopia's, same thing with crafting recipes
+1. Added full Croptopia support!
+    - Croptopia recipes compat for the Cooking for Blockheads kitchen, gated by their tool:
+        - Frying pan → Skillet 
+        - Cooking pot → Cooking Pot
+        - Knife → Cutting Board + a Farmer's Delight knife (the Croptopia knife is removed)
+        - Food press and mortar & pestle → Either (or both for certain recipes) tool stored anywhere in the kitchen
+        - Baked goods (pizzas, pies, pastries, roasted dishes) → Bakeware in the kitchen, with the full bake timer; Bakeware is now available with Pam's *or* Croptopia
+        - Multi-tool recipes need all of their tools; toolless meals stay normal crafting recipes
+    - Farmer's Delight items prevail! Croptopia duplicates are hidden and their recipes disabled or rewritten to the FD item: tomato/onion/rice/cabbage (+ seeds, crops drop the FD versions), bacon & cooked bacon, milk bottle, dough, and 9 duplicate meals (apple pie, beef stew, hamburger, etc.)
+    - Croptopia meals (jams, borscht, cheese, butter, ice creams, and more) can be cooked in the Farmer's Delight cooking pot (adapted from [Farmer's Croptopia](https://github.com/ACCBDD/farmers-croptopia), thank you ACCBDD!)
+    - Water bottles now craft like FD milk bottles: 1 water bucket + 4 glass bottles = 4
+    - Kitchen liquids: the Sink provides water bottles and the Milk Jar / Cow in a Jar provides FD milk bottles; bottles only drain a quarter bucket (250mb)
+    - Fixed Croptopia's gather advancements requiring removed items (they now count the FD equivalents)
 2. Simplified some player facing text
 3. Added a crafting sound inside cfb block for edible shapeless crafted items 
 

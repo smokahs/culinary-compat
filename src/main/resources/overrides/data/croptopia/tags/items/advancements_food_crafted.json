@@ -1,0 +1,58 @@
+{
+  "replace": false,
+  "values": [],
+  "remove": [
+    {
+      "id": "croptopia:bacon",
+      "required": false
+    },
+    {
+      "id": "croptopia:cooked_bacon",
+      "required": false
+    },
+    {
+      "id": "croptopia:milk_bottle",
+      "required": false
+    },
+    {
+      "id": "croptopia:dough",
+      "required": false
+    },
+    {
+      "id": "croptopia:apple_pie",
+      "required": false
+    },
+    {
+      "id": "croptopia:beef_stew",
+      "required": false
+    },
+    {
+      "id": "croptopia:fruit_salad",
+      "required": false
+    },
+    {
+      "id": "croptopia:hamburger",
+      "required": false
+    },
+    {
+      "id": "croptopia:melon_juice",
+      "required": false
+    },
+    {
+      "id": "croptopia:pumpkin_soup",
+      "required": false
+    },
+    {
+      "id": "croptopia:ratatouille",
+      "required": false
+    },
+    {
+      "id": "croptopia:shepherds_pie",
+      "required": false
+    },
+    {
+      "id": "croptopia:cabbage_roll",
+      "required": false
+    }
+  ]
+}

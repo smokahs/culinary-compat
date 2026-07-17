@@ -1,0 +1,38 @@
+{
+	"type": "farmersdelight:cooking",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "croptopia"
+		},
+		{
+			"type": "forge:mod_loaded",
+			"modid": "farmersdelight"
+		}
+	],
+	"cookingtime": 200,
+	"experience": 0.8,
+	"ingredients": [
+		{
+			"item": "minecraft:beetroot"
+		},
+		{
+			"item": "minecraft:beetroot"
+		},
+		{
+			"item": "minecraft:beetroot"
+		},
+		{
+			"tag": "forge:lettuce"
+		},
+		{
+			"tag": "forge:lemons"
+		},
+		{
+			"tag": "forge:cheeses"
+		}
+	],
+	"result": {
+		"item": "croptopia:beetroot_salad"
+	}
+}

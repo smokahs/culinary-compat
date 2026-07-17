@@ -119,7 +119,7 @@ public abstract class RecipeBook {
 		}
 		if (!(player instanceof ServerPlayer sp))
 			return;
-		if (!Pam.Bakeware.getBridgedOutputs().contains(id))
+		if (!Pam.Bakeware.getBridgedOutputs().contains(id) && !Croptopia.getBakewareOutputs().contains(id))
 			return;
 		if (!Configs.Common.bakewareEnabled)
 			return;
@@ -170,7 +170,7 @@ public abstract class RecipeBook {
 				|| Croptopia.getFryingPanOutputs().contains(id) || Pam.Pot.getBridgedOutputs().contains(id)
 				|| FarmersDelight.Pot.getBridgedOutputs().contains(id) || Croptopia.getCookingPotOutputs().contains(id)
 				|| Pam.Bakeware.getBridgedOutputs().contains(id) || Croptopia.getFoodPressOutputs().contains(id)
-				|| Croptopia.getMortarOutputs().contains(id);
+				|| Croptopia.getMortarOutputs().contains(id) || Croptopia.getBakewareOutputs().contains(id);
 	}
 
 	@Unique
@@ -208,8 +208,10 @@ public abstract class RecipeBook {
 			tools.addAll(FarmersDelight.Pot.getBridgedOutputs());
 			tools.addAll(Croptopia.getCookingPotOutputs());
 		}
-		if (!culinarycompat$memberPresent(CULINARYCOMPAT$BAKEWARE)) {
+		if (!culinarycompat$memberPresent(CULINARYCOMPAT$BAKEWARE)
+				&& !culinarycompat$kitchenHasItem(CULINARYCOMPAT$BAKEWARE)) {
 			tools.addAll(Pam.Bakeware.getBridgedOutputs());
+			tools.addAll(Croptopia.getBakewareOutputs());
 		}
 		if (!Croptopia.getFoodPressOutputs().isEmpty() && !culinarycompat$kitchenHasItem(Croptopia.FOOD_PRESS_ITEM)) {
 			tools.addAll(Croptopia.getFoodPressOutputs());

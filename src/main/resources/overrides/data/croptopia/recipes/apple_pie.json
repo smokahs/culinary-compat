@@ -1,0 +1,32 @@
+{
+  "conditions": [
+    {
+      "type": "forge:false"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:apples"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "tag": "forge:flour"
+    },
+    {
+      "tag": "forge:doughs"
+    },
+    {
+      "item": "croptopia:frying_pan"
+    }
+  ],
+  "result": {
+    "item": "croptopia:apple_pie"
+  }
+}

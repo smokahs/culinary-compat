@@ -2,6 +2,13 @@
   "replace": false,
   "values": [],
   "remove": [
-    {"id": "pamhc2foodcore:doughitem", "required": false}
+    {
+      "id": "pamhc2foodcore:doughitem",
+      "required": false
+    },
+    {
+      "id": "croptopia:dough",
+      "required": false
+    }
   ]
 }
