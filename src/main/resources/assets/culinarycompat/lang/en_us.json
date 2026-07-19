@@ -11,6 +11,7 @@
   "block.culinarycompat.bakeware": "Bakeware",
   "item.culinarycompat.bakeware": "Bakeware",
   "culinarycompat.config.nerfpams": "Nerf Pam's HarvestCraft 2 Food",
+  "culinarycompat.config.nerfcroptopia": "Nerf Croptopia Food",
   "culinarycompat.config.inedibleingredients": "Strip Food From Ingredients",
   "culinarycompat.config.nerfminecraft": "Nerf Vanilla Minecraft Food",
   "culinarycompat.config.bakewareEnabled": "Enable Bakeware Bake Flow",

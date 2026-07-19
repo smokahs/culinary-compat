@@ -24,6 +24,7 @@ public final class Configs {
 		private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
 		private static final ForgeConfigSpec.BooleanValue NERF_PAMS;
+		private static final ForgeConfigSpec.BooleanValue NERF_CROPTOPIA;
 		private static final ForgeConfigSpec.BooleanValue INEDIBLE_INGREDIENTS;
 		private static final ForgeConfigSpec.BooleanValue NERF_MINECRAFT;
 
@@ -37,10 +38,14 @@ public final class Configs {
 		private static final ForgeConfigSpec.BooleanValue NOTIFY_MISSING_DEPS;
 
 		static {
-			BUILDER.comment("Pam's HarvestCraft 2 food rebalancing. Requires restart to take effect.").push("foodNerf");
+			BUILDER.comment("Food rebalancing (Pam's HarvestCraft 2, Croptopia). Requires restart to take effect.")
+					.push("foodNerf");
 			NERF_PAMS = BUILDER
 					.comment("rebalance Pam's HarvestCraft 2 food values to 1.12.2 baseline (Thanks Pixel1011!).")
-					.translation("culinarycompat.config.nerfpams").define("nerfPams", true);
+					.translation("culinarycompat.config.nerfpams").define("nerfPams", false);
+			NERF_CROPTOPIA = BUILDER.comment(
+					"rebalance Croptopia food values to Farmer's Delight saturation levels (sat 0.3 / 0.4 raw + hearty meals, nutrition capped at 14).")
+					.translation("culinarycompat.config.nerfcroptopia").define("nerfCroptopia", true);
 			INEDIBLE_INGREDIENTS = BUILDER.comment(
 					"strip food properties from ingredient items (butter, spices, fresh water, etc.) so they cannot be eaten.")
 					.translation("culinarycompat.config.inedibleingredients").define("inedibleIngredients", true);
@@ -80,6 +85,7 @@ public final class Configs {
 		public static final ForgeConfigSpec SPEC = BUILDER.build();
 
 		public static boolean nerfPams;
+		public static boolean nerfCroptopia;
 		public static boolean inedibleIngredients;
 		public static boolean nerfMinecraft;
 
@@ -97,6 +103,7 @@ public final class Configs {
 
 		static void load() {
 			nerfPams = NERF_PAMS.get();
+			nerfCroptopia = NERF_CROPTOPIA.get();
 			inedibleIngredients = INEDIBLE_INGREDIENTS.get();
 			nerfMinecraft = NERF_MINECRAFT.get();
 			bakewareEnabled = BAKEWARE_ENABLED.get();

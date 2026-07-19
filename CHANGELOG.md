@@ -1,3 +1,9 @@
+# Changelog
+
+## v1.1.0
+1. New `nerfCroptopia` config option (default on) under `foodNerf`: rebalances Croptopia's food to Farmer's Delight saturation levels (sat mod 0.3 prepared / 0.4 raw + hearty meals, nutrition capped at 14) so it no longer overpowers slice-of-life mods
+2. `nerfPams` now defaults off (was on)
+
 # Beta Changelog
 
 ## v1.0.14
